@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+# sign-up view here ;)
+def sign_up(request):
+    context = {}
+    return render(request, 'index.html', context)
