@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{%static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+</head>
+<style>
+    .mssg-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .title-block:first-child{
+        margin-right: 1.5rem;
+    }
+    .form-textbox{
+        padding: .2rem !important;
+    }
+</style>
+<body>
+
+    <div class="main">
+
+        <h1>Sign up</h1>
+        <div class="container">
+            <div class="sign-up-content">
+                <div class="mssg-box">
+                    <div class="title-block">
+                        <p class="form-title" style="color: rgb(194, 76, 46);"></p>
+                    </div>
+                    <div class="circle"></div>
+                </div>
+                <form method="POST" class="signup-form" id="signin_form" autocomplete="off">
+                    {%csrf_token%}
+                    <div class="form-textbox">
+                        <label for="id_email">Email</label>
+                        <input type="email" id="id_email">
+                    </div>
+
+                    <div class="form-textbox">
+                        <label for="id_password">Password</label>
+                        <input type="password" id="id_password">
+                    </div>
+
+                    <div class="form-textbox">
+                        <input type="submit" name="submit" id="submit" class="submit" value="Sign In" />
+                    </div>
+                </form>
+
+                <p class="loginhere">
+                    Don't have an account ?<a href="{%url 'sign-up' %}" class="loginhere-link"> Sign Up</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{%static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{%static 'js/main.js' %}"></script>
+    <script>
+        function nextPage(){
+            window.location = "/auth/category/"; 
+        }
+
+        $(document).on('submit', "#signin_form", (e)=>{
+            e.preventDefault();
+            $.ajax({
+                type:"POST",
+                url:"/auth/login/",
+                data:{
+                    email:$('#id_email').val(),
+                    password:$('#id_password').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:(data)=>{
+                    if(data === 'email or password is incorrect'){
+                        $('.form-title').append(data);
+                    }else{
+                        setTimeout(nextPage, 1000);
+                    }
+                },
+                error:()=>{
+                    alert('Something went wrong try refreshing or going back.')
+                }
+            })
+        })
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

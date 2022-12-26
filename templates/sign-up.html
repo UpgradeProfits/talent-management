@@ -22,9 +22,8 @@
     .title-block:first-child{
         margin-right: 1.5rem;
     }
-    .circle{
-        border: 1px solid rgb(46, 194, 46);
-        background-color: rgb(46, 194, 46);
+    .form-textbox{
+        padding: .2rem !important;
     }
 </style>
 <body>
@@ -36,7 +35,7 @@
             <div class="sign-up-content">
                 <div class="mssg-box">
                     <div class="title-block">
-                        <h2 class="form-title" style="color: rgb(46, 194, 46);"></h2>
+                        <p class="form-title" style="color: rgb(46, 194, 46);"></p>
                     </div>
                     <div class="circle"></div>
                 </div>
@@ -70,7 +69,7 @@
                     </div>
 
                     <div class="form-textbox">
-                        <label for="id_nationality">Password</label>
+                        <label for="id_password1">Password</label>
                         {{form.password1}}
                     </div>
 
@@ -85,7 +84,7 @@
                 </form>
 
                 <p class="loginhere">
-                    Already have an account ?<a href="#" class="loginhere-link"> Log in</a>
+                    Already have an account ?<a href="{%url 'login' %}" class="loginhere-link"> Log in</a>
                 </p>
             </div>
         </div>
@@ -114,12 +113,12 @@
                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
                 },
                 success:(data)=>{
-                    $('.form-title').append(data)
-                    $('#id_first_name').val(""),
-                    $('#id_last_name').val(""),
-                    $('#id_email').val(""),
-                    $('#id_tel').val(""),
-                    $('#id_password1').val(""),
+                    $('.form-title').append(data);
+                    $('#id_first_name').val("");
+                    $('#id_last_name').val("");
+                    $('#id_email').val("");
+                    $('#id_tel').val("");
+                    $('#id_password1').val("");
                     setTimeout(nextPage, 1000);        
                 }
             })
