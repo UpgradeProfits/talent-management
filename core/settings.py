@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auths.apps.AuthsConfig',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR / 'static')
+    os.path.join(BASE_DIR / 'static'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR / 'cummulated_static')
 MEDIA_URL = '/media/'

@@ -3,13 +3,13 @@ from django import forms
 from .models import User
 
 
-class RegisterForm(UserCreationForm):
+class RegisterForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'tel', 'password1', 'password2')
+        fields = ('email', 'first_name', 'last_name', 'tel', 'nationality', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

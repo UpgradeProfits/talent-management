@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{%static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- <h1>Sign up</h1> -->
+        <div class="container">
+            <div class="sign-up-content">
+                <h2 class="form-title">Which Describes You Best ?</h2>
+                <div class="form-radio">
+                    <input type="radio" name="member_level" value="newbie" id="newbie" checked="checked" />
+                    <label for="newbie">Hire now</label>
+                    <input type="radio" name="member_level" value="average" id="average" />
+                    <label for="average">Apply for a job</label>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

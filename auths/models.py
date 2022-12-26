@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.utils.timezone import now
+from django_countries.fields import CountryField
 
 
 # Overriding the default django authentication
@@ -73,7 +74,8 @@ class User(AbstractBaseUser):
     first_name= models.CharField(default='', null=False, blank=False, max_length=30)
     last_name= models.CharField(default='', null=False, blank=False, max_length=30)
     tel = models.CharField(default='', null=False, blank=False, max_length=30)
-    nationality= models.CharField(default="", null=False, blank=False, max_length=50)
+    nationality= CountryField(blank_label='(select country)')
+    added = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
     TC = models.BooleanField(default=False)#Terms and Conditions
     staff = models.BooleanField(default=False)  # a admin user; non super-user

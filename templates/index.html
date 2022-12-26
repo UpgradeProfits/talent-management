@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load static%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +8,25 @@
     <title>Sign Up</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="{%static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
 </head>
+<style>
+    .mssg-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .title-block:first-child{
+        margin-right: 1.5rem;
+    }
+    .circle{
+        border: 1px solid rgb(46, 194, 46);
+        background-color: rgb(46, 194, 46);
+    }
+</style>
 <body>
 
     <div class="main">
@@ -19,30 +34,44 @@
         <h1>Sign up</h1>
         <div class="container">
             <div class="sign-up-content">
-                <form method="POST" class="signup-form">
-                    <h2 class="form-title">Which Describes You Best ?</h2>
-                    <div class="form-radio">
-                        <input type="radio" name="member_level" value="newbie" id="newbie" checked="checked" />
-                        <label for="newbie">Closer</label>
-
-                        <input type="radio" name="member_level" value="average" id="average" />
-                        <label for="average">Appointment Setter</label>
-                        
+                <div class="mssg-box">
+                    <div class="title-block">
+                        <h2 class="form-title" style="color: rgb(46, 194, 46);"></h2>
+                    </div>
+                    <div class="circle"></div>
+                </div>
+                <form method="POST" class="signup-form" id="signup_form" autocomplete="off">
+                    {%csrf_token%}
+                    <div class="form-textbox">
+                        <label for="id_first_name">First name</label>
+                        {{form.first_name}}
                     </div>
 
                     <div class="form-textbox">
-                        <label for="name">Full name</label>
-                        <input type="text" name="name" id="name" />
+                        <label for="id_last_name">Last name</label>
+                        {{form.last_name}}
                     </div>
 
                     <div class="form-textbox">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" />
+                        <label for="id_email">Email</label>
+                        {{form.email}}
                     </div>
 
                     <div class="form-textbox">
-                        <label for="pass">Password</label>
-                        <input type="password" name="pass" id="pass" />
+                        <label for="id_tel">Phone</label>
+                        <div class="flex-input">
+                            <select name="" id="" style="display:none;">
+                                <option value="">+1</option>
+                            </select>
+                            <div>
+                                {{form.tel}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-textbox">
+                        <label for="id_nationality">Password</label>
+                        {{form.password1}}
                     </div>
 
                     <div class="form-group">
@@ -64,7 +93,37 @@
     </div>
 
     <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{%static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{%static 'js/main.js' %}"></script>
+    <script>
+        function nextPage(){
+            window.location = "category/"; 
+        }
+
+        $(document).on('submit', "#signup_form", (e)=>{
+            e.preventDefault();
+            $.ajax({
+                type:"POST",
+                url:"user/",
+                data:{
+                    firstname:$('#id_first_name').val(),
+                    lastname:$('#id_last_name').val(),
+                    email:$('#id_email').val(),
+                    tel:$('#id_tel').val(),
+                    password:$('#id_password1').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:(data)=>{
+                    $('.form-title').append(data)
+                    $('#id_first_name').val(""),
+                    $('#id_last_name').val(""),
+                    $('#id_email').val(""),
+                    $('#id_tel').val(""),
+                    $('#id_password1').val(""),
+                    setTimeout(nextPage, 1000);        
+                }
+            })
+        })
+    </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
