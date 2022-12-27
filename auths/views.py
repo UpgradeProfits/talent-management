@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
 from .models import User
+import json
 
 # sign-up view here ;)
 def sign_up_view(request):

@@ -414,3 +414,16 @@ input:-webkit-autofill {
     padding: 16px 30px 16px 100px; } }
 
 /*# sourceMappingURL=style.css.map */
+
+/* Edits */
+.mssg-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title-block:first-child{
+  margin-right: 1.5rem;
+}
+.form-textbox{
+  padding: .2rem !important;
+}

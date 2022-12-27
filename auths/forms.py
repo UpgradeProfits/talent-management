@@ -1,6 +1,8 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
 from django import forms
 from .models import User
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 
 class RegisterForm(forms.ModelForm):
@@ -9,7 +11,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'tel', 'nationality', 'password1', 'password2')
+        fields = ('email', 'first_name', 'last_name', 'tel', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

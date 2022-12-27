@@ -1,3 +1,4 @@
+import secrets
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
@@ -6,7 +7,13 @@ from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.utils.timezone import now
+import qrcode
+from io import BytesIO
+from PIL import Image, ImageDraw
+from django.core.files import File
 from django_countries.fields import CountryField
+from phonenumber_field.modelfields import PhoneNumberField
+from djrichtextfield.models import RichTextField
 
 
 # Overriding the default django authentication
@@ -14,7 +21,7 @@ from django_countries.fields import CountryField
     this is for the basic sign-up for Appointment setters and Closers :)
 """
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, tel, nationality, password=None):
+    def create_user(self, email, first_name, last_name, tel, password=None):
         """
         Creates and saves a User with the given email and password.
         """
@@ -34,7 +41,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, first_name, last_name, tel, nationality, password):
+    def create_staffuser(self, email, first_name, last_name, tel, password):
         """
         Creates and saves a staff user with the given email and password.
         """
@@ -43,14 +50,13 @@ class UserManager(BaseUserManager):
             first_name= first_name,
             last_name= last_name,
             tel= tel,
-            nationality= nationality,
             password=password,
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, tel, nationality, password):
+    def create_superuser(self, email, first_name, last_name, tel, password):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -59,7 +65,6 @@ class UserManager(BaseUserManager):
             first_name= first_name,
             last_name= last_name,
             tel= tel,
-            nationality=nationality,
             password=password,
         )
         user.staff = True
@@ -73,8 +78,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True,)
     first_name= models.CharField(default='', null=False, blank=False, max_length=30)
     last_name= models.CharField(default='', null=False, blank=False, max_length=30)
-    tel = models.CharField(default='', null=False, blank=False, max_length=30)
-    nationality= CountryField(blank_label='(select country)')
+    tel = PhoneNumberField()
     added = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
     TC = models.BooleanField(default=False)#Terms and Conditions
@@ -134,25 +138,37 @@ class User(AbstractBaseUser):
         return self.active
 
 
-# class Appointment_holders(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
-#     code = models.CharField(default='', blank=True, max_length=9)
-#     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
-#     created = models.DateTimeField(auto_now_add=True, editable=True)
+class UserProfile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    code = models.CharField(default='', blank=True, max_length=9)
+    qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
+    category = models.CharField(default='', max_length=25, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter')), blank=True, null=True)
+    nationality= CountryField(blank_label='(select country)')
+    experience = models.CharField(default='', blank=True, max_length=9)
+    resume = models.FileField(upload_to='resumes /% Y % m % d/', default='')
+    skills = models.ManyToManyField('Skills')
+    work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
+    cover_letter = RichTextField()
+    created = models.DateTimeField(auto_now_add=True, editable=True)
+    def __str__(self):
+        concatenate = '%s%s%s' % (self.user, '-', self.code)
+        return str(concatenate)
 
-#     def __str__(self):
-#         concatenate = '%s%s%s' % (self.user, '-', self.code)
-#         return str(concatenate)
+    def save(self, *args, **kwargs):
+        qrcode_image = qrcode.make(f"Name: {self.user}\nAuthor: {self.code}")
+        canvas = Image.new('RGB', (430, 430), 'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_image)
+        fname = f"{'%s%s%s' % (self.user, '-', self.code)}.png"
+        buffer = BytesIO()
+        canvas.save(buffer, 'PNG')
+        self.qrcode.save(fname, File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)
 
-#     def save(self, *args, **kwargs):
-#         qrcode_image = qrcode.make(f"Name: {self.user}\nAuthor: {self.code}")
-#         canvas = Image.new('RGB', (430, 430), 'white')
-#         draw = ImageDraw.Draw(canvas)
-#         canvas.paste(qrcode_image)
-#         fname = f"{'%s%s%s' % (self.user, '-', self.code)}.png"
-#         buffer = BytesIO()
-#         canvas.save(buffer, 'PNG')
-#         self.qrcode.save(fname, File(buffer), save=False)
-#         canvas.close()
-#         super().save(*args, **kwargs)
-
+class Skills(models.Model):
+    skill = models.CharField(default='', blank=True, max_length=123)
+    
+    def __str__(self):
+        return self.skill
+    

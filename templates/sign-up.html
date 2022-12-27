@@ -13,19 +13,6 @@
     <!-- Main css -->
     <link rel="stylesheet" href="{%static 'css/style.css' %}">
 </head>
-<style>
-    .mssg-box{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .title-block:first-child{
-        margin-right: 1.5rem;
-    }
-    .form-textbox{
-        padding: .2rem !important;
-    }
-</style>
 <body>
 
     <div class="main">
@@ -95,6 +82,7 @@
     <script src="{%static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{%static 'js/main.js' %}"></script>
     <script>
+        console.log(`{{lists}}`)
         function nextPage(){
             window.location = "category/"; 
         }
