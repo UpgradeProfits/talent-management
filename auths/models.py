@@ -138,24 +138,40 @@ class User(AbstractBaseUser):
         return self.active
 
 
-class UserProfile(models.Model):
+class AppointmentSetter(models.Model):
+    pass
+
+class Closer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    display_photo= models.ImageField(upload_to='closers/', blank=True)
     code = models.CharField(default='', blank=True, max_length=9)
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
     category = models.CharField(default='', max_length=25, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter')), blank=True, null=True)
     nationality= CountryField(blank_label='(select country)')
-    experience = models.CharField(default='', blank=True, max_length=9)
-    resume = models.FileField(upload_to='resumes /% Y % m % d/', default='')
+    location = models.CharField(default='', blank=True, max_length=255)
+    experience = models.CharField(default='', blank=False, max_length=9)
+    resume = models.FileField(upload_to=f'resumes/', default='')
+    document_type = models.FileField(upload_to=f'extras/', default='')
+    education = models.CharField(default='', blank=True, max_length=255)
     skills = models.ManyToManyField('Skills')
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
-    cover_letter = RichTextField()
-    created = models.DateTimeField(auto_now_add=True, editable=True)
+    preferred_niche_to_sell = models.CharField(default='', max_length=20, choices=(('item1', 'item1'), ('item2', 'item2'), ('item3', 'item3')))
+    call_per_day = models.CharField(default='', blank=True, max_length=100)
+    income_per_month = models.CharField(default='', blank=True, max_length=9)
+    pay = models.CharField(default='', blank=True, max_length=10, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission')))
+    timezone = models.CharField(default='', blank=True, max_length=100)
+    cover_letter = RichTextField(default="")
+    achievements = RichTextField(default="")
+    start_date = models.CharField(default='', max_length=123, blank=False, null=False)
+    created = models.DateTimeField(auto_now_add=True)
+    
+    
     def __str__(self):
         concatenate = '%s%s%s' % (self.user, '-', self.code)
         return str(concatenate)
 
     def save(self, *args, **kwargs):
-        qrcode_image = qrcode.make(f"Name: {self.user}\nAuthor: {self.code}")
+        qrcode_image = qrcode.make(f"Name: {self.user}\nUser: {self.code}")
         canvas = Image.new('RGB', (430, 430), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_image)
