@@ -141,14 +141,19 @@ class User(AbstractBaseUser):
 class AppointmentSetter(models.Model):
     pass
 
-class Closer(models.Model):
+class UserProfile(models.Model):
+    OPTIONS = (
+        ('Yes', 'Yes'),
+        ('No', 'No')
+    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
     display_photo= models.ImageField(upload_to='closers/', blank=True)
     code = models.CharField(default='', blank=True, max_length=9)
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
     category = models.CharField(default='', max_length=25, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter')), blank=True, null=True)
     nationality= CountryField(blank_label='(select country)')
-    location = models.CharField(default='', blank=True, max_length=255)
+    zip_code = models.CharField(default='', max_length=20, blank=False)
+    location = CountryField(blank_label='(select country)')
     experience = models.CharField(default='', blank=False, max_length=9)
     resume = models.FileField(upload_to=f'resumes/', default='')
     document_type = models.FileField(upload_to=f'extras/', default='')
@@ -156,18 +161,33 @@ class Closer(models.Model):
     skills = models.ManyToManyField('Skills')
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
     preferred_niche_to_sell = models.CharField(default='', max_length=20, choices=(('item1', 'item1'), ('item2', 'item2'), ('item3', 'item3')))
-    call_per_day = models.CharField(default='', blank=True, max_length=100)
-    income_per_month = models.CharField(default='', blank=True, max_length=9)
+    call_per_day = models.IntegerField(default=0, blank=False)
+    income_per_month = models.IntegerField(default=0, blank=False)
+    highest_tickets = models.IntegerField(default=0, blank=False)
+    total_revenue_sales_career = models.IntegerField(default=0, blank=False)
+    total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=False)
+    generated_revenue = models.IntegerField(default=0, blank=False)
     pay = models.CharField(default='', blank=True, max_length=10, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission')))
+    Why_are_you_interested_in_remote_sales = models.TextField(default='', blank=True, max_length=500)
+    What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
+    what_niche = models.CharField(default="", max_length=100, blank=True)
+    language = models.CharField(default="", max_length=300, blank=True)
+    are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS)
     timezone = models.CharField(default='', blank=True, max_length=100)
+    profile_video = models.FileField(upload_to=f'profile_videos/', default='')
     cover_letter = RichTextField(default="")
     achievements = RichTextField(default="")
-    start_date = models.CharField(default='', max_length=123, blank=False, null=False)
+    anything_else_important_to_you_that_we_should_know = RichTextField(default="")
+    verified = models.BooleanField(default=False)
+    start_date = models.CharField(default='', max_length=123, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
-        concatenate = '%s%s%s' % (self.user, '-', self.code)
+        if self.verified == True:
+            concatenate = '%s%s' % (self.user, ' (verified)')
+        else:
+            concatenate = '%s%s' % (self.user, ' (unverified)')
         return str(concatenate)
 
     def save(self, *args, **kwargs):

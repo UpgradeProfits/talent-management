@@ -108,14 +108,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # CONFIG FOR RICHTEXT FIELD
 DJRICHTEXTFIELD_CONFIG = {
-    'js': ['//cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'],
+    'js': ['//cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js', '//cdn.ckeditor.com/4.14.0/standard/ckeditor.js'],
+    # 'css': {
+    #     'all': [
+    #         'https://cdn.example.com/css/editor.css'
+    #     ]
+    # },
     'init_template': 'djrichtextfield/init/tinymce.js',
     'settings': {
         'menubar': False,
         'plugins': 'link image',
         'toolbar': 'bold italic | link image | removeformat',
         'width': 700
-    }
+    },
 }
 
 # Internationalization

@@ -1,8 +1,9 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
 from django import forms
-from .models import User
+from .models import User, UserProfile
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from djrichtextfield.widgets import RichTextWidget
 
 
 class RegisterForm(forms.ModelForm):
@@ -84,3 +85,9 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+    
+class UserProfileForm(forms.ModelForm):
+    cover_letter = forms.CharField(widget=RichTextWidget())
+    class Meta:
+        model = UserProfile
+        fields = "__all__"

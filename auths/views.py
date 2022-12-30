@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegisterForm
+from .forms import RegisterForm, UserProfileForm
 from .models import User
 import json
 
@@ -63,3 +63,17 @@ def log_out(request, pk='first_name'):
 def user_categories(request):
     context = {}
     return render(request, 'hire_apply.html', context)
+
+def createProfile(request):
+    form = UserProfileForm
+    if request.method == "POST":
+        form = UserProfileForm(request.POST or None)
+        if form.is_valid:
+            form.save()
+    context = {
+        'form': form
+    }
+    return render(request, 'userprofile.html', context)
+
+def userProfile(request):
+    pass

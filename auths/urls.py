@@ -9,5 +9,7 @@ urlpatterns = [
     path('signin/', views.sign_in_view, name="login"),
     path('login/', views.sign_in),#this is the url that ajax sends the users detail to for authentication @ the sign_in view
     #
-    path('category/', views.user_categories, name='category')
+    path('category/', views.user_categories, name='category'),
+    path('createprofile/', views.createProfile, name="c_profile"),
+    path('createdprofile/', views.userProfile, name="userprofile_details"),
 ]
