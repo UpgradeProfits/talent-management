@@ -1,758 +1,655 @@
 <!doctype html>
 {%load static%}
 <html lang="en">
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="{%static 'css/style.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{%static 'css/style.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<title>Form</title>
+<title>Form</title>
 </head>
 <body class="p-1">
-	<style>
+<style>
+
+	.myDiv{
+		display:none;
+		padding:10px;
+	}  
 	
-		.myDiv{
-			display:none;
-			padding:10px;
-		}  
-		
-		.payDiv{
-			display:none;
-			padding:10px;
-		}  
-		
-			</style>
-			<h2 class="text-center display-3 py-3">Fill Out The Information</h2>
-    <div class="container-sm pt-1 w-50">
-    <form class="row g-3 needs-validation" autocomplete="off" method="POST" action="{%url 'userprofile_details'%}">
-		{%csrf_token%}
-		{{form.media}}
-        <div class="col-md-6">
-          <label for="validationCustom01" class="form-label">First name</label>
-		  <input type="text">
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="col-md-6">
-          <label for="validationCustom02" class="form-label">Last name</label>
-          <input type="text" class="" id="validationCustom02" value="Otto" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="mb-3 col-md-12">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3 col-md-6">
-			<label for="exampleInputEmail1" class="form-label">Code</label>
-				<select class="form-select" id="phone" name="phone" aria-label="Default select example">
-					
-					<option value="93">Afghanistan +93</option>
-					<option value="358">Åland Islands +358</option>
-					<option value="355">Albania +355</option>
-					<option value="213">Algeria +213</option>
-					<option value="1684">American Samoa +1684</option>
-					<option value="376">Andorra +376</option>
-					<option value="244">Angola +244</option>
-					<option value="1264">Anguilla +1264</option>
-					<option value="672">Antarctica +672</option>
-					<option value="1268">Antigua & Barbuda +1268</option>
-					<option value="54">Argentina +54</option>
-					<option value="374">Armenia +374</option>
-					<option value="297">Aruba +297</option>
-					<option value="61">Australia +61</option>
-					<option value="43">Austria +43</option>
-					<option value="994">Azerbaijan +994</option>
-					<option value="1242">Bahamas +1242</option>
-					<option value="973">Bahrain +973</option>
-					<option value="880">Bangladesh +880</option>
-					<option value="1246">Barbados +1246</option>
-					<option value="375">Belarus +375</option>
-					<option value="32">Belgium +32</option>
-					<option value="501">Belize +501</option>
-					<option value="229">Benin +229</option>
-					<option value="1441">Bermuda +1441</option>
-					<option value="975">Bhutan +975</option>
-					<option value="591">Bolivia +591</option>
-					<option value="599">Caribbean Netherlands +599</option>
-					<option value="387">Bosnia & Herzegovina +387</option>
-					<option value="267">Botswana +267</option>
-					<option value="55">Bouvet Island +55</option>
-					<option value="55">Brazil +55</option>
-					<option value="246">British Indian Ocean Territory +246</option>
-					<option value="673">Brunei +673</option>
-					<option value="359">Bulgaria +359</option>
-					<option value="226">Burkina Faso +226</option>
-					<option value="257">Burundi +257</option>
-					<option value="855">Cambodia +855</option>
-					<option value="237">Cameroon +237</option>
-					<option value="1">Canada +1</option>
-					<option value="238">Cape Verde +238</option>
-					<option value="1345">Cayman Islands +1345</option>
-					<option value="236">Central African Republic +236</option>
-					<option value="235">Chad +235</option>
-					<option value="56">Chile +56</option>
-					<option value="86">China +86</option>
-					<option value="61">Christmas Island +61</option>
-					<option value="672">Cocos (Keeling) Islands +672</option>
-					<option value="57">Colombia +57</option>
-					<option value="269">Comoros +269</option>
-					<option value="242">Congo - Brazzaville +242</option>
-					<option value="242">Congo - Kinshasa +242</option>
-					<option value="682">Cook Islands +682</option>
-					<option value="506">Costa Rica +506</option>
-					<option value="225">Côte d’Ivoire +225</option>
-					<option value="385">Croatia +385</option>
-					<option value="53">Cuba +53</option>
-					<option value="599">Curaçao +599</option>
-					<option value="357">Cyprus +357</option>
-					<option value="420">Czechia +420</option>
-					<option value="45">Denmark +45</option>
-					<option value="253">Djibouti +253</option>
-					<option value="1767">Dominica +1767</option>
-					<option value="1809">Dominican Republic +1809</option>
-					<option value="593">Ecuador +593</option>
-					<option value="20">Egypt +20</option>
-					<option value="503">El Salvador +503</option>
-					<option value="240">Equatorial Guinea +240</option>
-					<option value="291">Eritrea +291</option>
-					<option value="372">Estonia +372</option>
-					<option value="251">Ethiopia +251</option>
-					<option value="500">Falkland Islands (Islas Malvinas) +500</option>
-					<option value="298">Faroe Islands +298</option>
-					<option value="679">Fiji +679</option>
-					<option value="358">Finland +358</option>
-					<option value="33">France +33</option>
-					<option value="594">French Guiana +594</option>
-					<option value="689">French Polynesia +689</option>
-					<option value="262">French Southern Territories +262</option>
-					<option value="241">Gabon +241</option>
-					<option value="220">Gambia +220</option>
-					<option value="995">Georgia +995</option>
-					<option value="49">Germany +49</option>
-					<option value="233">Ghana +233</option>
-					<option value="350">Gibraltar +350</option>
-					<option value="30">Greece +30</option>
-					<option value="299">Greenland +299</option>
-					<option value="1473">Grenada +1473</option>
-					<option value="590">Guadeloupe +590</option>
-					<option value="1671">Guam +1671</option>
-					<option value="502">Guatemala +502</option>
-					<option value="44">Guernsey +44</option>
-					<option value="224">Guinea +224</option>
-					<option value="245">Guinea-Bissau +245</option>
-					<option value="592">Guyana +592</option>
-					<option value="509">Haiti +509</option>
-					<option value="0">Heard & McDonald Islands +0</option>
-					<option value="39">Vatican City +39</option>
-					<option value="504">Honduras +504</option>
-					<option value="852">Hong Kong +852</option>
-					<option value="36">Hungary +36</option>
-					<option value="354">Iceland +354</option>
-					<option value="91">India +91</option>
-					<option value="62">Indonesia +62</option>
-					<option value="98">Iran +98</option>
-					<option value="964">Iraq +964</option>
-					<option value="353">Ireland +353</option>
-					<option value="44">Isle of Man +44</option>
-					<option value="972">Israel +972</option>
-					<option value="39">Italy +39</option>
-					<option value="1876">Jamaica +1876</option>
-					<option value="81">Japan +81</option>
-					<option value="44">Jersey +44</option>
-					<option value="962">Jordan +962</option>
-					<option value="7">Kazakhstan +7</option>
-					<option value="254">Kenya +254</option>
-					<option value="686">Kiribati +686</option>
-					<option value="850">North Korea +850</option>
-					<option value="82">South Korea +82</option>
-					<option value="381">Kosovo +381</option>
-					<option value="965">Kuwait +965</option>
-					<option value="996">Kyrgyzstan +996</option>
-					<option value="856">Laos +856</option>
-					<option value="371">Latvia +371</option>
-					<option value="961">Lebanon +961</option>
-					<option value="266">Lesotho +266</option>
-					<option value="231">Liberia +231</option>
-					<option value="218">Libya +218</option>
-					<option value="423">Liechtenstein +423</option>
-					<option value="370">Lithuania +370</option>
-					<option value="352">Luxembourg +352</option>
-					<option value="853">Macao +853</option>
-					<option value="389">North Macedonia +389</option>
-					<option value="261">Madagascar +261</option>
-					<option value="265">Malawi +265</option>
-					<option value="60">Malaysia +60</option>
-					<option value="960">Maldives +960</option>
-					<option value="223">Mali +223</option>
-					<option value="356">Malta +356</option>
-					<option value="692">Marshall Islands +692</option>
-					<option value="596">Martinique +596</option>
-					<option value="222">Mauritania +222</option>
-					<option value="230">Mauritius +230</option>
-					<option value="262">Mayotte +262</option>
-					<option value="52">Mexico +52</option>
-					<option value="691">Micronesia +691</option>
-					<option value="373">Moldova +373</option>
-					<option value="377">Monaco +377</option>
-					<option value="976">Mongolia +976</option>
-					<option value="382">Montenegro +382</option>
-					<option value="1664">Montserrat +1664</option>
-					<option value="212">Morocco +212</option>
-					<option value="258">Mozambique +258</option>
-					<option value="95">Myanmar (Burma) +95</option>
-					<option value="264">Namibia +264</option>
-					<option value="674">Nauru +674</option>
-					<option value="977">Nepal +977</option>
-					<option value="31">Netherlands +31</option>
-					<option value="599">Curaçao +599</option>
-					<option value="687">New Caledonia +687</option>
-					<option value="64">New Zealand +64</option>
-					<option value="505">Nicaragua +505</option>
-					<option value="227">Niger +227</option>
-					<option value="234">Nigeria +234</option>
-					<option value="683">Niue +683</option>
-					<option value="672">Norfolk Island +672</option>
-					<option value="1670">Northern Mariana Islands +1670</option>
-					<option value="47">Norway +47</option>
-					<option value="968">Oman +968</option>
-					<option value="92">Pakistan +92</option>
-					<option value="680">Palau +680</option>
-					<option value="970">Palestine +970</option>
-					<option value="507">Panama +507</option>
-					<option value="675">Papua New Guinea +675</option>
-					<option value="595">Paraguay +595</option>
-					<option value="51">Peru +51</option>
-					<option value="63">Philippines +63</option>
-					<option value="64">Pitcairn Islands +64</option>
-					<option value="48">Poland +48</option>
-					<option value="351">Portugal +351</option>
-					<option value="1787">Puerto Rico +1787</option>
-					<option value="974">Qatar +974</option>
-					<option value="262">Réunion +262</option>
-					<option value="40">Romania +40</option>
-					<option value="70">Russia +70</option>
-					<option value="250">Rwanda +250</option>
-					<option value="590">St. Barthélemy +590</option>
-					<option value="290">St. Helena +290</option>
-					<option value="1869">St. Kitts & Nevis +1869</option>
-					<option value="1758">St. Lucia +1758</option>
-					<option value="590">St. Martin +590</option>
-					<option value="508">St. Pierre & Miquelon +508</option>
-					<option value="1784">St. Vincent & Grenadines +1784</option>
-					<option value="684">Samoa +684</option>
-					<option value="378">San Marino +378</option>
-					<option value="239">São Tomé & Príncipe +239</option>
-					<option value="966">Saudi Arabia +966</option>
-					<option value="221">Senegal +221</option>
-					<option value="381">Serbia +381</option>
-					<option value="381">Serbia +381</option>
-					<option value="248">Seychelles +248</option>
-					<option value="232">Sierra Leone +232</option>
-					<option value="65">Singapore +65</option>
-					<option value="1">Sint Maarten +1</option>
-					<option value="421">Slovakia +421</option>
-					<option value="386">Slovenia +386</option>
-					<option value="677">Solomon Islands +677</option>
-					<option value="252">Somalia +252</option>
-					<option value="27">South Africa +27</option>
-					<option value="500">South Georgia & South Sandwich Islands +500</option>
-					<option value="211">South Sudan +211</option>
-					<option value="34">Spain +34</option>
-					<option value="94">Sri Lanka +94</option>
-					<option value="249">Sudan +249</option>
-					<option value="597">Suriname +597</option>
-					<option value="47">Svalbard & Jan Mayen +47</option>
-					<option value="268">Eswatini +268</option>
-					<option value="46">Sweden +46</option>
-					<option value="41">Switzerland +41</option>
-					<option value="963">Syria +963</option>
-					<option value="886">Taiwan +886</option>
-					<option value="992">Tajikistan +992</option>
-					<option value="255">Tanzania +255</option>
-					<option value="66">Thailand +66</option>
-					<option value="670">Timor-Leste +670</option>
-					<option value="228">Togo +228</option>
-					<option value="690">Tokelau +690</option>
-					<option value="676">Tonga +676</option>
-					<option value="1868">Trinidad & Tobago +1868</option>
-					<option value="216">Tunisia +216</option>
-					<option value="90">Turkey +90</option>
-					<option value="7370">Turkmenistan +7370</option>
-					<option value="1649">Turks & Caicos Islands +1649</option>
-					<option value="688">Tuvalu +688</option>
-					<option value="256">Uganda +256</option>
-					<option value="380">Ukraine +380</option>
-					<option value="971">United Arab Emirates +971</option>
-					<option value="44">United Kingdom +44</option>
-					<option value="1" selected>United States +1</option>
-					<option value="1">U.S. Outlying Islands +1</option>
-					<option value="598">Uruguay +598</option>
-					<option value="998">Uzbekistan +998</option>
-					<option value="678">Vanuatu +678</option>
-					<option value="58">Venezuela +58</option>
-					<option value="84">Vietnam +84</option>
-					<option value="1284">British Virgin Islands +1284</option>
-					<option value="1340">U.S. Virgin Islands +1340</option>
-					<option value="681">Wallis & Futuna +681</option>
-					<option value="212">Western Sahara +212</option>
-					<option value="967">Yemen +967</option>
-					<option value="260">Zambia +260</option>
-					<option value="263">Zimbabwe +263</option>
-				</select>
+	.payDiv{
+		display:none;
+		padding:10px;
+	}  
+	
+		</style>
+		<h2 class="text-center display-3 py-3">Fill Out The Information</h2>
+<div class="container-sm pt-1 w-50">
+<form class="row g-3 needs-validation" autocomplete="off" method="POST" action="{%url 'userprofile_details'%}">
+	{%csrf_token%}
+	{{form.media}}
+	<div class="col-md-6">
+		<label for="validationCustom01" class="form-label">First name</label>
+		<input type="text">
+		<div class="valid-feedback">
+		Looks good!
+		</div>
+	</div>
+	<div class="col-md-6">
+		<label for="validationCustom02" class="form-label">Last name</label>
+		<input type="text" class="" id="validationCustom02" value="Otto" required>
+		<div class="valid-feedback">
+		Looks good!
+		</div>
+	</div>
+	<div class="mb-3 col-md-12">
+		<label for="exampleInputEmail1" class="form-label">Email</label>
+		<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+		<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+		</div>
+		<div class="mb-3 col-md-6">
+		<label for="exampleInputEmail1" class="form-label">Code</label>
+			<select class="form-select" id="phone" name="phone" aria-label="Default select example">
 				
-          </div> 
-		  <div class="col-md-6">
-			<label for="validationCustom03" class="form-label">Phone</label>
-			<input type="tel" class="form-control" id="phone" required>
-			<div class="invalid-feedback">
-			  Please provide a valid Phone Number.
-			</div>  
-			</div>
-        
-        
-        <div class="col-md-4 ">
-          <label for="validationCustom03" class="form-label">City</label>
-          <input type="text" class="form-control" id="validationCustom03" required>
-          <div class="invalid-feedback">
-            Please provide a valid city.
-          </div>
-        </div>
-        
-        <div class="col-md-4">
-          <label for="validationCustom04" class="form-label">Where are you located?</label>
-		  
-		 {{form.location}}
-		  <div class="invalid-feedback">
-            Please select a valid Country.
-          </div>
-        </div>
+				<option value="93">Afghanistan +93</option>
+				<option value="358">Åland Islands +358</option>
+				<option value="355">Albania +355</option>
+				<option value="213">Algeria +213</option>
+				<option value="1684">American Samoa +1684</option>
+				<option value="376">Andorra +376</option>
+				<option value="244">Angola +244</option>
+				<option value="1264">Anguilla +1264</option>
+				<option value="672">Antarctica +672</option>
+				<option value="1268">Antigua & Barbuda +1268</option>
+				<option value="54">Argentina +54</option>
+				<option value="374">Armenia +374</option>
+				<option value="297">Aruba +297</option>
+				<option value="61">Australia +61</option>
+				<option value="43">Austria +43</option>
+				<option value="994">Azerbaijan +994</option>
+				<option value="1242">Bahamas +1242</option>
+				<option value="973">Bahrain +973</option>
+				<option value="880">Bangladesh +880</option>
+				<option value="1246">Barbados +1246</option>
+				<option value="375">Belarus +375</option>
+				<option value="32">Belgium +32</option>
+				<option value="501">Belize +501</option>
+				<option value="229">Benin +229</option>
+				<option value="1441">Bermuda +1441</option>
+				<option value="975">Bhutan +975</option>
+				<option value="591">Bolivia +591</option>
+				<option value="599">Caribbean Netherlands +599</option>
+				<option value="387">Bosnia & Herzegovina +387</option>
+				<option value="267">Botswana +267</option>
+				<option value="55">Bouvet Island +55</option>
+				<option value="55">Brazil +55</option>
+				<option value="246">British Indian Ocean Territory +246</option>
+				<option value="673">Brunei +673</option>
+				<option value="359">Bulgaria +359</option>
+				<option value="226">Burkina Faso +226</option>
+				<option value="257">Burundi +257</option>
+				<option value="855">Cambodia +855</option>
+				<option value="237">Cameroon +237</option>
+				<option value="1">Canada +1</option>
+				<option value="238">Cape Verde +238</option>
+				<option value="1345">Cayman Islands +1345</option>
+				<option value="236">Central African Republic +236</option>
+				<option value="235">Chad +235</option>
+				<option value="56">Chile +56</option>
+				<option value="86">China +86</option>
+				<option value="61">Christmas Island +61</option>
+				<option value="672">Cocos (Keeling) Islands +672</option>
+				<option value="57">Colombia +57</option>
+				<option value="269">Comoros +269</option>
+				<option value="242">Congo - Brazzaville +242</option>
+				<option value="242">Congo - Kinshasa +242</option>
+				<option value="682">Cook Islands +682</option>
+				<option value="506">Costa Rica +506</option>
+				<option value="225">Côte d’Ivoire +225</option>
+				<option value="385">Croatia +385</option>
+				<option value="53">Cuba +53</option>
+				<option value="599">Curaçao +599</option>
+				<option value="357">Cyprus +357</option>
+				<option value="420">Czechia +420</option>
+				<option value="45">Denmark +45</option>
+				<option value="253">Djibouti +253</option>
+				<option value="1767">Dominica +1767</option>
+				<option value="1809">Dominican Republic +1809</option>
+				<option value="593">Ecuador +593</option>
+				<option value="20">Egypt +20</option>
+				<option value="503">El Salvador +503</option>
+				<option value="240">Equatorial Guinea +240</option>
+				<option value="291">Eritrea +291</option>
+				<option value="372">Estonia +372</option>
+				<option value="251">Ethiopia +251</option>
+				<option value="500">Falkland Islands (Islas Malvinas) +500</option>
+				<option value="298">Faroe Islands +298</option>
+				<option value="679">Fiji +679</option>
+				<option value="358">Finland +358</option>
+				<option value="33">France +33</option>
+				<option value="594">French Guiana +594</option>
+				<option value="689">French Polynesia +689</option>
+				<option value="262">French Southern Territories +262</option>
+				<option value="241">Gabon +241</option>
+				<option value="220">Gambia +220</option>
+				<option value="995">Georgia +995</option>
+				<option value="49">Germany +49</option>
+				<option value="233">Ghana +233</option>
+				<option value="350">Gibraltar +350</option>
+				<option value="30">Greece +30</option>
+				<option value="299">Greenland +299</option>
+				<option value="1473">Grenada +1473</option>
+				<option value="590">Guadeloupe +590</option>
+				<option value="1671">Guam +1671</option>
+				<option value="502">Guatemala +502</option>
+				<option value="44">Guernsey +44</option>
+				<option value="224">Guinea +224</option>
+				<option value="245">Guinea-Bissau +245</option>
+				<option value="592">Guyana +592</option>
+				<option value="509">Haiti +509</option>
+				<option value="0">Heard & McDonald Islands +0</option>
+				<option value="39">Vatican City +39</option>
+				<option value="504">Honduras +504</option>
+				<option value="852">Hong Kong +852</option>
+				<option value="36">Hungary +36</option>
+				<option value="354">Iceland +354</option>
+				<option value="91">India +91</option>
+				<option value="62">Indonesia +62</option>
+				<option value="98">Iran +98</option>
+				<option value="964">Iraq +964</option>
+				<option value="353">Ireland +353</option>
+				<option value="44">Isle of Man +44</option>
+				<option value="972">Israel +972</option>
+				<option value="39">Italy +39</option>
+				<option value="1876">Jamaica +1876</option>
+				<option value="81">Japan +81</option>
+				<option value="44">Jersey +44</option>
+				<option value="962">Jordan +962</option>
+				<option value="7">Kazakhstan +7</option>
+				<option value="254">Kenya +254</option>
+				<option value="686">Kiribati +686</option>
+				<option value="850">North Korea +850</option>
+				<option value="82">South Korea +82</option>
+				<option value="381">Kosovo +381</option>
+				<option value="965">Kuwait +965</option>
+				<option value="996">Kyrgyzstan +996</option>
+				<option value="856">Laos +856</option>
+				<option value="371">Latvia +371</option>
+				<option value="961">Lebanon +961</option>
+				<option value="266">Lesotho +266</option>
+				<option value="231">Liberia +231</option>
+				<option value="218">Libya +218</option>
+				<option value="423">Liechtenstein +423</option>
+				<option value="370">Lithuania +370</option>
+				<option value="352">Luxembourg +352</option>
+				<option value="853">Macao +853</option>
+				<option value="389">North Macedonia +389</option>
+				<option value="261">Madagascar +261</option>
+				<option value="265">Malawi +265</option>
+				<option value="60">Malaysia +60</option>
+				<option value="960">Maldives +960</option>
+				<option value="223">Mali +223</option>
+				<option value="356">Malta +356</option>
+				<option value="692">Marshall Islands +692</option>
+				<option value="596">Martinique +596</option>
+				<option value="222">Mauritania +222</option>
+				<option value="230">Mauritius +230</option>
+				<option value="262">Mayotte +262</option>
+				<option value="52">Mexico +52</option>
+				<option value="691">Micronesia +691</option>
+				<option value="373">Moldova +373</option>
+				<option value="377">Monaco +377</option>
+				<option value="976">Mongolia +976</option>
+				<option value="382">Montenegro +382</option>
+				<option value="1664">Montserrat +1664</option>
+				<option value="212">Morocco +212</option>
+				<option value="258">Mozambique +258</option>
+				<option value="95">Myanmar (Burma) +95</option>
+				<option value="264">Namibia +264</option>
+				<option value="674">Nauru +674</option>
+				<option value="977">Nepal +977</option>
+				<option value="31">Netherlands +31</option>
+				<option value="599">Curaçao +599</option>
+				<option value="687">New Caledonia +687</option>
+				<option value="64">New Zealand +64</option>
+				<option value="505">Nicaragua +505</option>
+				<option value="227">Niger +227</option>
+				<option value="234">Nigeria +234</option>
+				<option value="683">Niue +683</option>
+				<option value="672">Norfolk Island +672</option>
+				<option value="1670">Northern Mariana Islands +1670</option>
+				<option value="47">Norway +47</option>
+				<option value="968">Oman +968</option>
+				<option value="92">Pakistan +92</option>
+				<option value="680">Palau +680</option>
+				<option value="970">Palestine +970</option>
+				<option value="507">Panama +507</option>
+				<option value="675">Papua New Guinea +675</option>
+				<option value="595">Paraguay +595</option>
+				<option value="51">Peru +51</option>
+				<option value="63">Philippines +63</option>
+				<option value="64">Pitcairn Islands +64</option>
+				<option value="48">Poland +48</option>
+				<option value="351">Portugal +351</option>
+				<option value="1787">Puerto Rico +1787</option>
+				<option value="974">Qatar +974</option>
+				<option value="262">Réunion +262</option>
+				<option value="40">Romania +40</option>
+				<option value="70">Russia +70</option>
+				<option value="250">Rwanda +250</option>
+				<option value="590">St. Barthélemy +590</option>
+				<option value="290">St. Helena +290</option>
+				<option value="1869">St. Kitts & Nevis +1869</option>
+				<option value="1758">St. Lucia +1758</option>
+				<option value="590">St. Martin +590</option>
+				<option value="508">St. Pierre & Miquelon +508</option>
+				<option value="1784">St. Vincent & Grenadines +1784</option>
+				<option value="684">Samoa +684</option>
+				<option value="378">San Marino +378</option>
+				<option value="239">São Tomé & Príncipe +239</option>
+				<option value="966">Saudi Arabia +966</option>
+				<option value="221">Senegal +221</option>
+				<option value="381">Serbia +381</option>
+				<option value="381">Serbia +381</option>
+				<option value="248">Seychelles +248</option>
+				<option value="232">Sierra Leone +232</option>
+				<option value="65">Singapore +65</option>
+				<option value="1">Sint Maarten +1</option>
+				<option value="421">Slovakia +421</option>
+				<option value="386">Slovenia +386</option>
+				<option value="677">Solomon Islands +677</option>
+				<option value="252">Somalia +252</option>
+				<option value="27">South Africa +27</option>
+				<option value="500">South Georgia & South Sandwich Islands +500</option>
+				<option value="211">South Sudan +211</option>
+				<option value="34">Spain +34</option>
+				<option value="94">Sri Lanka +94</option>
+				<option value="249">Sudan +249</option>
+				<option value="597">Suriname +597</option>
+				<option value="47">Svalbard & Jan Mayen +47</option>
+				<option value="268">Eswatini +268</option>
+				<option value="46">Sweden +46</option>
+				<option value="41">Switzerland +41</option>
+				<option value="963">Syria +963</option>
+				<option value="886">Taiwan +886</option>
+				<option value="992">Tajikistan +992</option>
+				<option value="255">Tanzania +255</option>
+				<option value="66">Thailand +66</option>
+				<option value="670">Timor-Leste +670</option>
+				<option value="228">Togo +228</option>
+				<option value="690">Tokelau +690</option>
+				<option value="676">Tonga +676</option>
+				<option value="1868">Trinidad & Tobago +1868</option>
+				<option value="216">Tunisia +216</option>
+				<option value="90">Turkey +90</option>
+				<option value="7370">Turkmenistan +7370</option>
+				<option value="1649">Turks & Caicos Islands +1649</option>
+				<option value="688">Tuvalu +688</option>
+				<option value="256">Uganda +256</option>
+				<option value="380">Ukraine +380</option>
+				<option value="971">United Arab Emirates +971</option>
+				<option value="44">United Kingdom +44</option>
+				<option value="1" selected>United States +1</option>
+				<option value="1">U.S. Outlying Islands +1</option>
+				<option value="598">Uruguay +598</option>
+				<option value="998">Uzbekistan +998</option>
+				<option value="678">Vanuatu +678</option>
+				<option value="58">Venezuela +58</option>
+				<option value="84">Vietnam +84</option>
+				<option value="1284">British Virgin Islands +1284</option>
+				<option value="1340">U.S. Virgin Islands +1340</option>
+				<option value="681">Wallis & Futuna +681</option>
+				<option value="212">Western Sahara +212</option>
+				<option value="967">Yemen +967</option>
+				<option value="260">Zambia +260</option>
+				<option value="263">Zimbabwe +263</option>
+			</select>
+			
+		</div> 
+		<div class="col-md-6">
+		<label for="validationCustom03" class="form-label">Phone</label>
+		<input type="tel" class="form-control" id="phone" required>
+		<div class="invalid-feedback">
+			Please provide a valid Phone Number.
+		</div>  
+		</div>
+	
+	
+	<div class="col-md-4 ">
+		<label for="validationCustom03" class="form-label">City</label>
+		<input type="text" class="form-control" id="validationCustom03" required>
+		<div class="invalid-feedback">
+		Please provide a valid city.
+		</div>
+	</div>
+	
+	<div class="col-md-4">
+		<label for="validationCustom04" class="form-label">Where are you located?</label>
+		
+		{{form.location}}
+		<div class="invalid-feedback">
+		Please select a valid Country.
+		</div>
+	</div>
 
-		<div class="col-md-4">
-			<label for="validationCustom05" class="form-label">Country of Citizenship?</label>
-			{{form.nationality}}
-			<div class="invalid-feedback">
-			  Please select a valid Country.
-			</div>
-		  </div>
-		 
-       
-        <div class="col-md-4 ">
-          <label for="validationCustom05" class="form-label">Zip</label>
-          {{form.zip_code}}
-          <div class="invalid-feedback ">
-            Please provide a valid zip.
-          </div>		  
-        </div>
+	<div class="col-md-4">
+		<label for="validationCustom05" class="form-label">Country of Citizenship?</label>
+		{{form.nationality}}
+		<div class="invalid-feedback">
+			Please select a valid Country.
+		</div>
+		</div>
+		
+	
+	<div class="col-md-4 ">
+		<label for="validationCustom05" class="form-label">Zip</label>
+		{{form.zip_code}}
+		<div class="invalid-feedback ">
+		Please provide a valid zip.
+		</div>		  
+	</div>
 
-        <div class="form-group mt-4 col-md-12">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">Male</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">Female</label>
-              </div>
-              </div>
-			  <div class="form-group mt-12">
-              <div class="mb-3">
-                <label for="formFileMultiple" class="form-label">Upload Resume</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
-              </div>
-			  </div>
-			  <div class="form-group mt-12">
-				<div class="mb-3">
-				  <label for="formFileMultiple1" class="form-label">Documents For Verification</label>
-				  <input class="form-control" type="file" id="formFileMultiple1" multiple>
+	<div class="form-group mt-4 col-md-12">
+		<div class="form-check form-check-inline px-0">
+			<label class="form-check-label" for="id_gender">Gender</label>
+			{{form.gender}}
+			</div>
+			</div>
+			<div class="form-group mt-12">
+			<div class="mb-3">
+			<label for="id_resume" class="form-label">Upload Resume</label>
+			{{form.resume}}
+			</div>
+			</div>
+			<div class="form-group mt-12">
+			<div class="mb-3">
+				<label for="id_document_type" class="form-label">Documents For Verification</label>
+				{{form.document_type}}
+			</div>
+			</div>
+			<section class="ftco-section px-0">
+			<div class="container px-0">
+				<div class="row justify-content-center">
+					<div class="col-md-12 ">
+						<label for="formFileMultiple" class="form-label">Days availability on weekdays?</label>
+					</div>
 				</div>
+				<div class="row justify-content-center w-100">
+					<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
+						<select class="js-select2 w-100" multiple="multiple">
+	
+
+							<option value="O1" data-badge="">M</option>
+							<option value="O2" data-badge="">T</option>
+							<option value="O3" data-badge="">W</option>
+							<option value="O4" data-badge="">T</option>
+							<option value="O5" data-badge="">F</option>
+							<option value="O6" data-badge="">S</option>
+							<option value="O7" data-badge="">S</option>
+						</select>
+					</div>
 				</div>
-			  <section class="ftco-section px-0">
+				<div class="col-md-12 mb-3 mt-3 w-100">			
+					<label for="" class="form-label">Pick The Hours availability on weekdays?</label>
+					<input type="number" class="form-control" aria-label="40">		  
+					</div>
+				
+				</div>
+
+			<div class="container px-0">
+				<div class="row justify-content-center">
+					<div class="col-md-12 ">
+						<label for="formFileMultiple" class="form-label">Skills </label>
+					</div>
+				</div>
+				<div class="row justify-content-center w-100">
+					<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
+						{{form.skills}}
+					</div>
+				</div>
 				<div class="container px-0">
 					<div class="row justify-content-center">
 						<div class="col-md-12 ">
-							<label for="formFileMultiple" class="form-label">Days availability on weekdays?</label>
+							<label for="formFileMultiple" class="form-label">What Languages You Can Close? </label>
 						</div>
 					</div>
 					<div class="row justify-content-center w-100">
 						<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
 							<select class="js-select2 w-100" multiple="multiple">
-		
-
-								<option value="O1" data-badge="">M</option>
-								<option value="O2" data-badge="">T</option>
-								<option value="O3" data-badge="">W</option>
-								<option value="O4" data-badge="">T</option>
-								<option value="O5" data-badge="">F</option>
-								<option value="O6" data-badge="">S</option>
-								<option value="O7" data-badge="">S</option>
+								<option value="O1" data-badge="">English</option>
+								<option value="O2" data-badge="">French</option>
+								<option value="O3" data-badge="">Spanish</option>
+								<option value="O3" data-badge="">German</option>
+								
 							</select>
 						</div>
 					</div>
-					<div class="col-md-12 mb-3 mt-3 w-100">			
-						<label for="" class="form-label">Pick The Hours availability on weekdays?</label>
-						<input type="number" class="form-control" aria-label="40">		  
-					  </div>
+
 					
-					</div>
-
-				<div class="container px-0">
-					<div class="row justify-content-center">
-						<div class="col-md-12 ">
-							<label for="formFileMultiple" class="form-label">Skills </label>
-						</div>
-					</div>
-					<div class="row justify-content-center w-100">
-						<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
-							<select class="js-select2 w-100" multiple="multiple">
-								<option value="O1" data-badge="">Option1</option>
-								<option value="O2" data-badge="">Option2</option>
-								<option value="O3" data-badge="">Option3</option>
-								<option value="O4" data-badge="">Option4</option>
-								<option value="O5" data-badge="">Option5</option>
-								<option value="O6" data-badge="">Option6</option>
-								<option value="O7" data-badge="">Option7</option>
-								<option value="O8" data-badge="">Option8</option>
-								<option value="O9" data-badge="">Option9</option>
-								<option value="O10" data-badge="">Option10</option>
-								<option value="O11" data-badge="">Option11</option>
-								<option value="O12" data-badge="">Option12</option>
-								<option value="O13" data-badge="">Option13</option>
-							</select>
-						</div>
-					</div>
-					<div class="container px-0">
-						<div class="row justify-content-center">
-							<div class="col-md-12 ">
-								<label for="formFileMultiple" class="form-label">What Languages You Can Close? </label>
-							</div>
-						</div>
-						<div class="row justify-content-center w-100">
-							<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
-								<select class="js-select2 w-100" multiple="multiple">
-									<option value="O1" data-badge="">English</option>
-									<option value="O2" data-badge="">French</option>
-									<option value="O3" data-badge="">Spanish</option>
-									<option value="O3" data-badge="">German</option>
-									
-								</select>
-							</div>
-						</div>
-
-						
-				
+			
+			<div class="col-md-12 mb-3 mt-3 w-100">	
+					<label for="" class="form-label">Avalaibility To Start</label>
+					{{form.start_date}}
+			</div>			
 					<div class="col-md-12 mb-3 mt-3 w-100">	
-						<label for="" class="form-label">Avalaibility To Start</label>						
-						<select class="form-select" aria-label="Default select example">
-								<option value="O1" >I am Ready To Start Now!</option>
-								<option value="O2">I will be working In 1 Month</option>
-								<option value="O3" >I will be working In 2 Month</option>
-						  </select>
-				</div>			
-						<div class="col-md-12 mb-3 mt-3 w-100">	
-							<label for="" class="form-label">Prefered Niche To Sell?</label>						
-							<select class="form-select" aria-label="Default select example">
-								<option value="O1">Coaching & Courses</option>
-								<option value="O2">Fitness & Suplements</option>
-								<option value="O3" >Business & Books</option>	
-							  </select>
-					</div>
-					<div class="col-md-12 mb-3 mt-3 w-100">	
-						<label for="" class="form-label">Work Type?</label>						
-						<select class="form-select" aria-label="Default select example">
-							<option value="O1">Full Time</option>
-							<option value="O2">Part Time</option>
-						
-						  </select>
+						<label for="" class="form-label">Prefered Niche To Sell?</label>
+						{{form.preferred_niche_to_sell}}
 				</div>
 				<div class="col-md-12 mb-3 mt-3 w-100">	
-					<label for="" class="form-label">What Role would you like to go in once you are hired?</label>						
-					<select class="form-select" aria-label="Default select example" id="myselection">
-						<option value="" >Select</option>
-						<option value="one">Appointment Setter</option>
-						<option value="two">Closer</option>
-					
-					  </select>
-					  <div id="showone" class="myDiv">
+					<label for="" class="form-label">Work Type?</label>
+					{{form.work_type}}
+			</div>
+			<div class="col-md-12 mb-3 mt-3 w-100">	
+				<label for="" class="form-label">What Role would you like to go in once you are hired?</label>
+				{{form.category}}
+					<div id="showone" class="myDiv">
+					<div class="col-md-12 mb-3 mt-3 w-100">			
+						<label for="" class="form-label">How many calls can you dial outbound calls in a day?</label>
+						<input type="number" class="form-control" aria-label="100">		  
+						</div>
 						<div class="col-md-12 mb-3 mt-3 w-100">			
-							<label for="" class="form-label">How many calls can you dial outbound calls in a day?</label>
-							<input type="number" class="form-control" aria-label="100">		  
-						  </div>
-			
-						  <div class="col-md-12 mb-3 mt-3 w-100">			
-							<label for="" class="form-label">What highest Ticket product have you sold?</label>
-							<input type="number" class="form-control" aria-label="100">		  
-						  </div>
+						<label for="" class="form-label">What highest Ticket product have you sold?</label>
+						<input type="number" class="form-control" aria-label="100">
 					</div>
+				</div>
+		</div>
+		
+
+		<div class="col-md-12 mb-3 mt-3 w-100">	
+			<label for="" class="form-label">How you want to be get paid?</label>
+			{{form.pay}}
+		</div>
+		<div id="payone" class="payDiv">
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+				<label for="" class="form-label">Expected Hourly Pay ($)</label>
+				<input type="number" class="form-control" aria-label="100">		  
+			</div>
+					
+		</div>
+		<div id="paytwo" class="payDiv">
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+				<label for="" class="form-label">Expected Commission (%) </label>
+				<input type="number" class="form-control" aria-label="100">		  
+			</div>
+		</div>
+		
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="id_are_you_comfortable_with_commission_based_pay" class="form-label">Are you comfortable with 100% commission-based pay?</label>
+			{{form.are_you_comfortable_with_commission_based_pay}}
 			</div>
 			
 
-			<div class="col-md-12 mb-3 mt-3 w-100">	
-				<label for="" class="form-label">How you want to be get paid?</label>						
-				<select class="form-select" aria-label="Default select example" id="payselection">
-					<option value="">Select</option>
-					<option value="one">Hourly</option>
-					<option value="two">Commission</option>
-				
-				  </select>
-				  <div id="payone" class="payDiv">
-					<div class="col-md-12 mb-3 mt-3 w-100">			
-						<label for="" class="form-label">Expected Hourly Pay ($)</label>
-						<input type="number" class="form-control" aria-label="100">		  
-					  </div>
-					 
-						  </div>
-						  <div id="paytwo" class="payDiv">
-							<div class="col-md-12 mb-3 mt-3 w-100">			
-								<label for="" class="form-label">Expected Commission (%) </label>
-								<input type="number" class="form-control" aria-label="100">		  
-							  </div>
 		
-					  
-				</div>
-		</div>
-			
-			
-			
 
-
-			
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Are you comfortable with 100% commission-based pay?</label>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label" for="flexCheckDefault" checked>
-					  Yes
-					</label>
-				  </div>
-				  <div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-					<label class="form-check-label" for="flexCheckChecked">
-					  No
-					</label>
-				  </div>	
-				  <div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-					<label class="form-check-label" for="flexCheckChecked">
-					  Depends
-					</label>
-				  </div>	   
-			  </div>
-			  
-
-			
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Total Revenue Sales Generated over your sales career?</label>
-				<input type="number" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Total sales generated over the last 3 years</label>
-				<input type="number" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Revenue Generated on the best month?</label>
-				<input type="number" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">How much was the ticket size?</label>
-				<input type="number" class="form-control" aria-label="100">		  
-			  </div>
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">What is the highest sales ticket you have sold?</label>
-				<input type="number" class="form-control" aria-label="100">		  
-			  </div>
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">What sales training have you taken in the past?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Why are you interested in remote sales?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">What's a deal breaker for you in a offer?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Average ticket price sold?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Average unit sold?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">How many offers have you worked on in the last 2 years? how much have you sold on Average on those past offers?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Are you comfortable with 100% commission-based pay?</label>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label" for="flexCheckDefault">
-					  Yes
-					</label>
-				  </div>
-				  <div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label" for="flexCheckDefault">
-					  No
-					</label>
-				  </div>	  
-			  </div>
-
-			  
-				 
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">How many appointments did you get per day? per week?</label>
-				<input type="number" class="form-control" aria-label="100">		  
-			  </div>
-
-			  <div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">average unit sold?</label>
-				<input type="text" class="form-control" aria-label="100">		  
-			  </div>
-
-
-
-				</div>
-			</section>
 			<div class="col-md-12 mb-3 mt-3 w-100">			
-				<label for="" class="form-label">Did you have to do any of the lead gen in the past?</label>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label" for="flexCheckDefault">
-					  Yes
-					</label>
-				  </div>
-				  <div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label" for="flexCheckDefault">
-					  No
-					</label>
-				  </div>
+			<label for="" class="form-label">Total Revenue Sales Generated over your sales career?</label>
+			{{form.total_revenue_sales_career}}	  
+			</div>
 
-				  </div>
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">Total sales generated over the last 3 years</label>
+			{{form.total_revenue_sales_three_yrs}}	  
+			</div>
 
-				  <div class="mb-3 w-100">
-					<label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
-					<textarea class="form-control" id="exampleFormControlTextarea9" rows="3"></textarea>
-				  </div>
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">Revenue Generated on the best month?</label>
+			{{form.generated_revenue}}		  
+			</div>
+
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">How much was the ticket size?</label>
+			{{form.ticket_size}}		  
+			</div>
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">What is the highest sales ticket you have sold?</label>
+			{{form.highest_tickets}}		  
+			</div>
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">What sales training have you taken in the past?</label>
+			{{form.past_trainings}}	  
+			</div>
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">Why are you interested in remote sales?</label>
+			{{form.Why_are_you_interested_in_remote_sales}}		  
+			</div>
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">What's a deal breaker for you in a offer?</label>
+			{{form.deal_breaker_for_you}}		  
+			</div>
+
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">Average ticket price sold?</label>
+			<input type="text" class="form-control" aria-label="100">		  
+			</div>
+
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">Average unit sold?</label>
+			{{form.average_units_sold}}	  
+			</div>
+
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">How many offers have you worked on in the last 2 years? how much have you sold on Average on those past offers?</label>
+			{{form.offers_worked_on_past_years}}		  
+			</div>
+
+			
+			<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">How many appointments did you get per day? per week?</label>
+			{{form.appointments_per_day}}		  
+			</div>
+			</div>
+		</section>
+		<div class="col-md-12 mb-3 mt-3 w-100">			
+			<label for="" class="form-label">Did you have to do any of the lead gen in the past?</label>
+			{{form.past_leade_gen}}
+		</div>
+
+				<div class="mb-3 w-100">
+				<label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
+				{{form.why}}
+				</div>
 
 
-				  <div class="mb-3 w-100">
-					<label for="exampleFormControlTextarea1" class="form-label">What offers have you worked on? what was the niche & ticket price?</label>
-					<textarea class="form-control" id="exampleFormControlTextarea9" rows="3"></textarea>
-				  </div>
+				<div class="mb-3 w-100">
+				<label for="exampleFormControlTextarea1" class="form-label">What offers have you worked on? what was the niche & ticket price?</label>
+				{{form.offers_worked_on_niche_and_ticket_price}}
+				</div>
+
+		<div class="mb-3 w-100">
+			<label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions? where were you strong in those past positions? What are your weaknesses in sales?</label>
+			{{form.reason_for_leaving_last_position}}
+			</div>
 
 			<div class="mb-3 w-100">
-				<label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions? where were you strong in those past positions? What are your weaknesses in sales?</label>
-				<textarea class="form-control" id="exampleFormControlTextarea6" rows="3"></textarea>
-			  </div>
+			<label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in with your short and long-term goals?</label>
+			{{form.how_does_a_sales_fit_your_goals}}
+			</div>
 
-			  <div class="mb-3 w-100">
-				<label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in with your short and long-term goals?</label>
-				<textarea class="form-control" id="exampleFormControlTextarea7" rows="3"></textarea>
-			  </div>
-
-        <div class="mb-3 w-100">
-            <label for="exampleFormControlTextarea1" class="form-label">Education</label>
-            {{form.education}}
-          </div>
-		  <div class="mb-3 w-100">
-            <label for="exampleFormControlTextarea2" class="form-label">Experience</label>
-            {{form.experience}}
-          </div>
-		  <div class="mb-3 w-100">
-            <label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
-            {{form.achievements}}
-          </div>
-		  <div class="mb-3 w-100">
-            <label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
-            {{form.cover_letter}}
-          </div>
-          <div class="mb-3 w-100">
-            <label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we should know is important to you?</label>
-            {{form.anything_else_important_to_you_that_we_should_know}}
-          </div>
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-            <label class="form-check-label" for="invalidCheck">
-              Agree to terms and conditions
-            </label>
-            <div class="invalid-feedback">
-              You must agree before submitting.
-            </div>
-          </div>
-        </div>
-		
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">Submit</button>            
-          </div>
-		  
-      </form>
-    </div>
-	<script>
-		$(document).ready(function(){
-			$('#myselection').on('change', function(){
-				var demovalue = $(this).val(); 
-				$("div.myDiv").hide();
-				$("#show"+demovalue).show();
-			});
-			$('#payselection').on('change', function(){
-				var demovalue = $(this).val(); 
-				$("div.payDiv").hide();
-				$("#pay"+demovalue).show();
-			});
-		});
-		
-		
-		</script>
+	<div class="mb-3 w-100">
+		<label for="exampleFormControlTextarea1" class="form-label">Education</label>
+		{{form.education}}
+		</div>
+		<div class="mb-3 w-100">
+		<label for="exampleFormControlTextarea2" class="form-label">Experience</label>
+		{{form.experience}}
+		</div>
+		<div class="mb-3 w-100">
+		<label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
+		{{form.achievements}}
+		</div>
+		<div class="mb-3 w-100">
+		<label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
+		{{form.cover_letter}}
+		</div>
+		<div class="mb-3 w-100">
+		<label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we should know is important to you?</label>
+		{{form.anything_else_important_to_you_that_we_should_know}}
+		</div>
 	
+	<div class="d-grid gap-2">
+		<button class="btn btn-primary" type="button">Submit</button>            
+		</div>
+		
+	</form>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#myselection').on('change', function(){
+			var demovalue = $(this).val(); 
+			$("div.myDiv").hide();
+			$("#show"+demovalue).show();
+		});
+		$('#payselection').on('change', function(){
+			var demovalue = $(this).val(); 
+			$("div.payDiv").hide();
+			$("#pay"+demovalue).show();
+		});
+	});
+	
+	
+	</script>
 
-		<script>
-			var inputFields = document.getElementsByTagName('input')
-			var textboxFields = document.getElementsByTagName('textarea')
-		
-			for(var fields in inputFields){
-				if('form-control' != inputFields[fields].className){
-					inputFields[fields].className += 'form-control'
-				}
-			};
-		
-			for(var fields in textboxFields){
-				if('form-control' != textboxFields[fields].className){
-					textboxFields[fields].className += ' form-control'
-				}
-			};
-		</script>
+
+	<script>
+		{% comment %} adding bootstrap classes to django rendered form fields {% endcomment %}
+		var inputFields = document.getElementsByTagName('input')
+		var textboxFields = document.getElementsByTagName('textarea')
+		var selectFields = document.getElementsByTagName('select')
+	
+		for(var fields in inputFields){
+			if('form-control' != inputFields[fields].className){
+				inputFields[fields].className += 'form-control'
+			}
+		};
+	
+		for(var fields in textboxFields){
+			if('form-control' != textboxFields[fields].className){
+				textboxFields[fields].className += ' form-control'
+			}
+		};
+
+		for(var fields in selectFields){
+			if('form-control' != selectFields[fields].className){
+				selectFields[fields].className += ' form-select'
+			}
+		};
+
+		const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
+		{% comment %} end {% endcomment %}
+	</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
- <script src="{%static 'js/userprofile/jquery.min.js' %}"></script>
+<script src="{%static 'js/userprofile/jquery.min.js' %}"></script>
 <script src="{%static 'js/userprofile/popper.js' %}"></script>
 <script src="{%static 'js/userprofile/bootstrap.min.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
