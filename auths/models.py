@@ -33,7 +33,6 @@ class UserManager(BaseUserManager):
             first_name= first_name,
             last_name= last_name,
             tel= tel,
-            nationality= nationality,
             password=password
         )
 
@@ -87,7 +86,7 @@ class User(AbstractBaseUser):
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'tel', 'nationality']  # Email & Password are required by default.
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'tel']  # Email & Password are required by default.
 
     def get_full_name(self):
         # The user is identified by their first&last name
@@ -117,10 +116,6 @@ class User(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
-    @property
-    def has_agreed(self):
-        """Is it a user?"""
-        return self.TC
 
     @property
     def is_staff(self):
@@ -132,10 +127,6 @@ class User(AbstractBaseUser):
         """Is the user a admin member?"""
         return self.admin
 
-    @property
-    def is_active(self):
-        """Is the user active?"""
-        return self.active
 
 
 class AppointmentSetter(models.Model):
