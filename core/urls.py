@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('auths.urls')),
+    path('', include('index.urls')),
     path('djrichtextfield/', include('djrichtextfield.urls')),
 ]
 

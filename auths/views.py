@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm, UserProfileForm
-from .models import User
+from .models import User, Days
 import json
 
 # sign-up view here ;)
@@ -65,11 +65,23 @@ def user_categories(request):
     return render(request, 'hire_apply.html', context)
 
 def createProfile(request):
+    print(request.user)
     form = UserProfileForm
     if request.method == "POST":
-        form = UserProfileForm(request.POST or None)
-        if form.is_valid:
-            form.save()
+        form = UserProfileForm(request.POST or None, request.FILES)
+        if form.is_valid():
+            skills = request.POST.get('skills_list')
+            days_available = request.POST.get('available_days')
+            language = request.POST.get('langs')
+            print(f'multiple select fields ; \n skills={skills}, \n days={days_available}, \n language={language}')
+            # skills = [int(j) for e in skills for j in e.split(',')]
+            # days_available = [int(j) for e in days_available for j in e.split(',')]
+            # language = [int(j) for e in language for j in e.split(',')]
+            instance = form.save(commit=False)
+            instance.user = request.user
+            # instance.user = request.user
+            # instance.user = request.user
+            instance.save()
     context = {
         'form': form
     }

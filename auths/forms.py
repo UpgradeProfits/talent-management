@@ -87,7 +87,7 @@ class UserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
     
 class UserProfileForm(forms.ModelForm):
-    cover_letter = forms.CharField(widget=RichTextWidget())
+    # cover_letter = forms.CharField(widget=RichTextWidget())
     class Meta:
         model = UserProfile
         fields = "__all__"

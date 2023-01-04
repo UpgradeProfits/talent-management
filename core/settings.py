@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'djrichtextfield',
     'auths.apps.AuthsConfig',
+    'index.apps.IndexConfig'
 ]
 
 MIDDLEWARE = [

@@ -21,7 +21,7 @@ from djrichtextfield.models import RichTextField
     this is for the basic sign-up for Appointment setters and Closers :)
 """
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, tel, password=None):
+    def create_user(self, email, first_name, last_name, tel, password=None, is_active=True, is_staff=False, is_admin=False):
         """
         Creates and saves a User with the given email and password.
         """
@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
             tel= tel,
             password=password
         )
-
+        user.active=True
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -126,6 +126,10 @@ class User(AbstractBaseUser):
     def is_admin(self):
         """Is the user a admin member?"""
         return self.admin
+    @property
+    def is_active(self):
+        """Is the user active?"""
+        return self.active
 
 
 
@@ -144,27 +148,36 @@ class UserProfile(models.Model):
         ('I will be working In 1 Month', 'I will be working In 1 Month'),
         ('I will be working In 2 Month', 'I will be working In 2 Month')
     )
+    
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    first_name = models.CharField(default='', blank=True, max_length=255)
+    last_name = models.CharField(default='', blank=True, max_length=255)
     display_photo= models.ImageField(upload_to='closers/', blank=True)
     code = models.CharField(default='', blank=True, max_length=9)
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
     gender = models.CharField(default="Male", max_length=6, blank=False, choices=(('Male', 'Male'), ('Female', 'Female')))
     category = models.CharField(default='', max_length=25, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter')), blank=True, null=True)
     nationality= CountryField(blank_label='(select country)')
+    city = models.CharField(default='', max_length=100, blank=False)
     zip_code = models.CharField(default='', max_length=20, blank=False)
     location = CountryField(blank_label='(select location)')
     experience = models.CharField(default='', blank=False, max_length=9)
     resume = models.FileField(upload_to=f'resumes/', default='')
     document_type = models.FileField(upload_to=f'extras/', default='')
     education = models.CharField(default='', blank=True, max_length=255)
-    skills = models.ManyToManyField('Skills')
+    skills = models.ManyToManyField('Skills', blank=True)
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
     preferred_niche_to_sell = models.CharField(default='', max_length=20, choices=(('Coaching & Courses', 'Coaching & Courses'), ('Fitness & Suplement', 'Fitness & Suplement'), ('Business & Books', 'Business & Books')))
-    call_per_day = models.IntegerField(default=0, blank=False)
+    days_available = models.ManyToManyField('Days', blank=True)
+    hours_available = models.IntegerField(default=0, blank=False)
+    call_per_day = models.IntegerField(default=0, blank=True)
+    outbound_calls_per_day = models.IntegerField(default=0, blank=False)
     appointments_per_day = models.IntegerField(default=0, blank=False)
-    income_per_month = models.IntegerField(default=0, blank=False)
+    income_per_month = models.IntegerField(default=0, blank=True)
     ticket_size = models.IntegerField(default=0, blank=False)
     highest_tickets = models.IntegerField(default=0, blank=False)
+    highest_ticket_product = models.CharField(default='', blank=True, max_length=100)
     total_revenue_sales_career = models.IntegerField(default=0, blank=False)
     total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=False)
     generated_revenue = models.IntegerField(default=0, blank=False)
@@ -173,21 +186,22 @@ class UserProfile(models.Model):
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
     what_niche = models.CharField(default="", max_length=100, blank=True)
-    language = models.ManyToManyField('Language')
+    language = models.ManyToManyField('Language', blank=True)
     are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS)
     past_trainings = models.CharField(default="", max_length=300, blank=True)
     past_leade_gen = models.CharField(max_length=255, choices=OPTIONS)
     why = models.TextField(default='', blank=True, max_length=500)
     offers_worked_on_niche_and_ticket_price = models.CharField(default="", max_length=300, blank=True)
     offers_worked_on_past_years = models.CharField(default="", max_length=300, blank=True)
-    reason_for_leaving_last_position = RichTextField(default="")
+    reason_for_leaving_last_position = models.TextField(default='', blank=True, max_length=500)
     how_does_a_sales_fit_your_goals= models.TextField(default='', blank=True, max_length=500)
     average_units_sold = models.IntegerField(default=0, blank=False)
+    average_tickets_sold = models.IntegerField(default=0, blank=True)
     timezone = models.CharField(default='', blank=True, max_length=100)
-    profile_video = models.FileField(upload_to=f'profile_videos/', default='')
-    cover_letter = RichTextField(default="")
-    achievements = RichTextField(default="")
-    anything_else_important_to_you_that_we_should_know = RichTextField(default="")
+    profile_video = models.FileField(upload_to=f'profile_videos/', default='', blank=True)
+    cover_letter = models.TextField(default='', blank=True, max_length=500)
+    achievements = models.TextField(default='', blank=True, max_length=500)
+    anything_else_important_to_you_that_we_should_know = models.TextField(default='', blank=True, max_length=500)
     verified = models.BooleanField(default=False)
     start_date = models.CharField(default='', max_length=123, blank=False, choices=Availabity)
     created = models.DateTimeField(auto_now_add=True)
@@ -224,3 +238,9 @@ class Language(models.Model):
     
     def __str__(self):
         return str(self.name)
+
+class Days(models.Model):
+
+    day= models.CharField(default="", max_length=1, blank=False)
+    def __str__(self):
+        return str(self.day)
