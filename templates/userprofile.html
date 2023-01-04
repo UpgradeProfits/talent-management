@@ -174,7 +174,7 @@
 			<label for="" class="form-label">How you want to be get paid?</label>
 			{{form.pay}}
 		</div>
-		{% comment %} <div id="payone" class="payDiv">
+		<!-- {% comment %} <div id="payone" class="payDiv">
 			<div class="col-md-12 mb-3 mt-3 w-100">			
 				<label for="" class="form-label">Expected Hourly Pay ($)</label>
 				<input type="number" class="form-control" aria-label="100">		  
@@ -186,7 +186,7 @@
 				<label for="" class="form-label">Expected Commission (%) </label>
 				<input type="number" class="form-control" aria-label="100">		  
 			</div>
-		</div> {% endcomment %}
+		</div> {% endcomment %} -->
 		
 			<div class="col-md-12 mb-3 mt-3 w-100">			
 			<label for="id_are_you_comfortable_with_commission_based_pay" class="form-label">Are you comfortable with 100% commission-based pay?</label>
@@ -232,10 +232,10 @@
 			{{form.deal_breaker_for_you}}		  
 			</div>
 
-			{% comment %} <div class="col-md-12 mb-3 mt-3 w-100">			
+			<div class="col-md-12 mb-3 mt-3 w-100">			
 			<label for="" class="form-label">Average ticket price sold?</label>
-			<input type="text" class="form-control" aria-label="100">		  
-			</div> {% endcomment %}
+			{{form.average_ticket_sold}}		  
+			</div>
 
 			<div class="col-md-12 mb-3 mt-3 w-100">			
 			<label for="" class="form-label">Average unit sold?</label>
@@ -325,21 +325,21 @@
 	</script>
 
 <script>
-	{% comment %} arrays for populating selected values {% endcomment %}
+	// arrays for populating selected values
 	let select_skills = []
 	let select_days = []
 	let select_langs = []
-	{% comment %} hidden input fields for moving data to backend {% endcomment %}
+	// {% comment %} hidden input fields for moving data to backend {% endcomment %}
 	var new_skills = $(`#skills_list`)
 	var new_langs = $('#langs')
 	var new_days = $('#available_days')
-	{% comment %} end {% endcomment %}
+	// {% comment %} end {% endcomment %}
 	$(function(){
 		var selected_skill = $('#id_skills').select2();
 		var selected_lang = $('#id_language').select2();
 		var selected_days = $('#id_days_available').select2();
 	})
-{% comment %} this function would clear redundancy in the list and add the array to the given element input[value] {% endcomment %}
+// {% comment %} this function would clear redundancy in the list and add the array to the given element input[value] {% endcomment %}
 
 	function appendValues(param1, param2, param3){
 		$('body').on('click' , '#submit-btn', ()=>{
@@ -354,11 +354,11 @@
 	};
 
 	appendValues(`#id_skills`, select_skills, new_skills);
-	{% comment %} appendValues('#id_language', select_langs, new_langs);
-	appendValues('#id_days_available', select_days, new_days); {% endcomment %}
+	// {% comment %} appendValues('#id_language', select_langs, new_langs);
+	// appendValues('#id_days_available', select_days, new_days); {% endcomment %}
 </script>
 	<script>
-		{% comment %} adding bootstrap classes to django rendered form fields {% endcomment %}
+		// {% comment %} adding bootstrap classes to django rendered form fields {% endcomment %}
 		var inputFields = document.getElementsByTagName('input')
 		var textboxFields = document.getElementsByTagName('textarea')
 		var selectFields = document.getElementsByTagName('select')

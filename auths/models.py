@@ -140,7 +140,6 @@ class UserProfile(models.Model):
     OPTIONS = (
         ('Yes', 'Yes'),
         ('No', 'No'), 
-        ('Maybe', 'Maybe')
     )
     
     Availabity = (
@@ -182,6 +181,8 @@ class UserProfile(models.Model):
     total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=False)
     generated_revenue = models.IntegerField(default=0, blank=False)
     pay = models.CharField(default='', blank=True, max_length=10, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission')))
+    expected_commission=models.IntegerField(default=0, blank=False)
+    expected_hourly_pay=models.IntegerField(default=0, blank=False)
     Why_are_you_interested_in_remote_sales = models.TextField(default='', blank=True, max_length=500)
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
