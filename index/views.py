@@ -39,4 +39,11 @@ def render_data(request):
         else:
             print('No Results for your selection')
             return HttpResponse('No Results for your selection')
-        
+
+
+def viewProfile(request, pk, slug):
+    query_profile = UserProfile.objects.get(id=pk)
+    context = {
+        'qs': query_profile,
+    }
+    return render(request, 'index/profile.html', context)

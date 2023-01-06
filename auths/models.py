@@ -12,6 +12,7 @@ from io import BytesIO
 from PIL import Image, ImageDraw
 from django.core.files import File
 from django_countries.fields import CountryField
+from django.utils.text import slugify
 from phonenumber_field.modelfields import PhoneNumberField
 from djrichtextfield.models import RichTextField
 
@@ -152,6 +153,7 @@ class UserProfile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(default='', blank=True, max_length=255)
     last_name = models.CharField(default='', blank=True, max_length=255)
+    slug = models.SlugField(blank=True)
     display_photo= models.ImageField(upload_to='closers/', blank=True)
     code = models.CharField(default='', blank=True, max_length=9)
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
@@ -216,6 +218,7 @@ class UserProfile(models.Model):
         return str(concatenate)
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(f'{self.first_name}-{self.last_name}')
         qrcode_image = qrcode.make(f"Name: {self.user}\nUser: {self.code}")
         canvas = Image.new('RGB', (430, 430), 'white')
         draw = ImageDraw.Draw(canvas)
@@ -225,7 +228,7 @@ class UserProfile(models.Model):
         canvas.save(buffer, 'PNG')
         self.qrcode.save(fname, File(buffer), save=False)
         canvas.close()
-        super().save(*args, **kwargs)
+        super(UserProfile, self).save(*args, **kwargs)
 
 class Skills(models.Model):
     skill = models.CharField(default='', blank=True, max_length=123)
