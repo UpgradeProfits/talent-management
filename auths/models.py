@@ -245,3 +245,9 @@ class Days(models.Model):
     day= models.CharField(default="", max_length=1, blank=False)
     def __str__(self):
         return str(self.day)
+
+class Country(models.Model):
+    country= CountryField(blank_label='(select country)')
+    
+    def __str__(self):
+        return str(self.country)
