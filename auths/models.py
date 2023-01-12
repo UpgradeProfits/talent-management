@@ -14,7 +14,6 @@ from django.core.files import File
 from django_countries.fields import CountryField
 from django.utils.text import slugify
 from phonenumber_field.modelfields import PhoneNumberField
-from djrichtextfield.models import RichTextField
 
 
 # Overriding the default django authentication
@@ -183,8 +182,8 @@ class UserProfile(models.Model):
     total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=False)
     generated_revenue = models.IntegerField(default=0, blank=False)
     pay = models.CharField(default='', blank=True, max_length=10, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission')))
-    expected_commission=models.IntegerField(default=0, blank=False)
-    expected_hourly_pay=models.IntegerField(default=0, blank=False)
+    expected_commission=models.IntegerField(default=0, blank=True)
+    expected_hourly_pay=models.IntegerField(default=0, blank=True)
     Why_are_you_interested_in_remote_sales = models.TextField(default='', blank=True, max_length=500)
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django_countries',
     'qrcode',
     'phonenumber_field',
-    'djrichtextfield',
+    'ckeditor',
     'auths.apps.AuthsConfig',
     'index.apps.IndexConfig'
 ]

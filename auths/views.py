@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm, UserProfileForm
-from .models import User, Days
+from .models import User, Days, UserProfile
 import json
 
 # sign-up view here ;)
@@ -70,22 +70,50 @@ def createProfile(request):
     if request.method == "POST":
         form = UserProfileForm(request.POST or None, request.FILES)
         if form.is_valid():
-            skills = request.POST.get('skills_list')
-            days_available = request.POST.get('available_days')
-            language = request.POST.get('langs')
-            print(f'multiple select fields ; \n skills={skills}, \n days={days_available}, \n language={language}')
-            # skills = [int(j) for e in skills for j in e.split(',')]
-            # days_available = [int(j) for e in days_available for j in e.split(',')]
-            # language = [int(j) for e in language for j in e.split(',')]
             instance = form.save(commit=False)
             instance.user = request.user
-            # instance.user = request.user
-            # instance.user = request.user
             instance.save()
+            skills = request.POST.getlist('skills_list')
+            days = request.POST.getlist('available_days')
+            langs = request.POST.getlist('langs')
+            print(f'multiple select fields ; \n skills={skills}, \n days={days}, \n language={langs}')
+            skills = [int(j) for e in skills for j in e.split(',')]
+            days = [int(j) for e in days for j in e.split(',')]
+            langs = [int(j) for e in langs for j in e.split(',')]
+            for skill in skills:
+                instance.skills.add(skill)
+            for lang in langs:
+                instance.language.add(lang)
+            for day in days:
+                instance.days_available.add(day)
     context = {
         'form': form
     }
     return render(request, 'userprofile.html', context)
 
-def userProfile(request):
-    pass
+def updateProfile(request, pk, slug):
+    data = UserProfile.objects.get(id=pk)
+    form = UserProfileForm(instance=data)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST or None, request.FILES, instance=data)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            skills = request.POST.getlist('skills_list')
+            days = request.POST.getlist('available_days')
+            langs = request.POST.getlist('langs')
+            print(f'multiple select fields ; \n skills={skills}, \n days={days}, \n language={langs}')
+            skills = [int(j) for e in skills for j in e.split(',')]
+            days = [int(j) for e in days for j in e.split(',')]
+            langs = [int(j) for e in langs for j in e.split(',')]
+            for skill in skills:
+                instance.skills.add(skill)
+            for lang in langs:
+                instance.language.add(lang)
+            for day in days:
+                instance.days_available.add(day)
+    context = {
+        'form':form
+    }
+    return render(request, 'updateprofile.html', context)
