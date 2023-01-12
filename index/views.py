@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from auths.models import UserProfile, Language
+from .forms import AddVacancyForm
 from auths.forms import CountryForm
 from django.http import JsonResponse, HttpResponse
 
@@ -47,3 +48,12 @@ def viewProfile(request, pk, slug):
         'qs': query_profile,
     }
     return render(request, 'index/profile.html', context)
+
+def create_job(request):
+    form = AddVacancyForm
+    if request.method == "POST":
+        form = AddVacancyForm(request.POST or None)
+    context = {
+        'form': form,
+    }
+    return render(request, 'index/post_job.html', context)

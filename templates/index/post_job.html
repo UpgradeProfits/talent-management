@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Post A Job Form</title>
+</head>
+
+<body class="p-1">
+    <style>
+        .myDiv {
+            display: none;
+            padding: 10px;
+        }
+
+        .payDiv {
+            display: none;
+            padding: 10px;
+        }
+    </style>
+
+    <div class="container p-5">
+        <div class="row ">
+            <form>
+                {{form.media}}
+                <div class="col-md-12 m-4">
+                    <div class="col-6">
+                        <label for="">
+                            <h3>Job Title</h3>
+                        </label>
+                        {{form.job_title}}
+                        <label for="">
+                            <h4>Company Name</h4>
+                        </label>
+                        {{form.company_name}}
+                        <label for="">
+                            <h4>Niche | Category</h4>
+                        </label>
+                        {{form.category}}
+                        <label for="">
+                            <h4>Job Type</h4>
+                        </label>
+                        {{form.job_type}}
+
+                        <div class="col-md-12 mb-3 mt-3 w-100">
+                            <label for="" class="form-label">
+                                <h4>Select Payout</h4>
+                            </label>
+                            {{form.pay_type}}
+                            <div id="payone" class="payDiv">
+                                <div class="col-md-12 mb-3 mt-3 w-100">
+                                    <label for="" class="form-label">Expected Hourly Pay ($)</label>
+                                    {{form.expected_hourly_pay}}
+                                </div>
+
+                            </div>
+                            <div id="paytwo" class="payDiv">
+                                <div class="col-md-12 mb-3 mt-3 w-100">
+                                    <label for="" class="form-label">Expected Commission (%) </label>
+                                    {{form.expected_commission}}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="mb-3 ">
+                                <label for="exampleFormControlTextarea1" class="form-label">
+                                    <h4>Job Description</h4>
+                                </label>
+                                {{form.job_description}}
+                            </div>
+
+
+
+                            <button type="button" class="btn btn-primary w-100">Post The Job</button>
+                        </div>
+
+
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#myselection').on('change', function () {
+            var demovalue = $(this).val();
+            $("div.myDiv").hide();
+            $("#show" + demovalue).show();
+        });
+        $('#payoutselection').on('change', function () {
+            var demovalue = $(this).val();
+            $("div.payDiv").hide();
+            $("#pay" + demovalue).show();
+        });
+    });
+
+
+</script>
+<script>
+    // adding bootstrap classes to django rendered form fields
+    var inputFields = document.getElementsByTagName('input')
+    var textboxFields = document.getElementsByTagName('textarea')
+    var selectFields = document.getElementsByTagName('select')
+
+    for(var fields in inputFields){
+        if('form-control' != inputFields[fields].className){
+            inputFields[fields].className += 'form-control'
+        }
+    };
+
+    for(var fields in textboxFields){
+        if('form-control' != textboxFields[fields].className){
+            textboxFields[fields].className += ' form-control'
+        }
+    };
+
+    for(var fields in selectFields){
+        if('form-control' != selectFields[fields].className){
+            selectFields[fields].className += ' form-select'
+        }
+    };
+
+    const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
+    const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
+    const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
+</script>
+</html>
