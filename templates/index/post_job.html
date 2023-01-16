@@ -1,6 +1,6 @@
 <!doctype html>
+{%load static%}
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
 
 
 
@@ -41,7 +41,8 @@
 
     <div class="container p-5">
         <div class="row ">
-            <form>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
                 {{form.media}}
                 <div class="col-md-12 m-4">
                     <div class="col-6">
@@ -67,14 +68,14 @@
                                 <h4>Select Payout</h4>
                             </label>
                             {{form.pay_type}}
-                            <div id="payone" class="payDiv">
+                            <div id="payHourly" class="payDiv">
                                 <div class="col-md-12 mb-3 mt-3 w-100">
                                     <label for="" class="form-label">Expected Hourly Pay ($)</label>
                                     {{form.expected_hourly_pay}}
                                 </div>
 
                             </div>
-                            <div id="paytwo" class="payDiv">
+                            <div id="payCommission" class="payDiv">
                                 <div class="col-md-12 mb-3 mt-3 w-100">
                                     <label for="" class="form-label">Expected Commission (%) </label>
                                     {{form.expected_commission}}
@@ -94,7 +95,7 @@
 
 
 
-                            <button type="button" class="btn btn-primary w-100">Post The Job</button>
+                            <button type="submit" class="btn btn-primary w-100">Post The Job</button>
                         </div>
 
 
@@ -108,6 +109,34 @@
 
 
 </body>
+<script>
+    // adding bootstrap classes to django rendered form fields
+    var inputFields = document.getElementsByTagName('input')
+    var textboxFields = document.getElementsByTagName('textarea')
+    var selectFields = document.getElementsByTagName('select')
+
+    for(var fields in inputFields){
+        if('form-control' != inputFields[fields].className){
+            inputFields[fields].className += 'form-control'
+            inputFields[2].setAttribute('aria-label', '100')
+            inputFields[3].setAttribute('aria-label', '100')
+        }
+    };
+
+    for(var fields in textboxFields){
+        if('form-control' != textboxFields[fields].className){
+            textboxFields[fields].className += ' form-control'
+        }
+    };
+
+    for(var fields in selectFields){
+        if('form-control' != selectFields[fields].className){
+            selectFields[fields].className += ' form-select'
+            selectFields[2].setAttribute('id', 'payoutselection')
+            selectFields[2].setAttribute('aria-label', 'Default select example')
+        }
+    };
+</script>
 <script>
     $(document).ready(function () {
         $('#myselection').on('change', function () {
@@ -123,33 +152,5 @@
     });
 
 
-</script>
-<script>
-    // adding bootstrap classes to django rendered form fields
-    var inputFields = document.getElementsByTagName('input')
-    var textboxFields = document.getElementsByTagName('textarea')
-    var selectFields = document.getElementsByTagName('select')
-
-    for(var fields in inputFields){
-        if('form-control' != inputFields[fields].className){
-            inputFields[fields].className += 'form-control'
-        }
-    };
-
-    for(var fields in textboxFields){
-        if('form-control' != textboxFields[fields].className){
-            textboxFields[fields].className += ' form-control'
-        }
-    };
-
-    for(var fields in selectFields){
-        if('form-control' != selectFields[fields].className){
-            selectFields[fields].className += ' form-select'
-        }
-    };
-
-    const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
-    const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
-    const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
 </script>
 </html>

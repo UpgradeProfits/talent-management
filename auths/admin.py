@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserAdminCreationForm, UserAdminChangeForm
-from .models import User, UserProfile, Skills, Language, Days
+from .models import User, UserProfile, Skills, Language, Days, ClientProfile
 
 admin.site.site_header = 'UpgradeProfits~~test Admin'
 admin.site.index_title = 'Admin'
@@ -46,4 +46,4 @@ admin.site.register(Days)
 # admin.site.unregister(Group)
 
 
-# admin.site.register(UserBio)
+admin.site.register(ClientProfile)

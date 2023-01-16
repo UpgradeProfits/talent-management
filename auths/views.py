@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
+from django.conf import settings
+from django.core.mail import send_mail
 from .forms import RegisterForm, UserProfileForm
 from .models import User, Days, UserProfile
 import json
@@ -26,7 +28,6 @@ def sign_up(request):
         create_user= User.objects.create(first_name=firstname, last_name=lastname, email=email, tel=tel)
         create_user.set_password(password)
         create_user.save()
-        mssg = f'Account created for {firstname}'
 
     return HttpResponse(mssg)
 

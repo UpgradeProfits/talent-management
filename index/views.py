@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from auths.models import UserProfile, Language
 from .forms import AddVacancyForm
@@ -52,7 +52,13 @@ def viewProfile(request, pk, slug):
 def create_job(request):
     form = AddVacancyForm
     if request.method == "POST":
-        form = AddVacancyForm(request.POST or None)
+        form = AddVacancyForm(request.POST or None, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.status = 'closer'
+            instance.save()
+            return redirect('/')
     context = {
         'form': form,
     }
