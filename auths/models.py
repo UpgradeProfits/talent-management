@@ -81,6 +81,7 @@ class User(AbstractBaseUser):
     last_name= models.CharField(default='', null=False, blank=False, max_length=30)
     tel = PhoneNumberField()
     added = models.DateTimeField(auto_now=True)
+    category = models.CharField(default='', max_length=255, choices=(('client', 'client'), ('seeker', 'seeker')))
     active = models.BooleanField(default=True)
     TC = models.BooleanField(default=False)#Terms and Conditions
     staff = models.BooleanField(default=False)  # a admin user; non super-user

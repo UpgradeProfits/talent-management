@@ -84,14 +84,14 @@
     <script>
         console.log(`{{lists}}`)
         function nextPage(){
-            window.location = "/auth/category/"; 
+            window.location = "/auth/category/";
         }
 
         $(document).on('submit', "#signup_form", (e)=>{
             e.preventDefault();
             $.ajax({
                 type:"POST",
-                url:"/auth/user/",
+                url:"/auth/category/",
                 data:{
                     firstname:$('#id_first_name').val(),
                     lastname:$('#id_last_name').val(),

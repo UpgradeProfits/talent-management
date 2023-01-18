@@ -13,6 +13,13 @@
     <!-- Main css -->
     <link rel="stylesheet" href="{%static 'css/style.css' %}">
 </head>
+<style>
+    .quest-btn{
+        padding: 1rem;
+        width: 30%;
+        margin: 0rem .6rem;
+    }
+</style>
 <body>
 
     <div class="main">
@@ -22,10 +29,8 @@
             <div class="sign-up-content">
                 <h2 class="form-title">Which Describes You Best ?</h2>
                 <div class="form-radio" style="display: flex; justify-content:center;">
-                    <input type="radio" name="member_level" value="newbie" id="newbie" checked="checked" />
-                    <label for="newbie">Hire now</label>
-                    <input type="radio" name="member_level" value="average" id="average" />
-                    <label for="average">Apply for a job</label>
+                    <button class="quest-btn" type="button" id="client">Hire</button>
+                    <button class="quest-btn" type="button" id="seeker">Apply</button>
                     
                 </div>
             </div>
@@ -38,7 +43,13 @@
     <script src="{%static 'js/main.js' %}"></script>
     <script>
         $(document).ready(function(){
-            
+            $("#seeker").click(()=>{
+                window.location = '/auth/createprofile/'
+            })
+
+            $("#client").click(()=>{
+                window.location = '/'
+            })
         })
     </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
