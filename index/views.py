@@ -4,6 +4,7 @@ from auths.models import UserProfile, Language
 from .forms import AddVacancyForm
 from auths.forms import CountryForm
 from django.http import JsonResponse, HttpResponse
+from .models import AddVacancy
 
 # Create your views here.
 def index(request):
@@ -63,3 +64,10 @@ def create_job(request):
         'form': form,
     }
     return render(request, 'index/post_job.html', context)
+
+def viewJobs(request):
+    qs = AddVacancy.objects.all()[:5]
+    context = {
+        'qs':qs
+    }
+    return render(request, 'filter_job.html', context)

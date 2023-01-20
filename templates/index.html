@@ -24,17 +24,40 @@
 
 <body>
   <style>
-    .myDiv {
-      display: none;
+	
+    .myDiv{
+      display:none;
       /* padding:10px; */
+    }  
+    
+    .payDiv{
+      display:none;
+      /* padding:10px; */
+    }  
+
+    .opt-icon:hover{
+      color: rgb(2, 2, 66);
+
+    }
+    @keyframes  vibrate{
+              
+      0%{
+        transform: translateX(7px);
+
+      }
+      50%{
+        transform: translateX(15px);
+      }
+      100%{
+        transform: translateX(7px);
+      }
+      
     }
 
-    .payDiv {
-      display: none;
-      /* padding:10px; */
+    .opt-icon{
+      animation: 2s vibrate infinite;
     }
-  </style>
-
+      </style>
   <main>
     <form action="" method="POST" enctype="multipart/form-data">
       <article>
@@ -49,106 +72,71 @@
             <div class="card mt-3">
               <div class="card-header font-weight-bold">Fill Your Details</div>
               <div class="card-body p-4 step">
-
-                <div class="radio-group row justify-content-between px-3 text-center"
-                  style="justify-content:center !important">
+                
+                <div class="radio-group row justify-content-between px-3 text-center" style="justify-content:center !important">
                   <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
-                    <div class="opt-icon"><i class="fas fa-user-plus" style="font-size: 80px; margin-left: 25px;"></i>
-                    </div>
-                    <p><b>Sign Up</b></p>
+                    <div class="opt-icon"><i class="fa fa-arrow-right" style="font-size: 80px; margin-left: 25px;"></i></div>
+                    <p class="text-hover"><b>Click to Proceed</b></p>
                   </div>
-                  <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio">
+                  <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio d-none">
                     <div class="opt-icon"><i class="fas fa-users" style="font-size: 80px;"></i></div>
                     <p><b>Sign In</b></p>
                   </div>
                 </div>
-                <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for
-                  example <b>Gary Hendren</b></div>
+                <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for example <b>Gary Hendren</b></div>
                 <div class="searchfield input-group px-5">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white"
-                      aria-hidden="true" style="display: none;"></i></span>
-                  <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search"
-                    style="display: none;">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white" aria-hidden="true" style="display: none;"></i></span>
+                  <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search" style="display: none;">
                 </div>
                 <div id="filter-records" class="mx-5"></div>
               </div>
-
+        
               <div id="userinfo" class="card-body p-4 step" style="display: none;">
                 <div class="text-center">
                   <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video</h5>
                 </div>
-                <div class="form-group row" style="padding-left: 120px;">
-                  <div class="col-5 position-sticky">
-                    <div class=" container d-flex mt-2 px-3 align-items-center justify-content-center ">
-
-
-                      <video id="video" class="w-100" autoplay></video>
-
-                      <div class="d-flex mt-2 align-content-center justify-content-around ">
-                        <button id="start-button" class="btn btn-success mx-2">
-                          <svg fill="#000000" height="30px" width="30px" version="1.1" id="Capa_1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 60 60" xml:space="preserve">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_iconCarrier">
-                              <g>
-                                <path
-                                  d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z">
-                                </path>
-                                <path
-                                  d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z">
-                                </path>
-                              </g>
-                            </g>
-                          </svg></button>
-                        <button id="stop-button" class="btn btn-danger mx-2" disabled><svg fill="#000000" width="30px"
-                            height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_iconCarrier">
-                              <path
-                                d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z">
-                              </path>
-                            </g>
-                          </svg></button>
-                        <a id="download-link" class="btn btn-primary mx-2" download="recording.mp4"><svg width="30px"
-                            height="30px" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_iconCarrier">
-                              <path clip-rule="evenodd"
-                                d="m12 3.25c.4142 0 .75.33579.75.75v11.8781c.1969-.0737.4191-.2101.7365-.4796.3539-.3004.7745-.7202 1.3773-1.3229l2.6059-2.6059c.2929-.2929.7677-.2929 1.0606 0s.2929.7677 0 1.0606l-2.6059 2.6059-.0227.0227v.0001c-.5747.5747-1.0383 1.0383-1.4444 1.383-.4181.355-.8243.6278-1.2985.7818-.7531.2447-1.5645.2447-2.3176 0-.4742-.154-.8804-.4268-1.29851-.7818-.40607-.3447-.86964-.8083-1.44438-1.383l-.00005-.0001-.0227-.0227-2.60589-2.6059c-.29289-.2929-.29289-.7677 0-1.0606s.76777-.2929 1.06066 0l2.60589 2.6059c.60277.6027 1.02338 1.0225 1.37728 1.3229.3174.2695.5396.4059.7365.4796v-11.8781c0-.41421.3358-.75.75-.75zm-8.25 11.75c0-.4142-.33579-.75-.75-.75s-.75.3358-.75.75v.2.0321c-.00001.8129-.00001 1.4685.04336 1.9994.04467.5466.13903 1.0267.36537 1.471.35952.7056.9332 1.2792 1.63881 1.6388.44421.2263.92436.3207 1.47099.3653.53091.0434 1.18653.0434 1.99937.0434h.0321 8.4.0321c.8128 0 1.4685 0 1.9994-.0434.5466-.0446 1.0267-.139 1.471-.3653.7056-.3596 1.2792-.9332 1.6388-1.6388.2263-.4443.3207-.9244.3653-1.471.0434-.5309.0434-1.1865.0434-1.9994v-.0321-.2c0-.4142-.3358-.75-.75-.75s-.75.3358-.75.75v.2c0 .8525-.0006 1.4467-.0384 1.9093-.0371.4539-.1062.7147-.2068.9122-.2158.4233-.56.7675-.9833.9833-.1975.1006-.4583.1697-.9122.2068-.4626.0378-1.0568.0384-1.9093.0384h-8.4c-.85245 0-1.44669-.0006-1.90932-.0384-.45387-.0371-.71464-.1062-.91216-.2068-.42336-.2158-.76757-.56-.98328-.9833-.10064-.1975-.16977-.4583-.20686-.9122-.0378-.4626-.03838-1.0568-.03838-1.9093z"
-                                fill="#000000" fill-rule="evenodd"></path>
-                            </g>
-                          </svg></a>
+                <div class="form-group row">
+                  <div class="col-md-12 position-sticky">
+                    <div class=" container d-flex mt-2 px-0 align-items-center justify-content-center flex-column " style="background-color: #002244; border-bottom-right-radius: 10px;
+                    border-bottom-left-radius: 10px;">
+                        
+                        
+                        <video id="video" class="w-100" style="background-color: black;" autoplay=""></video>
+                      
+                          <div class="d-flex mt-2 align-content-center justify-content-around ">
+                        <button id="start-button" class="btn  mx-2">
+                          <svg width="64px" height="64px" viewBox="-2.5 -2.5 30.00 30.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.82 9.27L16.18 11.07C15.85 11.2 15.5 10.96 15.5 10.6V7.5C15.5 7.22 15.28 7 15 7H3C2.72 7 2.5 7.22 2.5 7.5V17.5C2.5 17.78 2.72 18 3 18H15C15.28 18 15.5 17.78 15.5 17.5V14.4C15.5 14.05 15.85 13.81 16.18 13.93L20.82 15.73C21.15 15.86 21.5 15.62 21.5 15.26V9.72C21.5 9.38 21.15 9.14 20.82 9.27Z" stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.5 11C6.05228 11 6.5 10.5523 6.5 10C6.5 9.44772 6.05228 9 5.5 9C4.94772 9 4.5 9.44772 4.5 10C4.5 10.5523 4.94772 11 5.5 11Z" fill="#ffffff"></path> </g></svg></button>
+                        <button id="stop-button" class="btn  mx-2" disabled=""><svg fill="#fff" width="30px" height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"> <path d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z"></path> </g></svg></button>
+                        <a id="download-link" class="btn  mx-2" style="background-color: transparent !important; border: none;" download="recording.mp4"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 12V19M12 19L9.75 16.6667M12 19L14.25 16.6667M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                        </div>
                       </div>
-                    </div>
-
-
-                  </div>
+                           
+                                      
+                </div>        
                 </div>
-
+                
                 <div class="text-center row w-100 pt-4">
                   <h5 class="card-title font-weight-bold pb-2">Instruction To Record A Video (3 Min Max)</h5>
-                  <div class="text-start px-4">
-                    <p>
-                    <ul>
-                      <li>Introduce Yourself</li>
-                      <li>Past Experience & Training(If any)</li>
-                      <li>Why We Should Hire You?</li>
-                      <li>What Are Your Goals And Aspirations?</li>
-                      <li>See the demo To Record a Video <a href="#" target="_blank"><strong>Click Here</strong></a>
-                      </li>
-                    </ul>
-                    </p>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="formFileMultiple" class="form-label">Upload the downloaded Video</label>
-                  {{form.profile_video}}
-                </div>
-
+                  <div class="text-start px-4">     
+                  <p>
+                  </p><ul>
+                    <li>Introduce Yourself</li>
+                    <li>Past Experience &amp; Training(If any)</li>
+                    <li>Why We Should Hire You?</li>
+                    <li>What Are Your Goals And Aspirations?</li>
+                    <li>See the demo To Record a Video  <a href="#" target="_blank"><strong>Click Here</strong></a></li>
+                  </ul>
+                  <p></p>
+                </div>       
               </div>
-
-            </div>
+              <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload the downloaded Video</label>
+                <input class="form-control" type="file" id="formFileMultiple" multiple="">
+              </div>
+        
+                </div>
+        
+              </div>
 
 
             <div class="card-body p-4 step" style="display: none">
@@ -240,7 +228,7 @@
                 </div>
                 <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">Avalaibility To Start</label>
-                  {{form.start_date}
+                  {{form.start_date}}
                 </div>
                 <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">Prefered Niche To Sell?</label>
@@ -372,9 +360,24 @@
                       <label for="formFileMultiple" class="form-label">What Languages You Can Close? </label>
                     </div>
                   </div>
-                  <div class="  w-100">
-                    <div class="   w-100">
+                  <div class="w-100">
+                    <div class="w-100">
+                      <input type="hidden" name="langs" id="langs" value="">
                       {{form.language}}
+                    </div>
+                  </div>
+
+                  <div class="w-100">
+                    <div class="w-100">
+                      <input type="hidden" name="skills_list" id="skills_list" value="">
+                      {{form.skills}}
+                    </div>
+                  </div>
+
+                  <div class="w-100">
+                    <div class="w-100">
+                      <input type="hidden" name="available_days" id="available_days" value="">
+                      {{form.days_available}}
                     </div>
                   </div>
 
@@ -413,13 +416,13 @@
                   <label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions?
                     where
                     were you strong in those past positions? What are your weaknesses in sales?</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea6" rows="3"></textarea>
+                  {{form.reason_for_leaving_last_position}}
                 </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in with your
                     short
                     and long-term goals?</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea7" rows="3"></textarea>
+                  {{form.how_does_a_sales_fit_your_goals}}
                 </div>
 
               </div>
@@ -439,36 +442,24 @@
                 </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea1" class="form-label">Education</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  {{form.education}}
                 </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea2" class="form-label">Experience</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                  {{form.experience}}
                 </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea3" rows="3"></textarea>
+                  {{form.achievements}}
                 </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                  {{form.cover_letter}}
                 </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we should know
                     is important to you?</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea8" rows="3"></textarea>
-                </div>
-
-                <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                    <label class="form-check-label" for="invalidCheck">
-                      Agree to <a href="#">Terms and Conditions</a>
-                    </label>
-                    <div class="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
+                  {{form.anything_else_important_to_you_that_we_should_know}}
                 </div>
 
               </div>

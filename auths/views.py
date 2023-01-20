@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.core.mail import send_mail
-from .forms import RegisterForm, UserProfileForm
+from .forms import RegisterForm, UserProfileForm, ClientProfileForm
 from .models import User, Days, UserProfile
 import json
 
@@ -87,6 +87,8 @@ def createProfile(request):
                 instance.language.add(lang)
             for day in days:
                 instance.days_available.add(day)
+            
+            return redirect('jobs')
     context = {
         'form': form
     }
@@ -118,3 +120,17 @@ def updateProfile(request, pk, slug):
         'form':form
     }
     return render(request, 'updateprofile.html', context)
+
+def client_profile(request):
+    form = ClientProfileForm
+    if request.method == 'POST':
+        form = ClientProfileForm(request.POST or None)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('render_data')
+    context = {
+        'form':form
+    }
+    return render(request, 'client_detail.html', context)

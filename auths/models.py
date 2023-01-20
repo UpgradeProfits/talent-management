@@ -150,8 +150,9 @@ class User(AbstractBaseUser):
 
 class ClientProfile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=250, default='', blank=True)
     company_name = models.CharField(max_length=100, default='', blank=True)
-    preffered_lang = models.ForeignKey('Language', null=True, blank=True, on_delete=models.CASCADE)
+    preffered_lang = models.CharField(max_length=100, default='', blank=True)
     about = RichTextField(blank=False)
     
     def __str__(self):

@@ -1,0 +1,93 @@
+<!doctype html>
+{%load static%}
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Post A Job Form</title>
+</head>
+
+<body class="p-1">
+    <style>
+        .myDiv {
+            display: none;
+            padding: 10px;
+        }
+
+        .payDiv {
+            display: none;
+            padding: 10px;
+        }
+    </style>
+
+    <div class="container p-5">
+        <div class="row ">
+            <form action="" method="POST" autocomplete="off">
+                {%csrf_token%}
+                {{form.media}}
+                <div class="col-md-12 m-4">
+                    <div class="col-6">
+                        <label for="">
+                            <h3>Full Name</h3>
+                        </label>
+                        {{form.full_name}}
+                        <label for="">
+                            <h4>Company Name</h4>
+                        </label>
+                        {{form.company_name}}
+                        <label for="">
+                            <h4>Prefered Languages</h4>
+                        </label>
+                        {{form.preffered_lang}}
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="mb-3 ">
+                            <label for="exampleFormControlTextarea1" class="form-label">
+                                <h4>About</h4>
+                            </label>
+                            {{form.about}}
+                        </div>
+
+
+
+                        <button type="button" class="btn btn-primary w-100">Submit</button>
+                    </div>
+
+
+
+
+
+            </form>
+        </div>
+    </div>
+    <script>
+        var inputFields = document.getElementsByTagName('input')
+        for(var fields in inputFields){
+			if('form-control' != inputFields[fields].className){
+				inputFields[fields].className += 'form-control md-3'
+			}
+		};
+    </script>
+</body>
+
+</html>
