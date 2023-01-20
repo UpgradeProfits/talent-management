@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
 from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from django.conf import settings
+from django.core.mail import send_mail
 from django.utils.timezone import now
 import qrcode
 from io import BytesIO
@@ -13,6 +14,7 @@ from PIL import Image, ImageDraw
 from django.core.files import File
 from django_countries.fields import CountryField
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -79,6 +81,7 @@ class User(AbstractBaseUser):
     last_name= models.CharField(default='', null=False, blank=False, max_length=30)
     tel = PhoneNumberField()
     added = models.DateTimeField(auto_now=True)
+    category = models.CharField(default='', max_length=255, choices=(('client', 'client'), ('seeker', 'seeker')))
     active = models.BooleanField(default=True)
     TC = models.BooleanField(default=False)#Terms and Conditions
     staff = models.BooleanField(default=False)  # a admin user; non super-user
@@ -87,6 +90,18 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'tel']  # Email & Password are required by default.
+
+    # def save():
+    #     mssg = f'Account created for {firstname}'
+    #     message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, 
+    #     please do verify your account so we can tell you are wonderful person :) \n \n \n
+    #     Tech Team
+    #     """
+    #     subject = f'verify account for {email}'
+    #     email_from = settings.EMAIL_HOST_USER
+    #     recipient_list = [email, ]
+    #     send_mail( subject, message, email_from, recipient_list, fail_silently=False)
+    #     pass
 
     def get_full_name(self):
         # The user is identified by their first&last name
@@ -133,8 +148,15 @@ class User(AbstractBaseUser):
 
 
 
-class AppointmentSetter(models.Model):
-    pass
+class ClientProfile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=250, default='', blank=True)
+    company_name = models.CharField(max_length=100, default='', blank=True)
+    preffered_lang = models.CharField(max_length=100, default='', blank=True)
+    about = RichTextField(blank=False)
+    
+    def __str__(self):
+        return str(self.user)
 
 class UserProfile(models.Model):
     OPTIONS = (

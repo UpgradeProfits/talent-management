@@ -13,7 +13,7 @@ class AddVacancy(models.Model):
     expected_commission=models.IntegerField(default=0, blank=True)
     expected_hourly_pay=models.IntegerField(default=0, blank=True)
     job_description = RichTextField(blank=False)
-    status = models.CharField(default='Open', max_length=25, choices=(('open', 'open'), ('closed', 'closed')))
+    status = models.CharField(default='open', max_length=25, choices=(('open', 'open'), ('closed', 'closed')), blank=True)
 
     def __str__(self):
         return str(self.job_title)

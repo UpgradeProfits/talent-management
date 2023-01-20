@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
 from django import forms
-from .models import User, UserProfile, Country
+from .models import User, UserProfile, Country, ClientProfile
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from djrichtextfield.widgets import RichTextWidget
@@ -95,4 +95,10 @@ class UserProfileForm(forms.ModelForm):
 class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
+        fields = "__all__"
+
+
+class ClientProfileForm(forms.ModelForm):
+    class Meta:
+        model = ClientProfile
         fields = "__all__"

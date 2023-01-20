@@ -13,6 +13,6 @@ urlpatterns = [
     #
     path('category/', views.user_categories, name='category'),
     path('createprofile/', views.createProfile, name="c_profile"),
-    # path('createdprofile/', views.userProfile, name="userprofile_details"),
+    path('createprofile/client/', views.client_profile, name="client_profile"),
     path('updateprofile/<int:pk>/<slug:slug>/', views.updateProfile, name="updateprofile"),
 ]
