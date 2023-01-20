@@ -91,17 +91,17 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'tel']  # Email & Password are required by default.
 
-    def save():
-        mssg = f'Account created for {firstname}'
-        message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, 
-        please do verify your account so we can tell you are wonderful person :) \n \n \n
-        Tech Team
-        """
-        subject = f'verify account for {email}'
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [email, ]
-        send_mail( subject, message, email_from, recipient_list, fail_silently=False)
-        pass
+    # def save():
+    #     mssg = f'Account created for {firstname}'
+    #     message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, 
+    #     please do verify your account so we can tell you are wonderful person :) \n \n \n
+    #     Tech Team
+    #     """
+    #     subject = f'verify account for {email}'
+    #     email_from = settings.EMAIL_HOST_USER
+    #     recipient_list = [email, ]
+    #     send_mail( subject, message, email_from, recipient_list, fail_silently=False)
+    #     pass
 
     def get_full_name(self):
         # The user is identified by their first&last name

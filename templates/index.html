@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
+  <!-- Font Awesome 5 -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+
+  <!-- Demo CSS -->
+  <link rel="stylesheet" href="{%static 'css/demo.css' %}">
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<body>
+  <style>
+    .myDiv {
+      display: none;
+      /* padding:10px; */
+    }
+
+    .payDiv {
+      display: none;
+      /* padding:10px; */
+    }
+  </style>
+
+  <main>
+    <form action="" method="POST" enctype="multipart/form-data">
+      <article>
+        <!-- partial:index.partial.html -->
+        <div class="container d-flex justify-content-center" style="min-width:720px!important">
+          <div class="col-11 col-offset-2">
+            <div class="progress mt-3" style="height: 30px;">
+              <div class="progress-bar progress-bar-striped progress-bar-animated"
+                style="font-weight:bold; font-size:15px;" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header font-weight-bold">Fill Your Details</div>
+              <div class="card-body p-4 step">
+
+                <div class="radio-group row justify-content-between px-3 text-center"
+                  style="justify-content:center !important">
+                  <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
+                    <div class="opt-icon"><i class="fas fa-user-plus" style="font-size: 80px; margin-left: 25px;"></i>
+                    </div>
+                    <p><b>Sign Up</b></p>
+                  </div>
+                  <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio">
+                    <div class="opt-icon"><i class="fas fa-users" style="font-size: 80px;"></i></div>
+                    <p><b>Sign In</b></p>
+                  </div>
+                </div>
+                <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for
+                  example <b>Gary Hendren</b></div>
+                <div class="searchfield input-group px-5">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white"
+                      aria-hidden="true" style="display: none;"></i></span>
+                  <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search"
+                    style="display: none;">
+                </div>
+                <div id="filter-records" class="mx-5"></div>
+              </div>
+
+              <div id="userinfo" class="card-body p-4 step" style="display: none;">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video</h5>
+                </div>
+                <div class="form-group row" style="padding-left: 120px;">
+                  <div class="col-5 position-sticky">
+                    <div class=" container d-flex mt-2 px-3 align-items-center justify-content-center ">
+
+
+                      <video id="video" class="w-100" autoplay></video>
+
+                      <div class="d-flex mt-2 align-content-center justify-content-around ">
+                        <button id="start-button" class="btn btn-success mx-2">
+                          <svg fill="#000000" height="30px" width="30px" version="1.1" id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 60 60" xml:space="preserve">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <g>
+                                <path
+                                  d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z">
+                                </path>
+                                <path
+                                  d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z">
+                                </path>
+                              </g>
+                            </g>
+                          </svg></button>
+                        <button id="stop-button" class="btn btn-danger mx-2" disabled><svg fill="#000000" width="30px"
+                            height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z">
+                              </path>
+                            </g>
+                          </svg></button>
+                        <a id="download-link" class="btn btn-primary mx-2" download="recording.mp4"><svg width="30px"
+                            height="30px" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path clip-rule="evenodd"
+                                d="m12 3.25c.4142 0 .75.33579.75.75v11.8781c.1969-.0737.4191-.2101.7365-.4796.3539-.3004.7745-.7202 1.3773-1.3229l2.6059-2.6059c.2929-.2929.7677-.2929 1.0606 0s.2929.7677 0 1.0606l-2.6059 2.6059-.0227.0227v.0001c-.5747.5747-1.0383 1.0383-1.4444 1.383-.4181.355-.8243.6278-1.2985.7818-.7531.2447-1.5645.2447-2.3176 0-.4742-.154-.8804-.4268-1.29851-.7818-.40607-.3447-.86964-.8083-1.44438-1.383l-.00005-.0001-.0227-.0227-2.60589-2.6059c-.29289-.2929-.29289-.7677 0-1.0606s.76777-.2929 1.06066 0l2.60589 2.6059c.60277.6027 1.02338 1.0225 1.37728 1.3229.3174.2695.5396.4059.7365.4796v-11.8781c0-.41421.3358-.75.75-.75zm-8.25 11.75c0-.4142-.33579-.75-.75-.75s-.75.3358-.75.75v.2.0321c-.00001.8129-.00001 1.4685.04336 1.9994.04467.5466.13903 1.0267.36537 1.471.35952.7056.9332 1.2792 1.63881 1.6388.44421.2263.92436.3207 1.47099.3653.53091.0434 1.18653.0434 1.99937.0434h.0321 8.4.0321c.8128 0 1.4685 0 1.9994-.0434.5466-.0446 1.0267-.139 1.471-.3653.7056-.3596 1.2792-.9332 1.6388-1.6388.2263-.4443.3207-.9244.3653-1.471.0434-.5309.0434-1.1865.0434-1.9994v-.0321-.2c0-.4142-.3358-.75-.75-.75s-.75.3358-.75.75v.2c0 .8525-.0006 1.4467-.0384 1.9093-.0371.4539-.1062.7147-.2068.9122-.2158.4233-.56.7675-.9833.9833-.1975.1006-.4583.1697-.9122.2068-.4626.0378-1.0568.0384-1.9093.0384h-8.4c-.85245 0-1.44669-.0006-1.90932-.0384-.45387-.0371-.71464-.1062-.91216-.2068-.42336-.2158-.76757-.56-.98328-.9833-.10064-.1975-.16977-.4583-.20686-.9122-.0378-.4626-.03838-1.0568-.03838-1.9093z"
+                                fill="#000000" fill-rule="evenodd"></path>
+                            </g>
+                          </svg></a>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <div class="text-center row w-100 pt-4">
+                  <h5 class="card-title font-weight-bold pb-2">Instruction To Record A Video (3 Min Max)</h5>
+                  <div class="text-start px-4">
+                    <p>
+                    <ul>
+                      <li>Introduce Yourself</li>
+                      <li>Past Experience & Training(If any)</li>
+                      <li>Why We Should Hire You?</li>
+                      <li>What Are Your Goals And Aspirations?</li>
+                      <li>See the demo To Record a Video <a href="#" target="_blank"><strong>Click Here</strong></a>
+                      </li>
+                    </ul>
+                    </p>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="formFileMultiple" class="form-label">Upload the downloaded Video</label>
+                  {{form.profile_video}}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="card-body p-4 step" style="display: none">
+              <div class="text-center">
+                <h5 class="card-title font-weight-bold pb-2">Personal Information </h5>
+              </div>
+
+              <div class="form-group row">
+                <!-- <div class="col-2"></div> -->
+                <div class="col-6">
+                  <label for="fname">First Name</label>
+                  {{form.first_name}}
+                  <div class="invalid-feedback">This field is required</div>
+                </div>
+                <div class="col-6">
+                  <label for="lname">Last Name</label>
+                  {{form.last_name}}
+                  <div class="invalid-feedback">This field is required</div>
+                </div>
+              </div>
+
+              <div class="form-group row pt-2">
+                <div class="col-12 px-2">
+                  <label for="validationCustom03" class="form-label">City Name</label>
+                  {{form.city}}
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="form-group row pt-2">
+                <div class="d-flex mt-2">
+                  <div class="col-4 px-2">
+                    <label for="validationCustom04" class="form-label">Where are you located?</label>
+                    {{form.location}}
+                    <div class="invalid-feedback">
+                      Please select a valid Country.
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <label for="validationCustom05" class="form-label">Country of Citizenship?</label>
+                    {{form.nationality}}
+                    <div class="invalid-feedback">
+                      Please select a valid Country.
+                    </div>
+                  </div>
+                  <div class="col-4 px-2">
+                    <label for="validationCustom05" class="form-label">Zip</label>
+                    {{form.zip_code}}
+                    <div class="invalid-feedback ">
+                      Please provide a valid zip.
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="form-group row mt-2 pt-2 mb-2">
+
+
+                <div class="col-12 px-2">
+                  <div class="form-check form-check-inline px-0">
+                    <label for="validationCustom05" class="form-label">Gender</label>
+                    {{form.gender}}
+                  </div>
+                </div>
+
+
+              </div>
+              <!-- <div class="text-center text-muted"><b style="color: #dc3545;">*</b> required fields</div> -->
+            </div>
+            <div class="card-body p-5 step" style="display: none">
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Professional Information Part-I </h5>
+                </div>
+                <div class="mb-3">
+                  <label for="formFileMultiple" class="form-label">Upload Resume</label>
+                  {{form.resume}}
+                </div>
+                <div class="mb-3">
+                  <label for="formFileMultiple1" class="form-label">Documents For Verification</label>
+                  {{form.document_type}}
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Avalaibility To Start</label>
+                  {{form.start_date}
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Prefered Niche To Sell?</label>
+                  {{form.preferred_niche_to_sell}}
+                </div>
+
+
+
+
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">What Role would you like to go in once you are hired?</label>
+                  {{form.category}}
+                  <div id="showone" class="myDiv">
+                    <div class="col-12 mb-3 mt-3 w-100">
+                      <label for="" class="form-label">How many calls can you dial outbound calls in a day?</label>
+                      {{form.outbound_calls_per_day}}
+                    </div>
+
+                    <div class="col-12 mb-3 mt-3 w-100">
+                      <label for="" class="form-label">What highest Ticket product have you sold?</label>
+                      {{form.highest_ticket_product}}
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">How you want to be get paid?</label>
+                  {{form.pay}}
+                  <div id="payHourly" class="payDiv">
+                    <div class="col-md-12 mb-3 mt-3 w-100">
+                      <label for="" class="form-label">Expected Hourly Pay ($)</label>
+                      {{form.expected_hourly_pay}}
+                    </div>
+
+                  </div>
+                  <div id="payCommission" class="payDiv">
+                    <div class="col-md-12 mb-3 mt-3 w-100">
+                      <label for="" class="form-label">Expected Commission (%) </label>
+                      {{form.expected_commission}}
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+            <div class="card-body p-5 step" style="display: none">
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Professional Information Part-II </h5>
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Are you comfortable with 100% commission-based pay?</label>
+                  {{form.are_you_comfortable_with_commission_based_pay}}
+                </div>
+
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Total Revenue Sales Generated over your sales career?</label>
+                  {{form.total_revenue_sales_career}}
+                </div>
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Total sales generated over the last 3 years</label>
+                  {{form.total_revenue_sales_three_yrs}}
+                </div>
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Revenue Generated on the best month?</label>
+                  {{form.generated_revenue}}
+                </div>
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">How much was the ticket size?</label>
+                  {{form.ticket_size}}
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">What is the highest sales ticket you have sold?</label>
+                  {{form.highest_ticket_product}}
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">What sales training have you taken in the past?</label>
+                  <input type="text" class="form-control" aria-label="100">
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Why are you interested in remote sales?</label>
+                  {{form.Why_are_you_interested_in_remote_sales}}
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">What's a deal breaker for you in a offer?</label>
+                  {{form.deal_breaker_for_you}}
+                </div>
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Average ticket price sold?</label>
+                  {{form.average_ticket_sold}}
+                </div>
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Average unit sold?</label>
+                  {{form.average_units_sold}}
+                </div>
+
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">How many offers have you worked on in the last 2 years? how much have
+                    you sold on Average on those past offers?</label>
+                  {{form.offers_worked_on_past_years}}
+                </div>
+
+                <section class=" col-md-12 px-2">
+                  <div class="container px-2">
+                    <!-- <div class="row justify-content-center"> -->
+                    <div class="col-md-12">
+                      <label for="formFileMultiple" class="form-label">What Languages You Can Close? </label>
+                    </div>
+                  </div>
+                  <div class="  w-100">
+                    <div class="   w-100">
+                      {{form.language}}
+                    </div>
+                  </div>
+
+                </section>
+
+
+
+
+
+              </div>
+            </div>
+            <div class="card-body p-5 step" style="display: none">
+
+
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Professional Information Part-III </h5>
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <label for="" class="form-label">Did you have to do any of the lead gen in the past?</label>
+                  {{form.past_leade_gen}}
+                </div>
+
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea9" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">What offers have you worked on? what was
+                    the
+                    niche & ticket price?</label>
+                  {{form.offers_worked_on_niche_and_ticket_price}}
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions?
+                    where
+                    were you strong in those past positions? What are your weaknesses in sales?</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea6" rows="3"></textarea>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in with your
+                    short
+                    and long-term goals?</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea7" rows="3"></textarea>
+                </div>
+
+              </div>
+
+
+
+
+
+
+            </div>
+
+
+            <div class="card-body p-5 step" style="display: none">
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Academic Information</h5>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">Education</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea2" class="form-label">Experience</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea3" rows="3"></textarea>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we should know
+                    is important to you?</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea8" rows="3"></textarea>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to <a href="#">Terms and Conditions</a>
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+
+            <div class="card-footer">
+              <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
+              <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
+              <button class="action submit btn btn-sm btn-outline-success float-end" type="submit"
+                style="display: none">Submit</button>
+            </div>
+          </div>
+
+        </div>
+        </div>
+        <!-- partial -->
+        <script>
+          $(document).ready(function () {
+            $('#myselection').on('change', function () {
+              var demovalue = $(this).val();
+              $("div.myDiv").hide();
+              $("#show" + demovalue).show();
+            });
+            $('#payoutselection').on('change', function () {
+              var demovalue = $(this).val();
+              $("div.payDiv").hide();
+              $("#pay" + demovalue).show();
+            });
+          });
+
+
+        </script>
+        <script>
+          // adding bootstrap classes to django rendered form fields
+          var inputFields = document.getElementsByTagName('input')
+          var textboxFields = document.getElementsByTagName('textarea')
+          var selectFields = document.getElementsByTagName('select')
+
+          for (var fields in inputFields) {
+            if ('form-control' != inputFields[fields].className) {
+              inputFields[fields].className += 'form-control'
+            }
+          };
+
+          for (var fields in textboxFields) {
+            if ('form-control' != textboxFields[fields].className) {
+              textboxFields[fields].className += ' form-control'
+            }
+          };
+
+          for (var fields in selectFields) {
+            if ('form-control' != selectFields[fields].className) {
+              selectFields[fields].className += ' form-select'
+            }
+          };
+
+          const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
+          const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
+          const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
+        </script>
+        <script>
+          // arrays for populating selected values
+          let select_skills = []
+          let select_days = []
+          let select_langs = []
+          // hidden input fields for moving data to backend
+          var new_skills = $(`#skills_list`)
+          var new_langs = $('#langs')
+          var new_days = $('#available_days')
+          // end
+          $(function () {
+            var selected_skill = $('#id_skills').select2();
+            var selected_lang = $('#id_language').select2();
+            var selected_days = $('#id_days_available').select2();
+            // 
+            new_vals(`#id_skills`, select_skills, new_skills);
+            new_vals('#id_language', select_langs, new_langs);
+            new_vals('#id_days_available', select_days, new_days);
+          })
+          //this function would clear redundancy in the list and add the array to the given element input[value]
+
+          function new_vals(param1, param2, param3) {
+            $(param1).on('select2:select', () => {
+              var innerVar = $(param1).select2("data");
+              for (var i = 0; i <= innerVar.length - 1; i++) {
+                param2.push(innerVar[i].id);
+              };
+              let uniqueChars = [...new Set(param2)];
+              param3.val(uniqueChars)
+              console.log(uniqueChars);
+            })
+          }
+        </script>
+        <script>
+
+          var videoElement = document.getElementById('video');
+          var canvasElement = document.getElementById('canvas');
+          var startButton = document.getElementById('start-button');
+          var stopButton = document.getElementById('stop-button');
+          var downloadLink = document.getElementById('download-link');
+          var mediaRecorder;
+          var recordedBlobs = [];
+
+          // Check if the MediaRecorder API is supported
+          if (typeof MediaRecorder === 'function') {
+            startButton.addEventListener('click', function () {
+              // Request access to the user's camera and microphone
+              navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+                .then(function (stream) {
+                  // The user granted access to the camera and microphone
+                  videoElement.srcObject = stream;
+                  mediaRecorder = new MediaRecorder(stream);
+                  mediaRecorder.ondataavailable = handleDataAvailable;
+                  mediaRecorder.start();
+                  startButton.disabled = true;
+                  stopButton.disabled = false;
+                })
+                .catch(function (error) {
+                  // The user denied access to the camera and microphone
+                  console.error('Error accessing camera and microphone:', error);
+                });
+            });
+
+            stopButton.addEventListener('click', function () {
+              mediaRecorder.stop();
+              startButton.disabled = false;
+              stopButton.disabled = true;
+            });
+
+            function handleDataAvailable(event) {
+              if (event.data && event.data.size > 0) {
+                recordedBlobs.push(event.data);
+              }
+            }
+
+            downloadLink.addEventListener('click', function () {
+              var blob = new Blob(recordedBlobs, { type: 'video/mp4' });
+              var url = URL.createObjectURL(blob);
+              downloadLink.href = url;
+            });
+          }
+          else {
+            console.error('The MediaRecorder API is not supported in this browser')
+          };
+
+        </script>
+
+      </article>
+    </form>
+  </main>
+
+
+  <!-- jQuery JS -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <!-- Bootstrap 5 JS -->
+  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
+  <!-- Multi-step Form JS -->
+  <script src="{%static 'js/bootstrap-multi-step-form.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+  <script src="{%static 'js/main.js' %}"></script>
+</body>
+
+</html>

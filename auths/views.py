@@ -90,7 +90,7 @@ def createProfile(request):
     context = {
         'form': form
     }
-    return render(request, 'userprofile.html', context)
+    return render(request, 'index.html', context)
 
 def updateProfile(request, pk, slug):
     data = UserProfile.objects.get(id=pk)
