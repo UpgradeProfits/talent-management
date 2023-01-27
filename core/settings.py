@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-<<<<<<< HEAD
+
 # import environ
-=======
-import environ
+
+# import environ
 # 08083031560
->>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6
+# >>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -155,19 +155,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< HEAD
+
 # EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST=env('EMAIL_HOST')
 # EMAIL_PORT=env('EMAIL_PORT')
 # EMAIL_USE_TLS=True
 # EMAIL__HOST_USER=env('EMAIL__HOST_USER')
 # EMAIL__HOST_PASSWORD=env('EMAIL__HOST_PASSWORD')
-=======
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='mail.startall.net'
-EMAIL_PORT=env('EMAIL_PORT')
-EMAIL_USE_SSL=True
-EMAIL_USE_TLS=False
-EMAIL_HOST_USER=env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
->>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6
+
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='mail.startall.net'
+# EMAIL_PORT=env('EMAIL_PORT')
+# EMAIL_USE_SSL=True
+# EMAIL_USE_TLS=False
+# EMAIL_HOST_USER=env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+# >>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6
