@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
 from django import forms
-from .models import User, UserProfile, Country, ClientProfile
+from .models import User, UserProfile, Country, ClientProfile, Language
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from djrichtextfield.widgets import RichTextWidget
@@ -12,7 +12,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'tel', 'password1', 'password2')
+        fields = ('email', 'first_name', 'last_name', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -48,7 +48,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'tel')
+        fields = ('email', 'first_name', 'last_name')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -91,12 +91,59 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = "__all__"
+            # 'profile_video',
+            # 'first_name',
+            # 'last_name',
+            # 'city',
+            # 'location',
+            # 'nationality',
+            # 'zip_code',
+            # 'gender',
+            # 'resume',
+            # 'document_type',
+            # 'start_date',
+            # 'preferred_niche_to_sell',
+            # 'category',
+            # 'outbound_calls_per_day',
+            # 'highest_ticket_product',
+            # 'pay',
+            # 'expected_hourly_pay',
+            # 'expected_commission',
+            # 'are_you_comfortable_with_commission_based_pay',
+            # 'total_revenue_sales_career',
+            # 'total_revenue_sales_three_yrs',
+            # 'generated_revenue',
+            # 'ticket_size',
+            # 'highest_tickets',
+            # 'past_trainings',
+            # 'Why_are_you_interested_in_remote_sales',
+            # 'deal_breaker_for_you',
+            # 'average_tickets_sold',
+            # 'average_units_sold',
+            # 'offers_worked_on_past_years',
+            # 'language',
+            # 'skills',
+            # 'days_available',
+            # 'past_leade_gen',
+            # 'reason',
+            # 'offers_worked_on_niche_and_ticket_price',
+            # 'reason_for_leaving_last_position',
+            # 'how_does_a_sales_fit_your_goals',
+            # 'education',
+            # 'experience',
+            # 'achievements',
+            # 'cover_letter',
+            # 'anything_else_important_to_you_that_we_should_know',
 
 class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
         fields = "__all__"
 
+class LanguageForm(forms.ModelForm):
+    class Meta:
+        model = Language
+        fields = "__all__"
 
 class ClientProfileForm(forms.ModelForm):
     class Meta:

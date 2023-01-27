@@ -1,8 +1,8 @@
 <!doctype html>
 {%load static%}
 <html lang="en">
-<head>
 
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -70,7 +70,7 @@
 
 
 
-                        <button type="button" class="btn btn-primary w-100">Submit</button>
+                        <button type="submit" class="btn btn-primary w-100" id="subBtn">Submit</button>
                     </div>
 
 
@@ -82,11 +82,11 @@
     </div>
     <script>
         var inputFields = document.getElementsByTagName('input')
-        for(var fields in inputFields){
-			if('form-control' != inputFields[fields].className){
-				inputFields[fields].className += 'form-control md-3'
-			}
-		};
+        for (var fields in inputFields) {
+            if ('form-control' != inputFields[fields].className) {
+                inputFields[fields].className += 'form-control md-3'
+            }
+        };
     </script>
 </body>
 

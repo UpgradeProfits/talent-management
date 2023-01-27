@@ -8,6 +8,8 @@ urlpatterns = [
     # SignIn urls
     path('signin/', views.sign_in_view, name="login"),
     path('login/', views.sign_in),#this is the url that ajax sends the users detail to for authentication @ the sign_in view
+    # SignOut
+    path('signout/<str:user>/', views.log_out, name="logout"),
     #Reset Password url
     # path('password_reset/', django_views.PasswordResetView.as_view(), name="reset_password"),
     #
