@@ -18,6 +18,7 @@ Jobs
   }
 </style>
 <div class="container my-sm-5 border p-0 bg-sec-light">
+  {%csrf_token%}
   <div id="content">
     <div class="bg-light p-2 px-md-4 px-3 shadow-sm mb-2">
       <button class="btn btn-dark hBack" type="button">Back</button>
@@ -97,7 +98,9 @@ Jobs
           </div>
         </div>
         <div class="box border-bottom">
-          <div class="m-auto px-5"><button class="btn btn-success" type="button" id="filter-btn">Apply</button></div>
+          <div class="m-auto px-5">
+              <button class="btn btn-success" type="button" id="filter-btn" >Apply</button>
+          </div>
         </div>
 
 
@@ -136,7 +139,9 @@ Jobs
           <div class="col-md-6 px-5">
             <h2 class="card-title mt-3">{{qs.job_title}}</h2>
             <p>{{qs.job_description|safe}}</p>
-            <button class="btn btn-success mb-3">Apply</button>
+            <!-- <form action="" method="POST" id="apply_form"></form> -->
+              <button class="btn btn-success mb-3" id="apply-{{qs.pk}}" data-job="{{qs.job_title}}" type="button" onclick="applyNow(`apply-{{qs.pk}}`)">Apply</button>
+            <!-- </form> -->
           </div>
           <div class="col-md-3 justify-content-center pt-4 " style="display: grid;  ">
             <div class="row">
@@ -160,10 +165,7 @@ Jobs
 
 
   </div>
-  <div class="d-flex justify-content-end mt-1 p-3">
-    <div class="btn btn-link enquiry text-uppercase mx-2">See More</div>
-    <div class="btn btn-success text-uppercase">Book Now</div>
-  </div>
+
 </div>
 {%endblock contents%}
 {%block scripts%}
@@ -176,6 +178,26 @@ Jobs
   // End 
   var selectFields = document.getElementById('id_country')
   selectFields.className += 'form-select'
+  // 
+  function applyNow(Id){
+    $(`#${Id}`).on('click', ()=>{
+      $.ajax({
+        url:'/apply/',
+        type:'POST',
+        data:{
+          job: $(this).attr('data-job'),
+          link: '/userprofile/{{request.user.first_name}}-{{request.user.last_name}}/',
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: function(data){
+          alert(data)
+        },
+        error: ()=>{
+          alert('unsuccessfull')
+        }
+      })
+    })
+  }
   // To filter the jobs
 
   $('#filter-btn').on('click', () => {

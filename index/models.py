@@ -17,3 +17,12 @@ class AddVacancy(models.Model):
 
     def __str__(self):
         return str(self.job_title)
+
+class Apply(models.Model):
+    job = models.ForeignKey('AddVacancy', null=True, blank=True, on_delete=models.CASCADE)
+    by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    link = models.URLField(max_length = 200,  blank=True)
+    hire = models.BooleanField(default=False, blank=True)
+
+    def __str__(self):
+        return str(f'{self.job} applied by {self.by}')

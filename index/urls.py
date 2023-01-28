@@ -8,5 +8,6 @@ urlpatterns = [
     path('userprofile/<slug:slug>/', views.viewProfile, name='u-profile'),
     path('clientprofile/<str:str>/', views.client, name='c-profile'),
     path('jobs/', views.viewJobs, name='jobs'),
-    path('add_job/', views.create_job, name='add_job')
+    path('add_job/', views.create_job, name='add_job'),
+    path('apply/', views.apply, name='apply')
 ]

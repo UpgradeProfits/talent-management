@@ -5,7 +5,7 @@ from auths.models import UserProfile, Language, ClientProfile
 from .forms import AddVacancyForm
 from auths.forms import CountryForm, LanguageForm
 from django.http import JsonResponse, HttpResponse
-from .models import AddVacancy
+from .models import AddVacancy, Apply
 
 # Create your views here.
 @allowed_user(allowed_roles=['client'])
@@ -88,3 +88,15 @@ def client(request, str):
         'qs': qs,
     }
     return render(request, 'index/client_profile.html', context)
+
+def apply(request):
+    if request.method == 'POST':
+        job = request.POST.get('job')
+        link = request.POST.get('link')
+        make_apply = Apply.objects.create(
+            job=job,
+            by=request.user,
+            link=link
+        )
+        make_apply.save()
+        return HttpResponse('successfull')
