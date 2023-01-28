@@ -1,35 +1,26 @@
-<!DOCTYPE html>
+{%extends 'base.html' %}
 {%load static%}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{%block links%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 <link rel="stylesheet" href="{%static 'css/filter.css' %}">
-</head>
+{%endblock links%}
+{%block contents%}
 <style>
   .long-img {
     height: 100%;
     object-fit: cover;
-}
+  }
 </style>
-<body>
-    <div class="container my-sm-5 border p-0 bg-sec-light">
-        <div id="content">
-          <div class="bg-light p-2 px-md-4 px-3 shadow-sm mb-2">
-            <div class="d-flex align-items-center">
-              <div class="user-select-none " >Home</div>
-              <div class="fas fa-angle-right px-2"></div>
-              <div id="navigator" class="text-primary"></div>
-            </div>
-          </div>
-          {%csrf_token%}
-          <!-- <div class="d-sm-flex align-items-sm-center py-sm-3 px-md-3 location">
+<div class="container my-sm-5 border p-0 bg-sec-light">
+  <div id="content">
+    <div class="bg-light p-2 px-md-4 px-3 shadow-sm mb-2">
+      <button class="btn btn-dark hBack" type="button">Back</button>
+    </div>
+    {%csrf_token%}
+    <!-- <div class="d-sm-flex align-items-sm-center py-sm-3 px-md-3 location">
             <label ></label>
             <input
               type="text"
@@ -54,113 +45,133 @@
               value="search"
               class="btn btn-primary mx-3 my-sm-0 mb-2"
             /> -->
+  </div>
+  <div class="d-sm-flex">
+    <div class="me-sm-2">
+      <div id="filter" class="p-2 bg-light ms-md-4 ms-sm-2 border">
+        <div class="border-bottom h5 text-uppercase">Filter By</div>
+        <div class="box border-bottom">
+          <div class="box-label text-uppercase d-flex align-items-center">
+            Pay
+            <button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#inner-box"
+              aria-expanded="false" aria-controls="inner-box">
+              <span class="fas fa-plus"></span>
+            </button>
           </div>
-          <div class="d-sm-flex">
-            <div class="me-sm-2">
-              <div id="filter" class="p-2 bg-light ms-md-4 ms-sm-2 border">
-                <div class="border-bottom h5 text-uppercase">Filter By</div>
-                <div class="box border-bottom">
-                  <div class="box-label text-uppercase d-flex align-items-center">
-                    Pay
-                    <button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#inner-box" aria-expanded="false" aria-controls="inner-box">
-                      <span class="fas fa-plus"></span>
-                    </button>
-                  </div>
-                  <div class="">
-                    <!-- <label for="validationCustom05" class="form-label">Country of Citizenship?</label> -->
-                    <select class="form-select" id="pay" required="">
-                      <option selected="" disabled="" value="">Choose...</option>
-                        <option value="Hourly">Hourly</option>
-                        <option value="Commission">Commission</option>
-                      </select>
-                    
-                    <div class="invalid-feedback">
-                      Please select a valid Country.
-                    </div>
-                    </div>
-                </div>
-                <!---Ends And Starts-->
-                <div class="box border-bottom">
-                  <div class="box-label text-uppercase d-flex align-items-center">
-                    Category
-                    <button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#inner-box" aria-expanded="false" aria-controls="inner-box">
-                      <span class="fas fa-plus"></span>
-                    </button>
-                  </div>
-                  <div class="">
-                    <!-- <label for="validationCustom05" class="form-label">Country of Citizenship?</label> -->
-                    <select class="form-select" id="category" required="">
-                      <option selected="" disabled="" value="">Choose...</option>          
-                        <option value="closers">Closers</option>
-                        <option value="appointment setters">Appointment setters</option>
-                      </select>
-                    
-                    <div class="invalid-feedback">
-                      Please select a valid Country.
-                    </div>
-                    </div>
-                </div>
-                <!--Ends And Starts-->
-                <div class="box border-bottom">
-                  <div class="box-label text-uppercase d-flex align-items-center">
-                    Country
-                    <button class="btn ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#inner-box" aria-expanded="false" aria-controls="inner-box">
-                      <span class="fas fa-plus"></span>
-                    </button>
-                  </div>
-                  <div class="">
-                    <label for="validationCustom05" class="form-label">Country of Citizenship?</label>
-                    {{form.country}}                    
-                    <div class="invalid-feedback">
-                      Please select a valid Country.
-                    </div>
-                    </div>
-                </div>
-                <div class="box border-bottom">
-                  <div class="m-auto px-5"><button class="btn btn-primary" type="button" id="filter-btn">Apply</button></div>
-                </div>
+          <div class="">
+            <!-- <label for="validationCustom05" class="form-label">Country of Citizenship?</label> -->
+            <select class="form-select" id="pay" required="">
+              <option selected="" disabled="" value="">Choose...</option>
+              <option value="Hourly">Hourly</option>
+              <option value="Commission">Commission</option>
+            </select>
 
-
-
-
-              </div>
-            </div>
-            <div class="container mt-3 mb-3" id="user-info">
-            </div>
-            <!--  -->
-            <div class="container mt-3 mb-3 d-none" id="filter-info">
-            </div>
-            </div>
-            <div class="d-flex justify-content-end mt-1">
-              <div class="btn enquiry text-uppercase mx-2">See More</div>
-              <div class="btn btn-primary text-uppercase">Book Now</div>
+            <div class="invalid-feedback">
+              Please select a valid Country.
             </div>
           </div>
         </div>
+        <!---Ends And Starts-->
+        <div class="box border-bottom">
+          <div class="box-label text-uppercase d-flex align-items-center">
+            Category
+          </div>
+          <div class="">
+            <!-- <label for="validationCustom05" class="form-label">Country of Citizenship?</label> -->
+            <select class="form-select" id="category" required="">
+              <option selected="" disabled="" value="">Choose...</option>
+              <option value="closers">Closers</option>
+              <option value="appointment setters">Appointment setters</option>
+            </select>
 
-              
-             
-                    
-                   
-                  </div>
-                </div>
-                
-              </div>
+            <div class="invalid-feedback">
+              Please select a valid Country.
             </div>
           </div>
         </div>
+        <!-- Langs -->
+        <div class="box border-bottom">
+          <div class="box-label text-uppercase d-flex align-items-center">
+            Language
+          </div>
+          <div class="">
+            <select class="form-select" id="id_language" required="">
+              <option selected="" disabled="" value="">Choose...</option>
+              {%for obj in obj%}
+              <option value="{{obj.name}}">{{obj.name}}</option>
+              {%endfor%}
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid Country.
+            </div>
+          </div>
+        </div>
+        <!--Ends And Starts-->
+        <div class="box border-bottom">
+          <div class="box-label text-uppercase d-flex align-items-center">
+            Country
+          </div>
+          <div class="">
+            <label for="validationCustom05" class="form-label">Country of Citizenship?</label>
+            {{form.country}}
+            <div class="invalid-feedback">
+              Please select a valid Country.
+            </div>
+          </div>
+        </div>
+        <div class="box border-bottom">
+          <div class="m-auto px-5"><button class="btn btn-success" type="button" id="filter-btn">Apply</button></div>
+        </div>
+
+
+
+
       </div>
+    </div>
+    <div class="container mt-3 mb-3" id="user-info">
+    </div>
+    <!--  -->
+    <div class="container mt-3 mb-3 d-none" id="filter-info">
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-1">
+    <div class="btn enquiry text-uppercase mx-2">See More</div>
+    <div class="btn btn-primary text-uppercase">Book Now</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+{%endblock contents%}
+{%block scripts%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
   $("#id_country").addClass('form-select');
-  $(document).ready(function(){
+  $(document).ready(function () {
+    // Previous page functionality
+    $(".hBack").on("click", function(e){
+      e.preventDefault();
+      window.history.back();
+    });
+    // End 
+
+    
     // To get data from database
-    setInterval(()=>{
+    setInterval(() => {
       $.ajax({
-        type:'GET',
-        url:'render_data/',
-        success:(data)=>{
+        type: 'GET',
+        url: '/render_data/',
+        success: (data) => {
           $('#user-info').empty();
-          for(var item in data.obj){
+          for (var item in data.obj) {
             $('#user-info').append(
               `
               <div class="card mb-3 rounded shadow-sm">
@@ -171,17 +182,17 @@
                 <div class="col-md-6">
                   <h2 class="card-title mt-3">${data.obj[item].first_name} ${data.obj[item].last_name}</h2>
                   <p>${data.obj[item].cover_letter}</p>
-                <a class="btn btn-success mb-3" href="profile/${data.obj[item].id}/${data.obj[item].slug}">See Profile</a>
+                <a class="btn btn-success mb-3" href="/userprofile/${data.obj[item].slug}">See Profile</a>
                 </div>
                 <div class="col-md-3 justify-content-center pt-4 " style="display: grid;  ">
                   <div class="row">
-                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fab fa-twitter fa-2x"></i>$20 </i></p>
+                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-coins fa-1x"></i>$20 </i></p>
                 </div>
                 <div class="row">
-                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fab fa-twitter fa-2x"></i>${data.obj[item].experience}-Experience </i></p>
+                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-history fa-1x"></i>${data.obj[item].experience}-Experience </i></p>
                   </div>
                   <div class="row">
-                    <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fab fa-twitter fa-2x"></i>${data.obj[item].category}</i></p>
+                    <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-user fa-1x"></i>${data.obj[item].category}</i></p>
                   </div>
                 </div>
               </div>
@@ -191,7 +202,7 @@
             // console.log(data.obj[item].experience)
           }
         },
-        error:()=>{
+        error: () => {
           var errMssg = "There's a problem loading data here"
           console.log(errMssg)
         }
@@ -199,21 +210,22 @@
     }, 1000)
     // End of data fetching
     // To Filter data and render in the data base
-    $('#filter-btn').on('click', ()=>{
+    $('#filter-btn').on('click', () => {
       $.ajax({
-        type:'POST',
-        url:'render_data/',
-        data:{
-          pay:$("#pay").val(),
-          category:$('#category').val(),
-          country:$('#id_country').val(),
-          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        type: 'POST',
+        url: '/render_data/',
+        data: {
+          pay: $("#pay").val(),
+          category: $('#category').val(),
+          language: $('#id_language').val(),
+          country: $('#id_country').val(),
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         },
-        success:(response)=>{
+        success: (response) => {
           $('#user-info').addClass('d-none');
           $('#filter-info').removeClass('d-none');
           $('#filter-info').empty();
-          for(var result in response.results){
+          for (var result in response.results) {
             $('#filter-info').append(
               `
               <div class="card mb-3 rounded shadow-sm">
@@ -243,13 +255,12 @@
             )
           }
         },
-        error:()=>{
+        error: () => {
           console.log('error getting a response back')
         }
       })
     })
-    
+
   })
 </script>
-</body>
-</html>
+{%endblock scripts%}

@@ -17,10 +17,10 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'admin', 'first_name', 'last_name', 'tel',)
+    list_display = ('email', 'admin', 'first_name', 'last_name', 'tel', 'category')
     list_filter = ('admin', 'TC')
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'first_name', 'last_name', 'tel', )}),
+        (None, {'fields': ('email', 'password', 'first_name', 'last_name', 'tel', 'category')}),
         ('Personal info', {'fields': ()}),
         ('Permissions', {'fields': ('admin', 'TC')}),
     )
@@ -29,11 +29,11 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'tel')}
+            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'tel', 'category')}
          ),
     )
-    search_fields = ('email', 'first_name', 'last_name', 'tel')
-    ordering = ('email', 'first_name', 'last_name', 'tel')
+    search_fields = ('email', 'first_name', 'last_name', 'tel', 'category')
+    ordering = ('email', 'first_name', 'last_name', 'tel', 'category')
     filter_horizontal = ()
 
 

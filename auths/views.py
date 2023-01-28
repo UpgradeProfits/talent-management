@@ -5,9 +5,11 @@ from django.conf import settings
 from django.core.mail import send_mail
 from .forms import RegisterForm, UserProfileForm, ClientProfileForm
 from .models import User, Days, UserProfile
+from .decorators import unauthenticated_user
 import json
 
 # sign-up view here ;)
+@unauthenticated_user
 def sign_up_view(request):
     form= RegisterForm
     if request.method == "POST":
@@ -16,29 +18,30 @@ def sign_up_view(request):
         'form': form,
     }
     return render(request, 'sign-up.html', context)
-
+@unauthenticated_user
 def sign_up(request):
     if request.method=="POST":
         firstname = request.POST.get('firstname')
         lastname = request.POST.get('lastname')
         email = request.POST.get('email')
-        tel = request.POST.get('tel')
         password = request.POST.get('password')
 
-        create_user= User.objects.create(first_name=firstname, last_name=lastname, email=email, tel=tel)
+        create_user= User.objects.create(first_name=firstname, last_name=lastname, email=email)
         create_user.set_password(password)
         create_user.save()
+        mssg = f"Account created successfully for {email}"
 
     return HttpResponse(mssg)
 
 # Log In
+@unauthenticated_user
 def sign_in_view(request):
     """
     Sign In page staging view 
     """
     context= {}
     return render(request, 'login.html', context)
-
+@unauthenticated_user
 def sign_in(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
@@ -48,16 +51,18 @@ def sign_in(request):
     if user is not None:
         user1 = request.user
         login(request, user)
-        # if "next" in request.POST:
-        #     return redirect(request.POST.get("next"))
-        # else:
-        #     return redirect('home')
-        return HttpResponse('authenticated')
+        if "next" in request.POST:
+            return redirect(request.POST.get("next"))
+        elif "previous" in request.POST:
+            return redirect(request.POST.get("previous"))
+        else:
+            return redirect('seekers')
+        return HttpResponse('authenticated :)')
     else:
         return HttpResponse('email or password is incorrect')
 
 
-def log_out(request, pk='first_name'):
+def log_out(request, user):
     # context={'num':num}
     logout(request)
     return redirect('login')
@@ -66,7 +71,7 @@ def user_categories(request):
     return render(request, 'hire_apply.html', context)
 
 def createProfile(request):
-    print(request.user)
+    # print(request.user)
     form = UserProfileForm
     if request.method == "POST":
         form = UserProfileForm(request.POST or None, request.FILES)
@@ -116,6 +121,7 @@ def updateProfile(request, pk, slug):
                 instance.language.add(lang)
             for day in days:
                 instance.days_available.add(day)
+            return redirect('seekers')
     context = {
         'form':form
     }
@@ -129,7 +135,7 @@ def client_profile(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            return redirect('render_data')
+            return redirect('seekers')
     context = {
         'form':form
     }

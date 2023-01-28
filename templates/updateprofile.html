@@ -1,183 +1,195 @@
 <!doctype html>
 {%load static%}
 <html lang="en">
+
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="{%static 'css/style.css' %}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>Form</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="{%static 'css/style.css' %}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<title>Form</title>
 </head>
+
 <body class="p-1">
-<style>
+	<style>
+		.myDiv {
+			display: none;
+			padding: 10px;
+		}
 
-	.myDiv{
-		display:none;
-		padding:10px;
-	}  
-	
-	.payDiv{
-		display:none;
-		padding:10px;
-	}  
-	
-		</style>
-<body>
-<div class="row">
-	<div class="col-9 p-0">
-		<h2 class="text-center display-3 py-3">Fill Out The Information</h2>
-<div class="container-sm pt-1 w-50">
-<form class="row g-3 needs-validation" autocomplete="off" method="POST" action="" enctype="multipart/form-data">
-	{%csrf_token%}
-	{{form.media}}
-	<div class="col-md-6">
-		<label for="validationCustom01" class="form-label">First name</label>
-		{{form.first_name}}
-	</div>
-	<div class="col-md-6">
-		<label for="validationCustom02" class="form-label">Last name</label>
-		{{form.last_name}}
-	</div>
-	<div class="col-md-4 ">
-		<label for="validationCustom03" class="form-label">City</label>
-		{{form.city}}
-	</div>
-	
-	<div class="col-md-4">
-		<label for="validationCustom04" class="form-label">Where are you located?</label>
-		
-		{{form.location}}
-		<div class="invalid-feedback">
-		Please select a valid Country.
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<label for="validationCustom05" class="form-label">Country of Citizenship?</label>
-		{{form.nationality}}
-		<div class="invalid-feedback">
-			Please select a valid Country.
-		</div>
-		</div>
-		
-	
-	<div class="col-md-4 ">
-		<label for="validationCustom05" class="form-label">Zip</label>
-		{{form.zip_code}}
-		<div class="invalid-feedback ">
-		Please provide a valid zip.
-		</div>		  
-	</div>
-
-	<div class="form-group mt-4 col-md-12">
-		<div class="form-check form-check-inline px-0">
-			<label class="form-check-label" for="id_gender">Gender</label>
-			{{form.gender}}
-			</div>
-			</div>
-			<div class="form-group mt-12">
-			<div class="mb-3">
-			<label for="id_resume" class="form-label">Upload Resume</label>
-			{{form.resume}}
-			</div>
-			</div>
-			<div class="form-group mt-12">
-			<div class="mb-3">
-				<label for="id_document_type" class="form-label">Documents For Verification</label>
-				{{form.document_type}}
-			</div>
-			</div>
-			<section class="ftco-section px-0">
-			<div class="container px-0">
-				<div class="row justify-content-center">
-					<div class="col-md-12 ">
-						<label for="formFileMultiple" class="form-label">Days availability on weekdays?</label>
-					</div>
-				</div>
-				<div class="row justify-content-center w-100">
-					<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
-						<input type="hidden" name="available_days" id="available_days" value="">
-						{{form.days_available}}
-					</div>
-				</div>
-				<div class="col-md-12 mb-3 mt-3 w-100">			
-					<label for="" class="form-label">Pick The Hours availability on weekdays?</label>
-					{{form.hours_available}}	  
-					</div>
-				
-				</div>
-
-			<div class="container px-0">
-				<div class="row justify-content-center">
-					<div class="col-md-12 ">
-						<label for="formFileMultiple" class="form-label">Skills </label>
-					</div>
-				</div>
-				<div class="row justify-content-center w-100">
-					<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
-						<input type="hidden" name="skills_list" id="skills_list" value="">
-						{{form.skills}}
-					</div>
-				</div>
-				<div class="container px-0">
-					<div class="row justify-content-center">
-						<div class="col-md-12 ">
-							<label for="formFileMultiple" class="form-label">What Languages You Can Close? </label>
+		.payDiv {
+			display: none;
+			padding: 10px;
+		}
+	</style>
+	<body>
+		<div class="row">
+			<div class="col-9 p-0">
+				<h2 class="text-center display-3 py-3">Fill Out The Information</h2>
+				<div class="container-sm pt-1 w-50">
+					<form class="row g-3 needs-validation" autocomplete="off" method="POST" action=""
+						enctype="multipart/form-data">
+						{%csrf_token%}
+						{{form.media}}
+						<div class="col-md-6">
+							<label for="validationCustom01" class="form-label">First name</label>
+							{{form.first_name}}
 						</div>
-					</div>
-					<div class="row justify-content-center w-100">
-						<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
-							<input type="hidden" name="langs" id="langs" value="">
-							{{form.language}}
+						<div class="col-md-6">
+							<label for="validationCustom02" class="form-label">Last name</label>
+							{{form.last_name}}
 						</div>
-					</div>
-
-					
-			
-			<div class="col-md-12 mb-3 mt-3 w-100">	
-					<label for="" class="form-label">Avalaibility To Start</label>
-					{{form.start_date}}
-			</div>			
-					<div class="col-md-12 mb-3 mt-3 w-100">	
-						<label for="" class="form-label">Prefered Niche To Sell?</label>
-						{{form.preferred_niche_to_sell}}
-				</div>
-				<div class="col-md-12 mb-3 mt-3 w-100">	
-					<label for="" class="form-label">Work Type?</label>
-					{{form.work_type}}
-			</div>
-			<div class="col-md-12 mb-3 mt-3 w-100">	
-				<label for="" class="form-label">What Role would you like to go in once you are hired?</label>
-				{{form.category}}
-					<div id="showone" class="myDiv">
-					<div class="col-md-12 mb-3 mt-3 w-100">			
-						<label for="" class="form-label">How many calls can you dial outbound calls in a day?</label>
-						{{form.outbound_calls_per_day}}	  
+						<div class="col-md-6">
+							<label for="validationCustom02" class="form-label">display photo</label>
+							{{form.display_photo}}
 						</div>
-						<div class="col-md-12 mb-3 mt-3 w-100">			
-						<label for="" class="form-label">What highest Ticket product have you sold?</label>
-						{{form.highest_ticket_product}}
-					</div>
-				</div>
-		</div>
-		
+						<div class="col-md-4 ">
+							<label for="validationCustom03" class="form-label">City</label>
+							{{form.city}}
+						</div>
 
-		<div class="col-md-12 mb-3 mt-3 w-100">	
-			<label for="" class="form-label">How you want to be get paid?</label>
-			{{form.pay}}
-		</div>
-		<!--<div id="payone" class="payDiv">
+						<div class="col-md-4">
+							<label for="validationCustom04" class="form-label">Where are you located?</label>
+
+							{{form.location}}
+							<div class="invalid-feedback">
+								Please select a valid Country.
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<label for="validationCustom05" class="form-label">Country of Citizenship?</label>
+							{{form.nationality}}
+							<div class="invalid-feedback">
+								Please select a valid Country.
+							</div>
+						</div>
+
+
+						<div class="col-md-4 ">
+							<label for="validationCustom05" class="form-label">Zip</label>
+							{{form.zip_code}}
+							<div class="invalid-feedback ">
+								Please provide a valid zip.
+							</div>
+						</div>
+
+						<div class="form-group mt-4 col-md-12">
+							<div class="form-check form-check-inline px-0">
+								<label class="form-check-label" for="id_gender">Gender</label>
+								{{form.gender}}
+							</div>
+						</div>
+						<div class="form-group mt-12">
+							<div class="mb-3">
+								<label for="id_resume" class="form-label">Upload Resume</label>
+								{{form.resume}}
+							</div>
+						</div>
+						<div class="form-group mt-12">
+							<div class="mb-3">
+								<label for="id_document_type" class="form-label">Documents For Verification</label>
+								{{form.document_type}}
+							</div>
+						</div>
+						<section class="ftco-section px-0">
+							<div class="container px-0">
+								<div class="row justify-content-center">
+									<div class="col-md-12 ">
+										<label for="formFileMultiple" class="form-label">Days availability on
+											weekdays?</label>
+									</div>
+								</div>
+								<div class="row justify-content-center w-100">
+									<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
+										<input type="hidden" name="available_days" id="available_days" value="">
+										{{form.days_available}}
+									</div>
+								</div>
+								<div class="col-md-12 mb-3 mt-3 w-100">
+									<label for="" class="form-label">Pick The Hours availability on weekdays?</label>
+									{{form.hours_available}}
+								</div>
+
+							</div>
+
+							<div class="container px-0">
+								<div class="row justify-content-center">
+									<div class="col-md-12 ">
+										<label for="formFileMultiple" class="form-label">Skills </label>
+									</div>
+								</div>
+								<div class="row justify-content-center w-100">
+									<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
+										<input type="hidden" name="skills_list" id="skills_list" value="">
+										{{form.skills}}
+									</div>
+								</div>
+								<div class="container px-0">
+									<div class="row justify-content-center">
+										<div class="col-md-12 ">
+											<label for="formFileMultiple" class="form-label">What Languages You Can
+												Close? </label>
+										</div>
+									</div>
+									<div class="row justify-content-center w-100">
+										<div class="col-md-12 d-flex justify-content-center align-items-center w-100">
+											<input type="hidden" name="langs" id="langs" value="">
+											{{form.language}}
+										</div>
+									</div>
+
+
+
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Avalaibility To Start</label>
+										{{form.start_date}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Prefered Niche To Sell?</label>
+										{{form.preferred_niche_to_sell}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Work Type?</label>
+										{{form.work_type}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">What Role would you like to go in once you are
+											hired?</label>
+										{{form.category}}
+										<div id="showone" class="myDiv">
+											<div class="col-md-12 mb-3 mt-3 w-100">
+												<label for="" class="form-label">How many calls can you dial outbound
+													calls in a day?</label>
+												{{form.outbound_calls_per_day}}
+											</div>
+											<div class="col-md-12 mb-3 mt-3 w-100">
+												<label for="" class="form-label">What highest Ticket product have you
+													sold?</label>
+												{{form.highest_ticket_product}}
+											</div>
+										</div>
+									</div>
+
+
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">How you want to be get paid?</label>
+										{{form.pay}}
+									</div>
+									<!--<div id="payone" class="payDiv">
 			<div class="col-md-12 mb-3 mt-3 w-100">			
 				<label for="" class="form-label">Expected Hourly Pay ($)</label>
 				{{form.expected_hourly_pay}}	  
@@ -190,226 +202,291 @@
 				{{form.expected_hourly_pay}}	  
 			</div>
 		</div>-->
-		
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="id_are_you_comfortable_with_commission_based_pay" class="form-label">Are you comfortable with 100% commission-based pay?</label>
-			{{form.are_you_comfortable_with_commission_based_pay}}
-			</div>
-			
 
-		
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="id_are_you_comfortable_with_commission_based_pay"
+											class="form-label">Are you comfortable with 100% commission-based
+											pay?</label>
+										{{form.are_you_comfortable_with_commission_based_pay}}
+									</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Total Revenue Sales Generated over your sales career?</label>
-			{{form.total_revenue_sales_career}}	  
-			</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Total sales generated over the last 3 years</label>
-			{{form.total_revenue_sales_three_yrs}}	  
-			</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Revenue Generated on the best month?</label>
-			{{form.generated_revenue}}		  
-			</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">How much was the ticket size?</label>
-			{{form.ticket_size}}		  
-			</div>
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">What is the highest sales ticket you have sold?</label>
-			{{form.highest_tickets}}		  
-			</div>
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">What sales training have you taken in the past?</label>
-			{{form.past_trainings}}	  
-			</div>
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Why are you interested in remote sales?</label>
-			{{form.Why_are_you_interested_in_remote_sales}}		  
-			</div>
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">What's a deal breaker for you in a offer?</label>
-			{{form.deal_breaker_for_you}}		  
-			</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Total Revenue Sales Generated over your sales
+											career?</label>
+										{{form.total_revenue_sales_career}}
+									</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Average ticket price sold?</label>
-			{{form.average_ticket_sold}}		  
-			</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Total sales generated over the last 3
+											years</label>
+										{{form.total_revenue_sales_three_yrs}}
+									</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Average unit sold?</label>
-			{{form.average_units_sold}}	  
-			</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Revenue Generated on the best month?</label>
+										{{form.generated_revenue}}
+									</div>
 
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">How many offers have you worked on in the last 2 years? how much have you sold on Average on those past offers?</label>
-			{{form.offers_worked_on_past_years}}		  
-			</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">How much was the ticket size?</label>
+										{{form.ticket_size}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">What is the highest sales ticket you have
+											sold?</label>
+										{{form.highest_tickets}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">What sales training have you taken in the
+											past?</label>
+										{{form.past_trainings}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Why are you interested in remote sales?</label>
+										{{form.Why_are_you_interested_in_remote_sales}}
+									</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">What's a deal breaker for you in a
+											offer?</label>
+										{{form.deal_breaker_for_you}}
+									</div>
 
-			
-			<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">How many appointments did you get per day? per week?</label>
-			{{form.appointments_per_day}}		  
-			</div>
-			</div>
-		</section>
-		<div class="col-md-12 mb-3 mt-3 w-100">			
-			<label for="" class="form-label">Did you have to do any of the lead gen in the past?</label>
-			{{form.past_leade_gen}}
-		</div>
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Average ticket price sold?</label>
+										{{form.average_ticket_sold}}
+									</div>
 
-				<div class="mb-3 w-100">
-				<label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
-				{{form.why}}
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">Average unit sold?</label>
+										{{form.average_units_sold}}
+									</div>
+
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">How many offers have you worked on in the last
+											2 years? how much have you sold on Average on those past offers?</label>
+										{{form.offers_worked_on_past_years}}
+									</div>
+
+
+									<div class="col-md-12 mb-3 mt-3 w-100">
+										<label for="" class="form-label">How many appointments did you get per day? per
+											week?</label>
+										{{form.appointments_per_day}}
+									</div>
+								</div>
+						</section>
+						<div class="col-md-12 mb-3 mt-3 w-100">
+							<label for="" class="form-label">Did you have to do any of the lead gen in the past?</label>
+							{{form.past_leade_gen}}
+						</div>
+
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
+							{{form.why}}
+						</div>
+
+
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea1" class="form-label">What offers have you worked on?
+								what was the niche & ticket price?</label>
+							{{form.offers_worked_on_niche_and_ticket_price}}
+						</div>
+
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past
+								positions? where were you strong in those past positions? What are your weaknesses in
+								sales?</label>
+							{{form.reason_for_leaving_last_position}}
+						</div>
+
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in
+								with your short and long-term goals?</label>
+							{{form.how_does_a_sales_fit_your_goals}}
+						</div>
+
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea1" class="form-label">Education</label>
+							{{form.education}}
+						</div>
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea2" class="form-label">Experience</label>
+							{{form.experience}}
+						</div>
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
+							{{form.achievements}}
+						</div>
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
+							{{form.cover_letter}}
+						</div>
+						<div class="mb-3 w-100">
+							<label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we
+								should know is important to you?</label>
+							{{form.anything_else_important_to_you_that_we_should_know}}
+						</div>
+
+						<div class="d-grid gap-2">
+							<button class="btn btn-primary" type="submit" id="submit_btn">Submit</button>
+						</div>
+
+					</form>
 				</div>
+			</div>
+			<div class="col-3 position-sticky">
+				<div class=" container d-flex mt-2 px-3 align-items-center justify-content-center "
+					style="flex-direction: column; ">
+					<h3 class="m-3 text-center">Record Your Introductory Video</h3>
 
+					<video id="video" class="w-100" autoplay=""></video>
 
-				<div class="mb-3 w-100">
-				<label for="exampleFormControlTextarea1" class="form-label">What offers have you worked on? what was the niche & ticket price?</label>
-				{{form.offers_worked_on_niche_and_ticket_price}}
+					<div class="d-flex mt-2 align-content-center justify-content-around ">
+						<button id="start-button" class="btn btn-success mx-2">
+							<svg fill="#000000" height="30px" width="30px" version="1.1" id="Capa_1"
+								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								viewBox="0 0 60 60" xml:space="preserve">
+								<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+								<g id="SVGRepo_iconCarrier">
+									<g>
+										<path
+											d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z">
+										</path>
+										<path
+											d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z">
+										</path>
+									</g>
+								</g>
+							</svg></button>
+						<button id="stop-button" class="btn btn-danger mx-2" disabled=""><svg fill="black" width="30px"
+								height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+								<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+								<g id="SVGRepo_iconCarrier">
+									<path
+										d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z">
+									</path>
+								</g>
+							</svg></button>
+						<a id="download-link" class="btn btn-primary mx-2" download="recording.mp4"><svg width="30px"
+								height="30px" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+								<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+								<g id="SVGRepo_iconCarrier">
+									<path clip-rule="evenodd"
+										d="m12 3.25c.4142 0 .75.33579.75.75v11.8781c.1969-.0737.4191-.2101.7365-.4796.3539-.3004.7745-.7202 1.3773-1.3229l2.6059-2.6059c.2929-.2929.7677-.2929 1.0606 0s.2929.7677 0 1.0606l-2.6059 2.6059-.0227.0227v.0001c-.5747.5747-1.0383 1.0383-1.4444 1.383-.4181.355-.8243.6278-1.2985.7818-.7531.2447-1.5645.2447-2.3176 0-.4742-.154-.8804-.4268-1.29851-.7818-.40607-.3447-.86964-.8083-1.44438-1.383l-.00005-.0001-.0227-.0227-2.60589-2.6059c-.29289-.2929-.29289-.7677 0-1.0606s.76777-.2929 1.06066 0l2.60589 2.6059c.60277.6027 1.02338 1.0225 1.37728 1.3229.3174.2695.5396.4059.7365.4796v-11.8781c0-.41421.3358-.75.75-.75zm-8.25 11.75c0-.4142-.33579-.75-.75-.75s-.75.3358-.75.75v.2.0321c-.00001.8129-.00001 1.4685.04336 1.9994.04467.5466.13903 1.0267.36537 1.471.35952.7056.9332 1.2792 1.63881 1.6388.44421.2263.92436.3207 1.47099.3653.53091.0434 1.18653.0434 1.99937.0434h.0321 8.4.0321c.8128 0 1.4685 0 1.9994-.0434.5466-.0446 1.0267-.139 1.471-.3653.7056-.3596 1.2792-.9332 1.6388-1.6388.2263-.4443.3207-.9244.3653-1.471.0434-.5309.0434-1.1865.0434-1.9994v-.0321-.2c0-.4142-.3358-.75-.75-.75s-.75.3358-.75.75v.2c0 .8525-.0006 1.4467-.0384 1.9093-.0371.4539-.1062.7147-.2068.9122-.2158.4233-.56.7675-.9833.9833-.1975.1006-.4583.1697-.9122.2068-.4626.0378-1.0568.0384-1.9093.0384h-8.4c-.85245 0-1.44669-.0006-1.90932-.0384-.45387-.0371-.71464-.1062-.91216-.2068-.42336-.2158-.76757-.56-.98328-.9833-.10064-.1975-.16977-.4583-.20686-.9122-.0378-.4626-.03838-1.0568-.03838-1.9093z"
+										fill="#000000" fill-rule="evenodd"></path>
+								</g>
+							</svg></a>
+					</div>
 				</div>
-
-		<div class="mb-3 w-100">
-			<label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions? where were you strong in those past positions? What are your weaknesses in sales?</label>
-			{{form.reason_for_leaving_last_position}}
 			</div>
-
-			<div class="mb-3 w-100">
-			<label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in with your short and long-term goals?</label>
-			{{form.how_does_a_sales_fit_your_goals}}
-			</div>
-
-	<div class="mb-3 w-100">
-		<label for="exampleFormControlTextarea1" class="form-label">Education</label>
-		{{form.education}}
 		</div>
-		<div class="mb-3 w-100">
-		<label for="exampleFormControlTextarea2" class="form-label">Experience</label>
-		{{form.experience}}
-		</div>
-		<div class="mb-3 w-100">
-		<label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
-		{{form.achievements}}
-		</div>
-		<div class="mb-3 w-100">
-		<label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
-		{{form.cover_letter}}
-		</div>
-		<div class="mb-3 w-100">
-		<label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we should know is important to you?</label>
-		{{form.anything_else_important_to_you_that_we_should_know}}
-		</div>
-	
-	<div class="d-grid gap-2">
-		<button class="btn btn-primary" type="submit" id="submit_btn">Submit</button>            
-		</div>
-		
-	</form>
-</div>
-	</div>
-	<div class="col-3 position-sticky">
-		<div class=" container d-flex mt-2 px-3 align-items-center justify-content-center " style="flex-direction: column; ">
-			<h3 class="m-3 text-center">Record Your Introductory Video</h3>
-			
-			<video id="video" class="w-100" autoplay=""></video>
-		  
-			  <div class="d-flex mt-2 align-content-center justify-content-around ">
-			<button id="start-button" class="btn btn-success mx-2">
-			  <svg fill="#000000" height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z"></path> <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"></path> </g> </g></svg></button>
-			<button id="stop-button" class="btn btn-danger mx-2" disabled=""><svg fill="black" width="30px" height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"> <path d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z"></path> </g></svg></button>
-			<a id="download-link" class="btn btn-primary mx-2" download="recording.mp4"><svg width="30px" height="30px" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"><path clip-rule="evenodd" d="m12 3.25c.4142 0 .75.33579.75.75v11.8781c.1969-.0737.4191-.2101.7365-.4796.3539-.3004.7745-.7202 1.3773-1.3229l2.6059-2.6059c.2929-.2929.7677-.2929 1.0606 0s.2929.7677 0 1.0606l-2.6059 2.6059-.0227.0227v.0001c-.5747.5747-1.0383 1.0383-1.4444 1.383-.4181.355-.8243.6278-1.2985.7818-.7531.2447-1.5645.2447-2.3176 0-.4742-.154-.8804-.4268-1.29851-.7818-.40607-.3447-.86964-.8083-1.44438-1.383l-.00005-.0001-.0227-.0227-2.60589-2.6059c-.29289-.2929-.29289-.7677 0-1.0606s.76777-.2929 1.06066 0l2.60589 2.6059c.60277.6027 1.02338 1.0225 1.37728 1.3229.3174.2695.5396.4059.7365.4796v-11.8781c0-.41421.3358-.75.75-.75zm-8.25 11.75c0-.4142-.33579-.75-.75-.75s-.75.3358-.75.75v.2.0321c-.00001.8129-.00001 1.4685.04336 1.9994.04467.5466.13903 1.0267.36537 1.471.35952.7056.9332 1.2792 1.63881 1.6388.44421.2263.92436.3207 1.47099.3653.53091.0434 1.18653.0434 1.99937.0434h.0321 8.4.0321c.8128 0 1.4685 0 1.9994-.0434.5466-.0446 1.0267-.139 1.471-.3653.7056-.3596 1.2792-.9332 1.6388-1.6388.2263-.4443.3207-.9244.3653-1.471.0434-.5309.0434-1.1865.0434-1.9994v-.0321-.2c0-.4142-.3358-.75-.75-.75s-.75.3358-.75.75v.2c0 .8525-.0006 1.4467-.0384 1.9093-.0371.4539-.1062.7147-.2068.9122-.2158.4233-.56.7675-.9833.9833-.1975.1006-.4583.1697-.9122.2068-.4626.0378-1.0568.0384-1.9093.0384h-8.4c-.85245 0-1.44669-.0006-1.90932-.0384-.45387-.0371-.71464-.1062-.91216-.2068-.42336-.2158-.76757-.56-.98328-.9833-.10064-.1975-.16977-.4583-.20686-.9122-.0378-.4626-.03838-1.0568-.03838-1.9093z" fill="#000000" fill-rule="evenodd"></path></g></svg></a>
-			</div>
-		  </div>
-	</div>
-</div>
-<script>
-	$(document).ready(function(){
-		$('#myselection').on('change', function(){
-			var demovalue = $(this).val(); 
-			$("div.myDiv").hide();
-			$("#show"+demovalue).show();
-		});
-		$('#payselection').on('change', function(){
-			var demovalue = $(this).val(); 
-			$("div.payDiv").hide();
-			$("#pay"+demovalue).show();
-		});
+		<script>
+			$(document).ready(function () {
+				$('#myselection').on('change', function () {
+					var demovalue = $(this).val();
+					$("div.myDiv").hide();
+					$("#show" + demovalue).show();
+				});
+				$('#payselection').on('change', function () {
+					var demovalue = $(this).val();
+					$("div.payDiv").hide();
+					$("#pay" + demovalue).show();
+				});
 
-	});
+			});
 
-	</script>
+		</script>
 
-<script>
-	// arrays for populating selected values
-	let select_skills = []
-	let select_days = []
-	let select_langs = []
-	// hidden input fields for moving data to backend
-	var new_skills = $(`#skills_list`)
-	var new_langs = $('#langs')
-	var new_days = $('#available_days')
-	// end
-	$(function(){
-		var selected_skill = $('#id_skills').select2();
-		var selected_lang = $('#id_language').select2();
-		var selected_days = $('#id_days_available').select2();
-		// 
-		new_vals(`#id_skills`, select_skills, new_skills);
-		new_vals('#id_language', select_langs, new_langs);
-		new_vals('#id_days_available', select_days, new_days);
-	})
-//this function would clear redundancy in the list and add the array to the given element input[value]
+		<script>
+			// arrays for populating selected values
+			let select_skills = []
+			let select_days = []
+			let select_langs = []
+			// hidden input fields for moving data to backend
+			var new_skills = $(`#skills_list`)
+			var new_langs = $('#langs')
+			var new_days = $('#available_days')
+			// end
+			$(function () {
+				var selected_skill = $('#id_skills').select2();
+				var selected_lang = $('#id_language').select2();
+				var selected_days = $('#id_days_available').select2();
+				//
+				if (select_skills === null) {
+					new_vals(`#id_skills`, select_skills, new_skills);
+				} else if(select_days === null){
+					new_vals('#id_days_available', select_days, new_days);
+				}else if(select_langs === null){
+					new_vals('#id_language', select_langs, new_langs);
+				}else{
+					old_vals(`#id_skills`, select_skills, new_skills);
+					old_vals('#id_language', select_langs, new_langs);
+					old_vals('#id_days_available', select_days, new_days);
+				}
+			})
+			//this function would clear redundancy in the list and add the array to the given element input[value]
 
-	function new_vals(param1, param2, param3){
-		$(param1).on('select2:select', ()=>{
-			var innerVar = $(param1).select2("data");
-			for (var i = 0; i <= innerVar.length-1; i++) {
-				param2.push(innerVar[i].id);
+			function new_vals(param1, param2, param3) {
+				$(param1).on('select2:select', () => {
+					var innerVar = $(param1).select2("data");
+					for (var i = 0; i <= innerVar.length - 1; i++) {
+					param2.push(innerVar[i].id);
+					};
+					let uniqueChars = [...new Set(param2)];
+					param3.val(uniqueChars)
+					console.log(uniqueChars);
+				})
+			}
+
+			// 
+			function old_vals(param1, param2, param3){
+				var oldValues = $(param1).select2("data")
+				for (var i = 0; i <= oldValues.length - 1; i++) {
+					param2.push(oldValues[i].id);
+				};
+				let uniqueChars = [...new Set(param2)];
+				param3.val(uniqueChars)
+			}
+		</script>
+		<script>
+			// adding bootstrap classes to django rendered form fields
+			var inputFields = document.getElementsByTagName('input')
+			var textboxFields = document.getElementsByTagName('textarea')
+			var selectFields = document.getElementsByTagName('select')
+
+			for (var fields in inputFields) {
+				if ('form-control' != inputFields[fields].className) {
+					inputFields[fields].className += 'form-control'
+				}
 			};
-			let uniqueChars = [...new Set(param2)];
-			param3.val(uniqueChars)
-			console.log(uniqueChars);
-		})
-	}
-</script>
-<script>
-		// adding bootstrap classes to django rendered form fields
-		var inputFields = document.getElementsByTagName('input')
-		var textboxFields = document.getElementsByTagName('textarea')
-		var selectFields = document.getElementsByTagName('select')
-	
-		for(var fields in inputFields){
-			if('form-control' != inputFields[fields].className){
-				inputFields[fields].className += 'form-control'
-			}
-		};
-	
-		for(var fields in textboxFields){
-			if('form-control' != textboxFields[fields].className){
-				textboxFields[fields].className += ' form-control'
-			}
-		};
 
-		for(var fields in selectFields){
-			if('form-control' != selectFields[fields].className){
-				selectFields[fields].className += ' form-select'
-			}
-		};
+			for (var fields in textboxFields) {
+				if ('form-control' != textboxFields[fields].className) {
+					textboxFields[fields].className += ' form-control'
+				}
+			};
 
-		const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
-		const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
-		const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
-</script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="{%static 'js/userprofile/jquery.min.js' %}"></script>
-<script src="{%static 'js/userprofile/popper.js' %}"></script>
-<script src="{%static 'js/userprofile/bootstrap.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-<script src="{%static 'js/userprofile/main.js' %}"></script>
-</body>
+			for (var fields in selectFields) {
+				if ('form-control' != selectFields[fields].className) {
+					selectFields[fields].className += ' form-select'
+				}
+			};
+
+			const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
+			const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
+			const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+			integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+			crossorigin="anonymous"></script>
+		<script src="{%static 'js/userprofile/jquery.min.js' %}"></script>
+		<script src="{%static 'js/userprofile/popper.js' %}"></script>
+		<script src="{%static 'js/userprofile/bootstrap.min.js' %}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+		<script src="{%static 'js/userprofile/main.js' %}"></script>
+	</body>
+
 </html>
-

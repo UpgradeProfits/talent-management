@@ -24,42 +24,43 @@
 
 <body>
   <style>
-	
-    .myDiv{
-      display:none;
+    .myDiv {
+      display: none;
       /* padding:10px; */
-    }  
-    
-    .payDiv{
-      display:none;
-      /* padding:10px; */
-    }  
+    }
 
-    .opt-icon:hover{
+    .payDiv {
+      display: none;
+      /* padding:10px; */
+    }
+
+    .opt-icon:hover {
       color: rgb(2, 2, 66);
 
     }
-    @keyframes  vibrate{
-              
-      0%{
+
+    @keyframes vibrate {
+
+      0% {
         transform: translateX(7px);
 
       }
-      50%{
+
+      50% {
         transform: translateX(15px);
       }
-      100%{
+
+      100% {
         transform: translateX(7px);
       }
-      
+
     }
 
-    .opt-icon{
+    .opt-icon {
       animation: 2s vibrate infinite;
     }
-      </style>
+  </style>
   <main>
-    <form action="" method="POST" enctype="multipart/form-data">
       <article>
         <!-- partial:index.partial.html -->
         <div class="container d-flex justify-content-center" style="min-width:720px!important">
@@ -72,10 +73,12 @@
             <div class="card mt-3">
               <div class="card-header font-weight-bold">Fill Your Details</div>
               <div class="card-body p-4 step">
-                
-                <div class="radio-group row justify-content-between px-3 text-center" style="justify-content:center !important">
+
+                <div class="radio-group row justify-content-between px-3 text-center"
+                  style="justify-content:center !important">
                   <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
-                    <div class="opt-icon"><i class="fa fa-arrow-right" style="font-size: 80px; margin-left: 25px;"></i></div>
+                    <div class="opt-icon"><i class="fa fa-arrow-right" style="font-size: 80px; margin-left: 25px;"></i>
+                    </div>
                     <p class="text-hover"><b>Click to Proceed</b></p>
                   </div>
                   <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio d-none">
@@ -83,67 +86,109 @@
                     <p><b>Sign In</b></p>
                   </div>
                 </div>
-                <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for example <b>Gary Hendren</b></div>
+                <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for
+                  example <b>Gary Hendren</b></div>
                 <div class="searchfield input-group px-5">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white" aria-hidden="true" style="display: none;"></i></span>
-                  <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search" style="display: none;">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white"
+                      aria-hidden="true" style="display: none;"></i></span>
+                  <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search"
+                    style="display: none;">
                 </div>
                 <div id="filter-records" class="mx-5"></div>
               </div>
-        
+
               <div id="userinfo" class="card-body p-4 step" style="display: none;">
                 <div class="text-center">
                   <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video</h5>
                 </div>
                 <div class="form-group row">
                   <div class="col-md-12 position-sticky">
-                    <div class=" container d-flex mt-2 px-0 align-items-center justify-content-center flex-column " style="background-color: #002244; border-bottom-right-radius: 10px;
+                    <div class=" container d-flex mt-2 px-0 align-items-center justify-content-center flex-column "
+                      style="background-color: #002244; border-bottom-right-radius: 10px;
                     border-bottom-left-radius: 10px;">
-                        
-                        
-                        <video id="video" class="w-100" style="background-color: black;" autoplay=""></video>
-                      
-                          <div class="d-flex mt-2 align-content-center justify-content-around ">
+
+
+                      <video id="video" class="w-100" style="background-color: black;" autoplay=""></video>
+
+                      <div class="d-flex mt-2 align-content-center justify-content-around ">
                         <button id="start-button" class="btn  mx-2">
-                          <svg width="64px" height="64px" viewBox="-2.5 -2.5 30.00 30.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.82 9.27L16.18 11.07C15.85 11.2 15.5 10.96 15.5 10.6V7.5C15.5 7.22 15.28 7 15 7H3C2.72 7 2.5 7.22 2.5 7.5V17.5C2.5 17.78 2.72 18 3 18H15C15.28 18 15.5 17.78 15.5 17.5V14.4C15.5 14.05 15.85 13.81 16.18 13.93L20.82 15.73C21.15 15.86 21.5 15.62 21.5 15.26V9.72C21.5 9.38 21.15 9.14 20.82 9.27Z" stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.5 11C6.05228 11 6.5 10.5523 6.5 10C6.5 9.44772 6.05228 9 5.5 9C4.94772 9 4.5 9.44772 4.5 10C4.5 10.5523 4.94772 11 5.5 11Z" fill="#ffffff"></path> </g></svg></button>
-                        <button id="stop-button" class="btn  mx-2" disabled=""><svg fill="#fff" width="30px" height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"> <path d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z"></path> </g></svg></button>
-                        <a id="download-link" class="btn  mx-2" style="background-color: transparent !important; border: none;" download="recording.mp4"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 12V19M12 19L9.75 16.6667M12 19L14.25 16.6667M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
-                        </div>
+                          <svg width="64px" height="64px" viewBox="-2.5 -2.5 30.00 30.00" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M20.82 9.27L16.18 11.07C15.85 11.2 15.5 10.96 15.5 10.6V7.5C15.5 7.22 15.28 7 15 7H3C2.72 7 2.5 7.22 2.5 7.5V17.5C2.5 17.78 2.72 18 3 18H15C15.28 18 15.5 17.78 15.5 17.5V14.4C15.5 14.05 15.85 13.81 16.18 13.93L20.82 15.73C21.15 15.86 21.5 15.62 21.5 15.26V9.72C21.5 9.38 21.15 9.14 20.82 9.27Z"
+                                stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+                              </path>
+                              <path
+                                d="M5.5 11C6.05228 11 6.5 10.5523 6.5 10C6.5 9.44772 6.05228 9 5.5 9C4.94772 9 4.5 9.44772 4.5 10C4.5 10.5523 4.94772 11 5.5 11Z"
+                                fill="#ffffff"></path>
+                            </g>
+                          </svg></button>
+                        <button id="stop-button" class="btn  mx-2" disabled=""><svg fill="#fff" width="30px"
+                            height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z">
+                              </path>
+                            </g>
+                          </svg></button>
+                        <a id="download-link" class="btn  mx-2"
+                          style="background-color: transparent !important; border: none;" download="recording.mp4"><svg
+                            width="64px" height="64px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M12 12V19M12 19L9.75 16.6667M12 19L14.25 16.6667M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333"
+                                stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                          </svg></a>
                       </div>
-                           
-                                      
-                </div>        
+                    </div>
+
+
+                  </div>
                 </div>
-                
+
                 <div class="text-center row w-100 pt-4">
                   <h5 class="card-title font-weight-bold pb-2">Instruction To Record A Video (3 Min Max)</h5>
-                  <div class="text-start px-4">     
-                  <p>
-                  </p><ul>
-                    <li>Introduce Yourself</li>
-                    <li>Past Experience &amp; Training(If any)</li>
-                    <li>Why We Should Hire You?</li>
-                    <li>What Are Your Goals And Aspirations?</li>
-                    <li>See the demo To Record a Video  <a href="#" target="_blank"><strong>Click Here</strong></a></li>
-                  </ul>
-                  <p></p>
-                </div>       
-              </div>
-              <div class="mb-3">
-                <label for="formFileMultiple" class="form-label">Upload the downloaded Video</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple="">
-              </div>
-        
+                  <div class="text-start px-4">
+                    <p>
+                    </p>
+                    <ul>
+                      <li>Introduce Yourself</li>
+                      <li>Past Experience &amp; Training(If any)</li>
+                      <li>Why We Should Hire You?</li>
+                      <li>What Are Your Goals And Aspirations?</li>
+                      <li>See the demo To Record a Video <a href="#" target="_blank"><strong>Click Here</strong></a>
+                      </li>
+                    </ul>
+                    <p></p>
+                  </div>
                 </div>
-        
+
               </div>
 
-
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+              {%csrf_token%}
             <div class="card-body p-4 step" style="display: none">
               <div class="text-center">
                 <h5 class="card-title font-weight-bold pb-2">Personal Information </h5>
               </div>
 
+              <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload the downloaded Video</label>
+                {{form.profile_video}}
+              </div>
+              <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload display photo</label>
+                {{form.display_photo}}
+              </div>
               <div class="form-group row">
                 <!-- <div class="col-2"></div> -->
                 <div class="col-6">
@@ -322,11 +367,11 @@
                 </div>
                 <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">What is the highest sales ticket you have sold?</label>
-                  {{form.highest_ticket_product}}
+                  {{form.highest_tickets}}
                 </div>
                 <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">What sales training have you taken in the past?</label>
-                  <input type="text" class="form-control" aria-label="100">
+                  {{form.past_trainings}}
                 </div>
                 <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">Why are you interested in remote sales?</label>
@@ -339,7 +384,7 @@
 
                 <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">Average ticket price sold?</label>
-                  {{form.average_ticket_sold}}
+                  {{form.average_tickets_sold}}
                 </div>
 
                 <div class="col-md-12 mb-3 mt-3 w-100">
@@ -360,26 +405,50 @@
                       <label for="formFileMultiple" class="form-label">What Languages You Can Close? </label>
                     </div>
                   </div>
-                  <div class="w-100">
-                    <div class="w-100">
-                      <input type="hidden" name="langs" id="langs" value="">
-                      {{form.language}}
-                    </div>
-                  </div>
+                  <section class=" col-md-12 px-2">
+                    <div class="container px-2">
+                      <div class="row justify-content-center">
+                        <div class="col-md-12">
+                          <label for="formFileMultiple" class="form-label">Skills</label>
+                        </div>
+                      </div>
+                      <div class="  w-100">
+                        <div class="" style="min-width: 500px; margin-left: 0px !important;">
+                          {{form.language}}
+                        </div>
+                      </div>
 
-                  <div class="w-100">
-                    <div class="w-100">
-                      <input type="hidden" name="skills_list" id="skills_list" value="">
-                      {{form.skills}}
-                    </div>
-                  </div>
+                  </section>
 
-                  <div class="w-100">
-                    <div class="w-100">
-                      <input type="hidden" name="available_days" id="available_days" value="">
-                      {{form.days_available}}
-                    </div>
-                  </div>
+                  <section class=" col-md-12 px-2">
+                    <div class="container px-2">
+                      <div class="row justify-content-center">
+                        <div class="col-md-12">
+                          <label for="formFileMultiple" class="form-label">Skills</label>
+                        </div>
+                      </div>
+                      <div class="  w-100">
+                        <div class="" style="min-width: 500px; margin-left: 0px !important;">
+                          {{form.skills}}
+                        </div>
+                      </div>
+
+                  </section>
+
+                  <section class=" col-md-12 px-2">
+                    <div class="container px-2">
+                      <div class="row justify-content-center">
+                        <div class="col-md-12">
+                          <label for="formFileMultiple" class="form-label">Skills</label>
+                        </div>
+                      </div>
+                      <div class="  w-100">
+                        <div class="" style="min-width: 500px; margin-left: 0px !important;">
+                          {{form.days_available}}
+                        </div>
+                      </div>
+
+                  </section>
 
                 </section>
 
@@ -403,7 +472,7 @@
 
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea9" rows="3"></textarea>
+                  {{form.reason}}
                 </div>
 
                 <div class="mb-3 w-100">
@@ -474,144 +543,13 @@
               <button class="action submit btn btn-sm btn-outline-success float-end" type="submit"
                 style="display: none">Submit</button>
             </div>
+          </form>
           </div>
 
         </div>
         </div>
         <!-- partial -->
-        <script>
-          $(document).ready(function () {
-            $('#myselection').on('change', function () {
-              var demovalue = $(this).val();
-              $("div.myDiv").hide();
-              $("#show" + demovalue).show();
-            });
-            $('#payoutselection').on('change', function () {
-              var demovalue = $(this).val();
-              $("div.payDiv").hide();
-              $("#pay" + demovalue).show();
-            });
-          });
-
-
-        </script>
-        <script>
-          // adding bootstrap classes to django rendered form fields
-          var inputFields = document.getElementsByTagName('input')
-          var textboxFields = document.getElementsByTagName('textarea')
-          var selectFields = document.getElementsByTagName('select')
-
-          for (var fields in inputFields) {
-            if ('form-control' != inputFields[fields].className) {
-              inputFields[fields].className += 'form-control'
-            }
-          };
-
-          for (var fields in textboxFields) {
-            if ('form-control' != textboxFields[fields].className) {
-              textboxFields[fields].className += ' form-control'
-            }
-          };
-
-          for (var fields in selectFields) {
-            if ('form-control' != selectFields[fields].className) {
-              selectFields[fields].className += ' form-select'
-            }
-          };
-
-          const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
-          const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
-          const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
-        </script>
-        <script>
-          // arrays for populating selected values
-          let select_skills = []
-          let select_days = []
-          let select_langs = []
-          // hidden input fields for moving data to backend
-          var new_skills = $(`#skills_list`)
-          var new_langs = $('#langs')
-          var new_days = $('#available_days')
-          // end
-          $(function () {
-            var selected_skill = $('#id_skills').select2();
-            var selected_lang = $('#id_language').select2();
-            var selected_days = $('#id_days_available').select2();
-            // 
-            new_vals(`#id_skills`, select_skills, new_skills);
-            new_vals('#id_language', select_langs, new_langs);
-            new_vals('#id_days_available', select_days, new_days);
-          })
-          //this function would clear redundancy in the list and add the array to the given element input[value]
-
-          function new_vals(param1, param2, param3) {
-            $(param1).on('select2:select', () => {
-              var innerVar = $(param1).select2("data");
-              for (var i = 0; i <= innerVar.length - 1; i++) {
-                param2.push(innerVar[i].id);
-              };
-              let uniqueChars = [...new Set(param2)];
-              param3.val(uniqueChars)
-              console.log(uniqueChars);
-            })
-          }
-        </script>
-        <script>
-
-          var videoElement = document.getElementById('video');
-          var canvasElement = document.getElementById('canvas');
-          var startButton = document.getElementById('start-button');
-          var stopButton = document.getElementById('stop-button');
-          var downloadLink = document.getElementById('download-link');
-          var mediaRecorder;
-          var recordedBlobs = [];
-
-          // Check if the MediaRecorder API is supported
-          if (typeof MediaRecorder === 'function') {
-            startButton.addEventListener('click', function () {
-              // Request access to the user's camera and microphone
-              navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-                .then(function (stream) {
-                  // The user granted access to the camera and microphone
-                  videoElement.srcObject = stream;
-                  mediaRecorder = new MediaRecorder(stream);
-                  mediaRecorder.ondataavailable = handleDataAvailable;
-                  mediaRecorder.start();
-                  startButton.disabled = true;
-                  stopButton.disabled = false;
-                })
-                .catch(function (error) {
-                  // The user denied access to the camera and microphone
-                  console.error('Error accessing camera and microphone:', error);
-                });
-            });
-
-            stopButton.addEventListener('click', function () {
-              mediaRecorder.stop();
-              startButton.disabled = false;
-              stopButton.disabled = true;
-            });
-
-            function handleDataAvailable(event) {
-              if (event.data && event.data.size > 0) {
-                recordedBlobs.push(event.data);
-              }
-            }
-
-            downloadLink.addEventListener('click', function () {
-              var blob = new Blob(recordedBlobs, { type: 'video/mp4' });
-              var url = URL.createObjectURL(blob);
-              downloadLink.href = url;
-            });
-          }
-          else {
-            console.error('The MediaRecorder API is not supported in this browser')
-          };
-
-        </script>
-
       </article>
-    </form>
   </main>
 
 
@@ -626,6 +564,136 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
   <script src="{%static 'js/main.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      $('#myselection').on('change', function () {
+        var demovalue = $(this).val();
+        $("div.myDiv").hide();
+        $("#show" + demovalue).show();
+      });
+      $('#id_pay').on('change', function () {
+        var demovalue = $(this).val();
+        $("div.payDiv").hide();
+        $("#pay" + demovalue).show();
+      });
+    });
+
+
+  </script>
+  <script>
+    // adding bootstrap classes to django rendered form fields
+    var inputFields = document.getElementsByTagName('input')
+    var textboxFields = document.getElementsByTagName('textarea')
+    var selectFields = document.getElementsByTagName('select')
+
+    for (var fields in inputFields) {
+      if ('form-control' != inputFields[fields].className) {
+        inputFields[fields].className += 'form-control'
+      }
+    };
+
+    for (var fields in textboxFields) {
+      if ('form-control' != textboxFields[fields].className) {
+        textboxFields[fields].className += ' form-control'
+      }
+    };
+
+    for (var fields in selectFields) {
+      if ('form-control' != selectFields[fields].className) {
+        selectFields[fields].className += ' form-select'
+      }
+    };
+
+    const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
+    const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
+    const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
+  </script>
+  <script>
+    // arrays for populating selected values
+    let select_skills = []
+    let select_days = []
+    let select_langs = []
+    // hidden input fields for moving data to backend
+    var new_skills = $(`#skills_list`)
+    var new_langs = $('#langs')
+    var new_days = $('#available_days')
+    // end
+    $(function () {
+      var selected_skill = $('#id_skills').select2();
+      var selected_lang = $('#id_language').select2();
+      var selected_days = $('#id_days_available').select2();
+      // 
+      new_vals(`#id_skills`, select_skills, new_skills);
+      new_vals('#id_language', select_langs, new_langs);
+      new_vals('#id_days_available', select_days, new_days);
+    })
+    //this function would clear redundancy in the list and add the array to the given element input[value]
+
+    function new_vals(param1, param2, param3) {
+      $(param1).on('select2:select', () => {
+        var innerVar = $(param1).select2("data");
+        for (var i = 0; i <= innerVar.length - 1; i++) {
+          param2.push(innerVar[i].id);
+        };
+        let uniqueChars = [...new Set(param2)];
+        param3.val(uniqueChars)
+        console.log(uniqueChars);
+      })
+    }
+  </script>
+  <script>
+
+    var videoElement = document.getElementById('video');
+    var canvasElement = document.getElementById('canvas');
+    var startButton = document.getElementById('start-button');
+    var stopButton = document.getElementById('stop-button');
+    var downloadLink = document.getElementById('download-link');
+    var mediaRecorder;
+    var recordedBlobs = [];
+
+    // Check if the MediaRecorder API is supported
+    if (typeof MediaRecorder === 'function') {
+      startButton.addEventListener('click', function () {
+        // Request access to the user's camera and microphone
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+          .then(function (stream) {
+            // The user granted access to the camera and microphone
+            videoElement.srcObject = stream;
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = handleDataAvailable;
+            mediaRecorder.start();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+          })
+          .catch(function (error) {
+            // The user denied access to the camera and microphone
+            console.error('Error accessing camera and microphone:', error);
+          });
+      });
+
+      stopButton.addEventListener('click', function () {
+        mediaRecorder.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+      });
+
+      function handleDataAvailable(event) {
+        if (event.data && event.data.size > 0) {
+          recordedBlobs.push(event.data);
+        }
+      }
+
+      downloadLink.addEventListener('click', function () {
+        var blob = new Blob(recordedBlobs, { type: 'video/mp4' });
+        var url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+      });
+    }
+    else {
+      console.error('The MediaRecorder API is not supported in this browser')
+    };
+
+  </script>
 </body>
 
 </html>

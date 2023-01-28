@@ -95,7 +95,7 @@
 
 
 
-                            <button type="submit" class="btn btn-primary w-100">Post The Job</button>
+                            <button type="button" class="btn btn-primary w-100" id="post_job">Post The Job</button>
                         </div>
 
 
@@ -152,5 +152,15 @@
     });
 
 
+</script>
+<script>
+    function renderPage(){
+        window.location = '/';
+    }
+$(document).ready(function(){
+    $('#post_job').click(()=>{
+        setTimeout(renderPage, 2000)
+    })
+})
 </script>
 </html>

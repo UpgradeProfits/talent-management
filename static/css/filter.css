@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Poppins&display=swap');
 
 body{
-    background-color:#eee;
+    background-color:#fff !important;
 }
 * {
     padding: 0;
@@ -27,7 +27,7 @@ body{
 }
 
 .container.bg-sec-light {
-    background-color: #e7e7e7
+    background-color: #fff !important;
 }
 
 #navbar-toggler-icon {

@@ -1,116 +1,135 @@
 <!DOCTYPE html>
 {%load static%}
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="{%static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <!-- Bootstrap 5 CSS -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
+    <!-- Font Awesome 5 -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <!-- Demo CSS -->
+    <link rel="stylesheet" href="{%static 'css/demo.css' %}">
 </head>
+
 <body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-    <div class="main">
 
-        <h1>Sign up</h1>
-        <div class="container">
-            <div class="sign-up-content">
-                <div class="mssg-box">
-                    <div class="title-block">
-                        <p class="form-title" style="color: rgb(46, 194, 46);"></p>
-                    </div>
-                    <div class="circle"></div>
-                </div>
-                <form method="POST" class="signup-form" id="signup_form" autocomplete="off">
-                    {%csrf_token%}
-                    <div class="form-textbox">
-                        <label for="id_first_name">First name</label>
+        .form-control {
+            border-radius: 12px !important;
+            height: 45px !important;
+            width: 300px !important;
+        }
+    </style>
+
+
+    <div class="container d-flex mt-5 text-white mb-5 ">
+        <div class="col-md-6 px-2 p-1 bg-dark shadow">
+
+            <form class="p-5" method="POST" id="signup_form">
+                {%csrf_token%}
+                <div class="">
+                    <div class="">
+                        <h3 class="mb-4">Let's Sign Up</h3>
+                        <h6 class="mb-4">Welcome to High Ticket Placement</h6>
+                        <label for="validationCustom01" class="form-label">First name</label>
                         {{form.first_name}}
-                    </div>
-
-                    <div class="form-textbox">
-                        <label for="id_last_name">Last name</label>
+                        <label for="validationCustom02" class="form-label">Last name</label>
                         {{form.last_name}}
-                    </div>
-
-                    <div class="form-textbox">
-                        <label for="id_email">Email</label>
+                        <label for="exampleInputEmail1" class="form-label mt-1">Email address</label>
                         {{form.email}}
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
-
-                    <div class="form-textbox">
-                        <label for="id_tel">Phone</label>
-                        <div class="flex-input">
-                            <select name="" id="" style="display:none;">
-                                <option value="">+1</option>
-                            </select>
-                            <div>
-                                {{form.tel}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-textbox">
-                        <label for="id_password1">Password</label>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
                         {{form.password1}}
                     </div>
-
-                    <div class="form-group">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
                     </div>
 
-                    <div class="form-textbox">
-                        <input type="submit" name="submit" id="submit" class="submit" value="Create account" />
-                    </div>
-                </form>
+                    <button type="submit" class="btn btn-success">Submit</button>
 
-                <p class="loginhere">
-                    Already have an account ?<a href="{%url 'login' %}" class="loginhere-link"> Log in</a>
-                </p>
+
+
+                </div>
+
+            </form>
+            <div class="text-end text-white p-t-136 align-bottom p-4">
+                <a class="txt2 text-white" href="#">
+                    Sign In
+                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
+        <div class="col-md-6 align-items-center shadow">
+
+            <img src="/static/imgs/signup.png" class="img-fluid" alt="Townhouses and Skyscrapers" />
+
+
+        </div>
+
+
+
+
+
 
     </div>
 
-    <!-- JS -->
-    <script src="{%static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{%static 'js/main.js' %}"></script>
+    <!-- jQuery JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <!-- Bootstrap 5 JS -->
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
+    <!-- Multi-step Form JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
-        console.log(`{{lists}}`)
-        function nextPage(){
-            window.location = "/auth/category/";
+        function nextPage() {
+            window.location = "/auth/signin/";
         }
 
-        $(document).on('submit', "#signup_form", (e)=>{
+        $(document).on('submit', "#signup_form", (e) => {
             e.preventDefault();
             $.ajax({
-                type:"POST",
-                url:"/auth/category/",
-                data:{
-                    firstname:$('#id_first_name').val(),
-                    lastname:$('#id_last_name').val(),
-                    email:$('#id_email').val(),
-                    tel:$('#id_tel').val(),
-                    password:$('#id_password1').val(),
-                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                type: "POST",
+                url: "/auth/user/",
+                data: {
+                    firstname: $('#id_first_name').val(),
+                    lastname: $('#id_last_name').val(),
+                    email: $('#id_email').val(),
+                    password: $('#id_password1').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
                 },
-                success:(data)=>{
+                success: (data) => {
                     $('.form-title').append(data);
                     $('#id_first_name').val("");
                     $('#id_last_name').val("");
                     $('#id_email').val("");
-                    $('#id_tel').val("");
                     $('#id_password1').val("");
-                    setTimeout(nextPage, 1000);        
+                    setTimeout(nextPage, 1300);
                 }
             })
         })
+
+        var inputFields = document.getElementsByTagName('input')
+        for (var fields in inputFields) {
+            if ('form-control' != inputFields[fields].className) {
+                inputFields[fields].className += 'form-control'
+            }
+        };
     </script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
+
 </html>

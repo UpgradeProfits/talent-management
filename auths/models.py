@@ -23,7 +23,7 @@ from phonenumber_field.modelfields import PhoneNumberField
     this is for the basic sign-up for Appointment setters and Closers :)
 """
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, tel, password=None, is_active=True, is_staff=False, is_admin=False):
+    def create_user(self, email, first_name, last_name, password=None, is_active=True, is_staff=False, is_admin=False):
         """
         Creates and saves a User with the given email and password.
         """
@@ -34,7 +34,6 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name= first_name,
             last_name= last_name,
-            tel= tel,
             password=password
         )
         user.active=True
@@ -42,7 +41,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, first_name, last_name, tel, password):
+    def create_staffuser(self, email, first_name, last_name, password):
         """
         Creates and saves a staff user with the given email and password.
         """
@@ -50,14 +49,13 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name= first_name,
             last_name= last_name,
-            tel= tel,
             password=password,
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, tel, password):
+    def create_superuser(self, email, first_name, last_name, password):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -65,7 +63,6 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name= first_name,
             last_name= last_name,
-            tel= tel,
             password=password,
         )
         user.staff = True
@@ -89,7 +86,7 @@ class User(AbstractBaseUser):
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'tel']  # Email & Password are required by default.
+    REQUIRED_FIELDS = ['first_name', 'last_name']  # Email & Password are required by default.
 
     # def save():
     #     mssg = f'Account created for {firstname}'
@@ -150,6 +147,7 @@ class User(AbstractBaseUser):
 
 class ClientProfile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    display_photo= models.ImageField(upload_to='clients/', blank=True)
     full_name = models.CharField(max_length=250, default='', blank=True)
     company_name = models.CharField(max_length=100, default='', blank=True)
     preffered_lang = models.CharField(max_length=100, default='', blank=True)
@@ -178,13 +176,13 @@ class UserProfile(models.Model):
     display_photo= models.ImageField(upload_to='closers/', blank=True)
     code = models.CharField(default='', blank=True, max_length=9)
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
-    gender = models.CharField(default="Male", max_length=6, blank=False, choices=(('Male', 'Male'), ('Female', 'Female')))
-    category = models.CharField(default='', max_length=25, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter')), blank=True, null=True)
+    gender = models.CharField(default="Male", max_length=6, blank=True, choices=(('Male', 'Male'), ('Female', 'Female')))
+    category = models.CharField(default='', max_length=125, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter'), ('Closer & Appointment_setter', 'Closer & Appointment_setter')), blank=True, null=True)
     nationality= CountryField(blank_label='(select country)')
-    city = models.CharField(default='', max_length=100, blank=False)
-    zip_code = models.CharField(default='', max_length=20, blank=False)
+    city = models.CharField(default='', max_length=100, blank=True)
+    zip_code = models.CharField(default='', max_length=20, blank=True)
     location = CountryField(blank_label='(select location)')
-    experience = models.CharField(default='', blank=False, max_length=9)
+    experience = models.CharField(default='', blank=True, max_length=9)
     resume = models.FileField(upload_to=f'resumes/', default='')
     document_type = models.FileField(upload_to=f'extras/', default='')
     education = models.CharField(default='', blank=True, max_length=255)
@@ -192,17 +190,17 @@ class UserProfile(models.Model):
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
     preferred_niche_to_sell = models.CharField(default='', max_length=20, choices=(('Coaching & Courses', 'Coaching & Courses'), ('Fitness & Suplement', 'Fitness & Suplement'), ('Business & Books', 'Business & Books')))
     days_available = models.ManyToManyField('Days', blank=True)
-    hours_available = models.IntegerField(default=0, blank=False)
+    hours_available = models.IntegerField(default=0, blank=True)
     call_per_day = models.IntegerField(default=0, blank=True)
-    outbound_calls_per_day = models.IntegerField(default=0, blank=False)
-    appointments_per_day = models.IntegerField(default=0, blank=False)
+    outbound_calls_per_day = models.IntegerField(default=0, blank=True)
+    appointments_per_day = models.IntegerField(default=0, blank=True)
     income_per_month = models.IntegerField(default=0, blank=True)
-    ticket_size = models.IntegerField(default=0, blank=False)
-    highest_tickets = models.IntegerField(default=0, blank=False)
+    ticket_size = models.IntegerField(default=0, blank=True)
+    highest_tickets = models.IntegerField(default=0, blank=True)
     highest_ticket_product = models.CharField(default='', blank=True, max_length=100)
-    total_revenue_sales_career = models.IntegerField(default=0, blank=False)
-    total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=False)
-    generated_revenue = models.IntegerField(default=0, blank=False)
+    total_revenue_sales_career = models.IntegerField(default=0, blank=True)
+    total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=True)
+    generated_revenue = models.IntegerField(default=0, blank=True)
     pay = models.CharField(default='', blank=True, max_length=10, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission')))
     expected_commission=models.IntegerField(default=0, blank=True)
     expected_hourly_pay=models.IntegerField(default=0, blank=True)
@@ -214,20 +212,20 @@ class UserProfile(models.Model):
     are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS)
     past_trainings = models.CharField(default="", max_length=300, blank=True)
     past_leade_gen = models.CharField(max_length=255, choices=OPTIONS)
-    why = models.TextField(default='', blank=True, max_length=500)
+    reason = models.TextField(default='', blank=True, max_length=500)
     offers_worked_on_niche_and_ticket_price = models.CharField(default="", max_length=300, blank=True)
     offers_worked_on_past_years = models.CharField(default="", max_length=300, blank=True)
     reason_for_leaving_last_position = models.TextField(default='', blank=True, max_length=500)
     how_does_a_sales_fit_your_goals= models.TextField(default='', blank=True, max_length=500)
-    average_units_sold = models.IntegerField(default=0, blank=False)
+    average_units_sold = models.IntegerField(default=0, blank=True)
     average_tickets_sold = models.IntegerField(default=0, blank=True)
     timezone = models.CharField(default='', blank=True, max_length=100)
     profile_video = models.FileField(upload_to=f'profile_videos/', default='', blank=True)
     cover_letter = models.TextField(default='', blank=True, max_length=500)
     achievements = models.TextField(default='', blank=True, max_length=500)
     anything_else_important_to_you_that_we_should_know = models.TextField(default='', blank=True, max_length=500)
-    verified = models.BooleanField(default=False)
-    start_date = models.CharField(default='', max_length=123, blank=False, choices=Availabity)
+    verified = models.BooleanField(default=False, blank=True)
+    start_date = models.CharField(default='', max_length=123, blank=True, choices=Availabity)
     created = models.DateTimeField(auto_now_add=True)
     
     
