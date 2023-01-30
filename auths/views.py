@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from .forms import RegisterForm, UserProfileForm, ClientProfileForm
 from .models import User, Days, UserProfile
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user, one_time_access
 import json
 
 # sign-up view here ;)
@@ -66,6 +66,8 @@ def log_out(request, user):
     # context={'num':num}
     logout(request)
     return redirect('login')
+
+@one_time_access
 def user_categories(request):
     context = {}
     return render(request, 'hire_apply.html', context)
@@ -78,6 +80,8 @@ def createProfile(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
+            instance.first_name = request.first_name
+            instance.last_name = request.last_name
             instance.save()
             skills = request.POST.getlist('skills_list')
             days = request.POST.getlist('available_days')
@@ -98,6 +102,14 @@ def createProfile(request):
         'form': form
     }
     return render(request, 'index.html', context)
+
+def update_category(request):
+    category = request.POST.get('category')
+    value = True
+    user = User.objects.filter(id=request.user.pk)
+    user.update(category=category, authenticated=value)
+    response = 'successfull!!'
+    return HttpResponse(response)
 
 def updateProfile(request, pk, slug):
     data = UserProfile.objects.get(id=pk)

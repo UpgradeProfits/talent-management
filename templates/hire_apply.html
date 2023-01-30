@@ -25,6 +25,7 @@
     <div class="main">
 
         <!-- <h1>Sign up</h1> -->
+        {%csrf_token%}
         <div class="container">
             <div class="sign-up-content">
                 <h2 class="form-title">Which Describes You Best ?</h2>
@@ -43,12 +44,46 @@
     <!-- <script src="{%static 'js/main.js' %}"></script> -->
     <script>
         $(document).ready(function(){
+            function clientRedirect(){
+                window.location = '/auth/createprofile/client/';
+            };
+
+            function seekerRedirect(){
+                window.location = '/auth/createprofile/';
+            };
+
             $("#seeker").click(()=>{
-                window.location = '/auth/createprofile/'
+                $.ajax({
+                    type:'POST',
+                    url:'/auth/update/',
+                    data: {
+                        category:'seeker',
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    success: ()=>{
+                        setTimeout(seekerRedirect, 1000)
+                    },
+                    error:()=>{
+                        console.log('unsuccessfull')
+                    }
+                })
             })
 
             $("#client").click(()=>{
-                window.location = '/auth/createprofile/client/'
+                $.ajax({
+                    type:'POST',
+                    url:'/auth/update/',
+                    data: {
+                        category:'client',
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    success: ()=>{
+                        setTimeout(clientRedirect, 1000)
+                    },
+                    error:()=>{
+                        console.log('unsuccessfull')
+                    }
+                })
             })
         })
     </script>

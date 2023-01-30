@@ -8,7 +8,7 @@ from django.http import JsonResponse, HttpResponse
 from .models import AddVacancy, Apply
 
 # Create your views here.
-@allowed_user(allowed_roles=['client'])
+# @allowed_user(allowed_roles=['client'])
 def seeker(request):
     query_langs = Language.objects.all()
     form = CountryForm
@@ -33,11 +33,11 @@ def render_data(request):
         category = request.POST.get('category')
         language = request.POST.get('language')
         country = request.POST.get('country')
-        print(pay, category, country, language)
+        # print(pay, category, country, language)
         qs = UserProfile.objects.filter(
             Q(pay__icontains=pay) |
             Q(category__icontains=category) |
-            Q(language__icontains=language) |
+            Q(language__name__icontains=language) |
             Q(nationality__icontains=country)
             ).distinct()
         if qs:

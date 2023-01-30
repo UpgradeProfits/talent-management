@@ -102,6 +102,12 @@ hideButtons = function (step) {
   }
   if (step == limit) {
     $(".next").hide();
+    $(".submit").prop('disabled', true)
+    if($('#anything_else_important_to_you_that_we_should_know').val() === null){
+      $(".submit").prop('disabled', true)
+    }else{
+      $(".submit").prop('disabled', false)
+    }
     $(".submit").show();
   }
 };

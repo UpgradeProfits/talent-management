@@ -14,6 +14,7 @@ urlpatterns = [
     # path('password_reset/', django_views.PasswordResetView.as_view(), name="reset_password"),
     #
     path('category/', views.user_categories, name='category'),
+    path('update/', views.update_category, name='category_update'),
     path('createprofile/', views.createProfile, name="c_profile"),
     path('createprofile/client/', views.client_profile, name="client_profile"),
     path('updateprofile/<int:pk>/<slug:slug>/', views.updateProfile, name="updateprofile"),

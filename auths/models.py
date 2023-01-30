@@ -79,10 +79,12 @@ class User(AbstractBaseUser):
     tel = PhoneNumberField()
     added = models.DateTimeField(auto_now=True)
     category = models.CharField(default='', max_length=255, choices=(('client', 'client'), ('seeker', 'seeker')))
+    authenticated = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     TC = models.BooleanField(default=False)#Terms and Conditions
     staff = models.BooleanField(default=False)  # a admin user; non super-user
     admin = models.BooleanField(default=False)  # a superuser
+    # created = models.DateTimeField(auto_now_add=True, auto_created=datetime.now())
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'email'

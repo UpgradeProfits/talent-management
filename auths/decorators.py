@@ -41,6 +41,15 @@ def allowed_user(allowed_roles=[]):
 
     return decorator
 
+def one_time_access(view_func):
+    def wrapper_function(request, *args, **kwargs):
+        check_auth = request.user.authenticated
+        if check_auth is True:
+            return redirect('seekers')
+        else:
+            return view_func(request, *args, **kwargs)
+
+    return wrapper_function
 
 def admin_only(view_func):
     def wrapper_function(request, *args, **kwargs):
