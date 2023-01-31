@@ -99,4 +99,4 @@ def apply(request):
             link=link
         )
         make_apply.save()
-        return HttpResponse('successfull')
+        return HttpResponse('Applied successfully!')
