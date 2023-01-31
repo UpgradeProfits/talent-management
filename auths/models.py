@@ -190,7 +190,9 @@ class UserProfile(models.Model):
     education = models.CharField(default='', blank=True, max_length=255)
     skills = models.ForeignKey('Skills', blank=True, on_delete=models.CASCADE, null=True)
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
-    preferred_niche_to_sell = models.CharField(default='', max_length=20, choices=(('Coaching & Courses', 'Coaching & Courses'), ('Fitness & Suplement', 'Fitness & Suplement'), ('Business & Books', 'Business & Books')))
+    preferred_niche_to_sell = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'), ('Marketing & Advertising', 'Marketing & Advertising'), ('Personal Development', 'Personal Development'),('Spirituality Coaching', 'Spirituality Coaching'),('Insurance', 'Insurance'),('Innovative Software', 'Innovative Software'),
+    ('Relationship Coaching', 'Relationship Coaching'),('Real Estate(Real Estate Agents/Mortgage)', 'Real Estate(Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Finance/Investing', 'Finance/Investing'),('Finance/Investing', 'Finance/Investing'),
+    ('Fitness', 'Fitness'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Enterprise Sales', 'Enterprise Sales'),('Home Improvement & Security', 'Home Improvement & Security'),('Recruiting Services', 'Recruiting Services')))
     days_available = models.ForeignKey('Days', blank=True, on_delete=models.CASCADE, null=True)
     hours_available = models.IntegerField(default=0, blank=True)
     call_per_day = models.IntegerField(default=0, blank=True)
