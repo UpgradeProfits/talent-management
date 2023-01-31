@@ -8,7 +8,7 @@ from django.http import JsonResponse, HttpResponse
 from .models import AddVacancy, Apply
 
 # Create your views here.
-# @allowed_user(allowed_roles=['client'])
+@allowed_user(allowed_roles=['client'], url='jobs')
 def seeker(request):
     query_langs = Language.objects.all()
     form = CountryForm
@@ -56,6 +56,7 @@ def viewProfile(request, slug):
     }
     return render(request, 'index/profile.html', context)
 
+@allowed_user(allowed_roles=['client'], url='jobs')
 def create_job(request):
     form = AddVacancyForm
     if request.method == "POST":
@@ -70,7 +71,7 @@ def create_job(request):
         'form': form,
     }
     return render(request, 'index/post_job.html', context)
-@allowed_user(allowed_roles=['seeker'])
+@allowed_user(allowed_roles=['seeker'], url='seekers')
 def viewJobs(request):
     qs = AddVacancy.objects.all()[:5]
     form = CountryForm
@@ -89,6 +90,7 @@ def client(request, str):
     }
     return render(request, 'index/client_profile.html', context)
 
+@allowed_user(allowed_roles=['seeker'], url='seekers')
 def apply(request):
     if request.method == 'POST':
         job = request.POST.get('job')

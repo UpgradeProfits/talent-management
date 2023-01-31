@@ -80,8 +80,8 @@ def createProfile(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
-            instance.first_name = request.first_name
-            instance.last_name = request.last_name
+            instance.first_name = request.user.first_name
+            instance.last_name = request.user.last_name
             instance.save()
             skills = request.POST.getlist('skills_list')
             days = request.POST.getlist('available_days')

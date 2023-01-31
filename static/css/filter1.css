@@ -53,6 +53,10 @@ body{
     content: '\f00d'
 }
 
+.card{
+    background-color: #F8F9FA !important;
+}
+
 .sidebar {
     position: absolute;
     width: 220px;
