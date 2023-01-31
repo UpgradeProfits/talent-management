@@ -23,7 +23,7 @@ def authorized_user(view_func):
     return wrapper_func
 
 
-def allowed_user(allowed_roles=[]):
+def allowed_user(allowed_roles=[], url=None):
     def decorator(view_func):
         def wrapper_func(request, *args, **kwargs):
             if request.user.category:
@@ -33,7 +33,7 @@ def allowed_user(allowed_roles=[]):
                     if group == roles:
                         return view_func(request, *args, **kwargs)
                     else:
-                        return redirect('jobs')
+                        return redirect(url)
             else:
                 return view_func(request, *args, **kwargs)
 
@@ -41,6 +41,15 @@ def allowed_user(allowed_roles=[]):
 
     return decorator
 
+def one_time_access(view_func):
+    def wrapper_function(request, *args, **kwargs):
+        check_auth = request.user.authenticated
+        if check_auth is True:
+            return redirect('seekers')
+        else:
+            return view_func(request, *args, **kwargs)
+
+    return wrapper_function
 
 def admin_only(view_func):
     def wrapper_function(request, *args, **kwargs):
