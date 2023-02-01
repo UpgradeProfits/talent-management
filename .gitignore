@@ -1,4 +1,7 @@
 projenv/
+notes.txt
 codes.py
 migrations/
 media/
+core/settings.py
+core/.env

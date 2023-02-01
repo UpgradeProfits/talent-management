@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {%load static%}
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +16,6 @@
   <link rel="stylesheet" href="{%static 'css/demo.css' %}">
 
 </head>
-
 <body>
   <style>
     .myDiv {
@@ -585,7 +583,24 @@
         console.log(uniqueChars);
       })
     }
-  </script>
+  // Check file types
+  // check resume //
+  $("#id_resume").change(function () {
+        var fileExtension = ['pdf', 'doc'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only formats are allowed : "+fileExtension.join(', '));
+            $("#id_resume").val(null);
+        }
+    });
+  // check video file type
+  $("#id_profile_video").change(function () {
+        var fileExtension = ['mp4', 'MOV'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only formats are allowed : "+fileExtension.join(', '));
+            $("#id_profile_video").val(null);
+        }
+    });
+</script>
   <script>
 
     var videoElement = document.getElementById('video');
@@ -640,5 +655,4 @@
 
   </script>
 </body>
-
 </html>
