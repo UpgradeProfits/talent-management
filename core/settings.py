@@ -12,13 +12,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-import environ
+
+# import environ
+
+# import environ
 # 08083031560
+# >>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +34,7 @@ SECRET_KEY = 'django-insecure-v6*!wsf05(o86#s)y+6!7#tvgfdm02&gkg)qw!e6rsm(tdlu8v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['138.197.24.114']
 
 
 # Application definition
@@ -84,13 +88,25 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'TMS',
+            'USER': 'TMS_admin',
+            'PASSWORD': '1234',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 
 # Password validation
@@ -151,10 +167,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='mail.startall.net'
-EMAIL_PORT=env('EMAIL_PORT')
-EMAIL_USE_SSL=True
-EMAIL_USE_TLS=False
-EMAIL_HOST_USER=env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST=env('EMAIL_HOST')
+# EMAIL_PORT=env('EMAIL_PORT')
+# EMAIL_USE_TLS=True
+# EMAIL__HOST_USER=env('EMAIL__HOST_USER')
+# EMAIL__HOST_PASSWORD=env('EMAIL__HOST_PASSWORD')
+
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='mail.startall.net'
+# EMAIL_PORT=env('EMAIL_PORT')
+# EMAIL_USE_SSL=True
+# EMAIL_USE_TLS=False
+# EMAIL_HOST_USER=env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+# >>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6

@@ -38,7 +38,7 @@
                 <div id="navbarCollapse" class="collapse navbar-collapse text-white">
                     <ul class="nav navbar-nav text-white">
                         <li class="nav-item text-white">
-                            <a href="#" class="nav-link text-white">Home</a>
+                            <button  class=" bg-dark text-white h-back">Go Back</button>
 
 
                         </li>
@@ -89,46 +89,51 @@
     {%endblock contents%}
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
-        <div class="p-4 pb-0">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-facebook-f"></i></a>
-
-                <!-- Twitter -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-twitter"></i></a>
-
-                <!-- Google -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-google"></i></a>
-
-                <!-- Instagram -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-instagram"></i></a>
-
-                <!-- Linkedin -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-linkedin-in"></i></a>
-
-                <!-- Github -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-github"></i></a>
-            </section>
-            <!-- Section: Social media -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i
+            ></a>
+      
+          
+             <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+      
+            
+           
+          </section>
+          <!-- Section: Social media -->
         </div>
         <!-- Grid container -->
-
+        <div class="text-center p-3">
+    
+          <p>This site is not a part of the Facebook website or Facebook Inc. <br> Additionally, This site is NOT endorsed by Facebook in anyway. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
+          <p>Phone: +1 (786) 452-3464 | Email: matissefitz@gmail.com </p>
+          
+         
+        </div>
+       
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            An Upgrade Deals Company, In partnership With Upgrade Profits © 2023 Copyright Are Reserved @ High
-            Ticket Placement
-            <!-- <a class="text-white" href="#">Bootstrap.com</a> -->
+         An Upgrade Deals Company, In partnership With <a href="https://upgradeprofits.com" target="_blank"><b>Upgrade Profits</b></a> © 2023 Copyright Are Reserved @ <b>High Ticket Placement</b>
+          <!-- <a class="text-white" href="#">Bootstrap.com</a> -->
         </div>
         <!-- Copyright -->
-    </footer>
+      </footer>
+
+    <script>
+        $(document).ready(function () {
+            // Previous page functionality
+            $(".hBack").on("click", function(e){
+              e.preventDefault();
+              window.history.back();
+            });
+        })
+        </script>
 </body>
+
+    
 {%block scripts%}
 
 {%endblock scripts%}

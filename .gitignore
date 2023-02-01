@@ -1,5 +1,4 @@
 projenv/
-*.txt
 codes.py
 migrations/
 media/
