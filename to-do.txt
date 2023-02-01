@@ -1,0 +1,63 @@
+First Name||CHECK
+Last Name||CHECK
+Introduction||CHECK
+Email Address||CHECK
+Phone Number||CHECK
+Experience (last 3 years of Sales experience)||CHECK
+Education
+Resume Upload (optional)||CHECK
+Skills||CHECK
+Achievements ||CHECK
+Profile Video||CHECK
+Your availability to start?||CHECK
+Preferred Niche to sell (Should be a drop-down)||CHECK
+Where are you located? (country drop-down)||CHECK
+Country of Citizenship? (country drop-down)||CHECK
+Document Type (for verification)||CHECK
+Work Type (Part Time / Full Time)||CHECK
+What Role would you like to go in once you are hired? (Dropdown)
+Working Timezone (dropdown)||CHECK
+Daily hours available? (weekdays block with time to pick)
+Minimum income per month?||CHECK
+Two options (hourly or commission-based) field should be numeric ||CHECK
+How many calls can you dial outbound calls in a day? (numeric) - (For Appointment Setter)
+What highest Ticket product have you sold? (Numeric) - (For Appointment Setter)
+Total Revenue Sales Generated over your sales career (numeric) - For both
+Total sales generated over the last 3 years (numeric) - For both
+Revenue Generated on the best month? (numeric)
+What offers have you worked on? (dropdown) what was the niche/ ticket price
+What language(s) can you close in?
+how much was the ticket size?
+What is the highest sales ticket you have sold?
+What sales training have you taken in the past? (drop-down)
+Verified Sign Just below the profile video (3 Different Color each represent level of verification)||CHECK
+Why are you interested in remote sales?||CHECK
+Whats a deal breaker for you in a offer?
+whats your goal per month?
+average ticket price sold?
+average unit sold?
+Is there anything else that we should know is important to you?
+How many offers have you worked on in the last 2 years? how much have you sold on Average on those past offers?
+are you comfortable with 100% commission-based pay?
+how many appointments did you get per day? per week?
+Did you have to do any of the lead gen in the past? Yes no ? why/why not?
+Why did you leave your past positions? where were you strong in those past positions? What are your weaknesses in sales?
+How does a sales role fit in with your short and long-term goals?
+Personality test for verified candidates.
+
+
+
+--Goal of upgrade profits--
+1). Revolutionizing education system.
+2). Help organizations get clients with skill they lack.
+3). Transferring human brain to a computer for humans.
+4). Everyone should have a positive experience.
+
+
+You add price based on the value you provide(like after 4years).
+
+verification
+
+brown
+blue
+gold-confirmed
