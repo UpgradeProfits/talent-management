@@ -71,9 +71,9 @@
                             <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">{{request.user.first_name|capfirst}}</a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 {%if request.user.category == 'client'%}
-                                <a href="/userprofile/request.user.first_name-request.user.last_name/" class="dropdown-item">Edit Profile</a>
+                                <a href="/userprofile/{{request.user.first_name}}-{{request.user.last_name}}/" class="dropdown-item">Edit Profile</a>
                                 {%elif request.user.category == 'seeker'%}
-                                <a href="{%url 'c-profile' request.user.first_name %}" class="dropdown-item">Edit Profile</a>
+                                <a href="{%url 'c-profile' request.user.first_name%}" class="dropdown-item">Edit Profile</a>
                                 {%endif%}
                                 <div class="dropdown-divider"></div>
                                 <a href="{%url 'logout' user.first_name%}" class="dropdown-item">Logout</a>

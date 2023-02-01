@@ -3,3 +3,5 @@ projenv/
 codes.py
 migrations/
 media/
+core/settings.py
+core/.env
