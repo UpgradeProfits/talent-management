@@ -37,15 +37,26 @@
             display: none;
             padding: 10px;
         }
+        #cke_id_about{
+            width:100% !important;
+        }
     </style>
 
     <div class="container p-5">
         <div class="row ">
-            <form action="" method="POST" autocomplete="off">
+            <div class="col-sm-8 px-3 py-2 mx-auto">
+                <iframe src="https://drive.google.com/file/d/1uIYyfRuI2XpYlPZEhJYG6l_FwPohayhR/preview" class="w-100 px-3" height="345" allow="autoplay"></iframe>
+            </div>
+            <form action="" method="POST" autocomplete="off" class="col-md-4 m-2 w-100">
                 {%csrf_token%}
                 {{form.media}}
-                <div class="col-md-12 m-4">
-                    <div class="col-6">
+                <div class="d-flex flex-column">
+                    <div class="">
+                            <label for="" class="">
+                                <h4>About</h4>
+                            </label>
+                            {{form.about}}
+                        
                         <label for="">
                             <h3>Full Name</h3>
                         </label>
@@ -59,28 +70,15 @@
                         </label>
                         {{form.preffered_lang}}
                     </div>
-                    <div class="col-md-6">
-
-                        <div class="mb-3 ">
-                            <label for="exampleFormControlTextarea1" class="form-label">
-                                <h4>About</h4>
-                            </label>
-                            {{form.about}}
-                        </div>
-
-
-
+                    <div class="">
                         <button type="submit" class="btn btn-primary w-100" id="subBtn">Submit</button>
                     </div>
-
-
-
-
-
+                </div>
             </form>
         </div>
     </div>
     <script>
+        var ckedit = $('#cke_id_about').css('width:100%;')
         var inputFields = document.getElementsByTagName('input')
         for (var fields in inputFields) {
             if ('form-control' != inputFields[fields].className) {
