@@ -1,8 +1,9 @@
 from django.urls import path
 from index import views
+from auths import views as auth_views
 
 urlpatterns = [
-    # path('', views.home, name='home'),
+    path('', auth_views.sign_up_view, name="sign-up"),
     path('seekers/', views.seeker, name="seekers"),
     path('render_data/', views.render_data, name="render_data"),
     path('userprofile/<slug:slug>/', views.viewProfile, name='u-profile'),
