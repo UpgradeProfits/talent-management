@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v6*!wsf05(o86#s)y+6!7#tvgfdm02&gkg)qw!e6rsm(tdlu8v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.highticketrecruit.com','.www.highticketrecruit.com','138.197.24.114', 'localhost', '127.0.0.1']
 
