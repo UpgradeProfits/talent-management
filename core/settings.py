@@ -164,7 +164,7 @@ STATICFILES_DIRS = [
        
     ]
 
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_ROOT = os.path.join(BASE_DIR / 'collected_static')
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 # Default primary key field type
