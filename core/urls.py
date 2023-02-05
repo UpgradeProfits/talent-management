@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('auths.urls')),
     path('', include('index.urls')),
+    path('chat/', include('chat.urls')),
     path('djrichtextfield/', include('djrichtextfield.urls')),
 ]
 

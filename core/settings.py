@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
+    'crispy_forms',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -52,7 +53,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'ckeditor',
     'auths.apps.AuthsConfig',
-    'index.apps.IndexConfig'
+    'index.apps.IndexConfig',
+    'chat.apps.ChatConfig',
 ]
 
 MIDDLEWARE = [
@@ -172,19 +174,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST=env('EMAIL_HOST')
-# EMAIL_PORT=env('EMAIL_PORT')
-# EMAIL_USE_TLS=True
-# EMAIL__HOST_USER=env('EMAIL__HOST_USER')
-# EMAIL__HOST_PASSWORD=env('EMAIL__HOST_PASSWORD')
-
-# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST='mail.startall.net'
-# EMAIL_PORT=env('EMAIL_PORT')
-# EMAIL_USE_SSL=True
-# EMAIL_USE_TLS=False
-# EMAIL_HOST_USER=env('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
-# >>>>>>> 02ee2abe760af19265294ced5f285351e2749ee6
+LOGIN_REDIRECT_URL = "seekers"
+LOGIN_URL = "login"
