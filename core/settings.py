@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 import environ
 
-# 08083031560
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
@@ -100,9 +100,9 @@ DATABASES = {
 #     DATABASES = {
 #         'default': {
 #             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'TMS',
-#             'USER': 'TMS_admin',
-#             'PASSWORD': '1234',
+#             'NAME': 'dbtms',
+#             'USER': 'dbtmsadmin',
+#             'PASSWORD': 'world',
 #             'HOST': 'localhost',
 #             'PORT': '',
 #         }
