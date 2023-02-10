@@ -163,3 +163,15 @@ def client_profile(request):
         'form':form
     }
     return render(request, 'client_detail.html', context)
+
+def other_form(request):
+    context = {}
+    return render(request, 'index/first_detail_form_third_page.html', context)
+
+def other_form_ajax(request):
+    if request.method == 'POST':
+        sales_process = request.POST.get('')
+        leads = request.POST.get('')
+        past_sales = request.POST.get('')
+
+        return HttpResponse('Submitted Successfully!')
