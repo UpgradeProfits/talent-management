@@ -277,3 +277,44 @@ class Country(models.Model):
     
     def __str__(self):
         return str(self.country)
+
+class ExtraField(models.Model):
+    SALES_OPTION = (
+        ('1 sales', '1 sales'),
+        ('2 sales', '2 sales')
+    )
+
+    LEADS_OPTION = (
+        ('yes', 'yes'),
+        ('no', 'no')
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    slug = models.SlugField(blank=True)
+    sales_process = models.CharField(default='select', max_length=30, choices=SALES_OPTION)
+    lead_generation = models.CharField(default='select', max_length=3, choices=LEADS_OPTION)
+    past_sales_training = models.ForeignKey('Trainers', on_delete=models.CASCADE)
+    created = models.DateTimeField(default=now)
+
+    
+    def __str__(self):
+        return str(self.user)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(f'{self.user}-{self.past_sales_training}')
+        super(ExtraField, self).save(*args, **kwargs)
+
+class Trainers(models.Model):
+    name =  models.CharField(default='', max_length=200)
+    
+    def __str__(self):
+        return str(self.name)
+
+class Sales_Offer(models.Model):
+    with_field = models.ForeignKey('Trainers', on_delete=models.CASCADE)
+    date = models.DateField()
+    niche = models.CharField(default='', max_length=100)
+    total_generated_rev = models.CharField(default='', max_length=100)
+    avg_ticket = models.CharField(default='', max_length=100)
+
+    def __str__(self):
+        return str(self.with_field)

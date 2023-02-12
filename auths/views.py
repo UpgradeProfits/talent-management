@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 from .forms import RegisterForm, UserProfileForm, ClientProfileForm
 from .models import User, Days, UserProfile
 from .decorators import unauthenticated_user, one_time_access
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
+from django.contrib.auth.decorators import login_required
 import json
 
 # sign-up view here ;)
@@ -30,6 +32,11 @@ def sign_up(request):
         create_user.set_password(password)
         create_user.save()
         mssg = f"Account created successfully for {email}"
+        message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, please do verify your account here at http://localhost:8000/ so we can tell you are wonderful person :) \n \n<b>Tech Team</b>"""
+        subject = f'verify account for {email}'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email,]
+        send_mail( subject, message, email_from, recipient_list, fail_silently=False)
 
     return HttpResponse(mssg)
 
@@ -68,10 +75,14 @@ def log_out(request, user):
     return redirect('login')
 
 @one_time_access
+@login_required
 def user_categories(request):
     context = {}
     return render(request, 'hire_apply.html', context)
 
+@csrf_protect
+@ensure_csrf_cookie
+@login_required
 def createProfile(request):
     # print(request.user)
     form = UserProfileForm
@@ -102,7 +113,7 @@ def createProfile(request):
         'form': form
     }
     return render(request, 'index.html', context)
-
+@login_required
 def update_category(request):
     category = request.POST.get('category')
     value = True
@@ -110,7 +121,7 @@ def update_category(request):
     user.update(category=category, authenticated=value)
     response = 'successfull!!'
     return HttpResponse(response)
-
+@login_required
 def updateProfile(request, pk, slug):
     data = UserProfile.objects.get(id=pk)
     form = UserProfileForm(instance=data)
@@ -138,7 +149,7 @@ def updateProfile(request, pk, slug):
         'form':form
     }
     return render(request, 'updateprofile.html', context)
-
+@login_required
 def client_profile(request):
     form = ClientProfileForm
     if request.method == 'POST':
@@ -152,3 +163,15 @@ def client_profile(request):
         'form':form
     }
     return render(request, 'client_detail.html', context)
+
+def other_form(request):
+    context = {}
+    return render(request, 'index/first_detail_form_third_page.html', context)
+
+def other_form_ajax(request):
+    if request.method == 'POST':
+        sales_process = request.POST.get('')
+        leads = request.POST.get('')
+        past_sales = request.POST.get('')
+
+        return HttpResponse('Submitted Successfully!')

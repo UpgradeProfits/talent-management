@@ -12,9 +12,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env()
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +35,7 @@ SECRET_KEY = 'django-insecure-v6*!wsf05(o86#s)y+6!7#tvgfdm02&gkg)qw!e6rsm(tdlu8v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.highticketrecruit.com','.www.highticketrecruit.com','138.197.24.114', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -35,6 +44,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
+    'crispy_forms',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -44,7 +54,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'ckeditor',
     'auths.apps.AuthsConfig',
-    'index.apps.IndexConfig'
+    'index.apps.IndexConfig',
+    'chat.apps.ChatConfig'
 ]
 
 MIDDLEWARE = [
@@ -83,24 +94,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 else:
     
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'TMS',
-            'USER': 'TMS_admin',
-            'PASSWORD': '1234',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
+     DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+             'NAME': 'dbtms',
+             'USER': 'dbtmsadmin',
+             'PASSWORD': 'world',
+             'HOST': 'localhost',
+             'PORT': '',
+         }
+     }
 
 
 # Password validation
@@ -153,8 +164,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR / 'static'),
-       
-    ]
+]
 
 STATIC_ROOT = os.path.join(BASE_DIR / 'collected_static')
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
@@ -164,13 +174,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST=env('EMAIL_HOST')
-# EMAIL_PORT=env('EMAIL_PORT')
-# EMAIL_USE_TLS=True
-# EMAIL__HOST_USER=env('EMAIL__HOST_USER')
-# EMAIL__HOST_PASSWORD=env('EMAIL__HOST_PASSWORD')
+LOGIN_REDIRECT_URL = "seekers"
+LOGIN_URL = "login"
+
 
 # EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST='mail.startall.net'
@@ -179,3 +187,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_USE_TLS=False
 # EMAIL_HOST_USER=env('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.startall.net'
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
