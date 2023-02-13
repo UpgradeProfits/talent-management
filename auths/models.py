@@ -280,8 +280,9 @@ class Country(models.Model):
 
 class ExtraField(models.Model):
     SALES_OPTION = (
-        ('1 sales', '1 sales'),
-        ('2 sales', '2 sales')
+        ('1 call close', '1 call close'),
+        ('2 call close', '2 call close'),
+        ('Enterprise deals', 'Enterprise deals')
     )
 
     LEADS_OPTION = (
@@ -297,7 +298,7 @@ class ExtraField(models.Model):
 
     
     def __str__(self):
-        return str(self.user)
+        return str(self.slug)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(f'{self.user}-{self.past_sales_training}')

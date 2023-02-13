@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {%load static%}
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -93,179 +94,112 @@
               </div>
               <div id="filter-records" class="mx-5"></div>
             </div>
+            <form action="" method="POST" id="detail-form">
+              {%csrf_token%}
+              <div id="userinfo" class="card-body p-4 step" style="display: none">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Information of Job </h5>
+                </div>
+
+                <div class="form-group row">
 
 
+                  <div class="form-group row pt-2">
 
 
+                    <div class="container">
+                      <label for="" class="form-label">What offer(s) have you worked on in the last 2 years? Please
+                        Include: Niche/ Offer, Ticket Price of Each Offer AND Total Revenue Generated On That Offer.
+                      </label>
+                      <div class="c0l-md-4">
+                        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
+                          data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Your Sales Info Here</button>
+                      </div>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog  modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <!-- <h5 class="modal-title" id="exampleModalLabel">New message</h5> -->
 
-            <div id="userinfo" class="card-body p-4 step" style="display: none">
-              <div class="text-center">
-                <h5 class="card-title font-weight-bold pb-2">Information of Job </h5>
-              </div>
+                              <table class="table">
+                                <thead>
 
-              <div class="form-group row">
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Niche/Offer</th>
+                                    <th scope="col">Total Revenue Generated in Offer</th>
+                                    <th scope="col">Average Ticket Price Sold</th>
+                                    <th><a href="javascript:void(0)" class="btn btn-success addRow text-white">+</a>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><input type="date" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                  </tr>
 
+                                  <tr class="adding">
+                                    <td><input type="date" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <th><a href="javascript:void(0)" class="btn btn-danger deleteRow text-white">-</a>
+                                    </th>
+                                  </tr>
 
-                <div class="form-group row pt-2">
+                                </tbody>
+                              </table>
 
-
-                  <div class="container">
-                    <label for="" class="form-label">What offer(s) have you worked on in the last 2 years? Please
-                      Include: Niche/ Offer, Ticket Price of Each Offer AND Total Revenue Generated On That Offer.
-                    </label>
-                    <div class="c0l-md-4">
-                      <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Your Sales Info Here</button>
-                    </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog  modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <!-- <h5 class="modal-title" id="exampleModalLabel">New message</h5> -->
-
-                            <table class="table">
-                              <thead>
-
-                                <tr>
-                                  <th scope="col">Date</th>
-                                  <th scope="col">Niche/Offer</th>
-                                  <th scope="col">Total Revenue Generated in Offer</th>
-                                  <th scope="col">Average Ticket Price Sold</th>
-                                  <th><a href="javascript:void(0)" class="btn btn-success addRow text-white">+</a></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td><input type="date" name="" class="form-control"></td>
-                                  <td><input type="text" name="" class="form-control"></td>
-                                  <td><input type="text" name="" class="form-control"></td>
-                                  <td><input type="text" name="" class="form-control"></td>
-                                </tr>
-
-                                <tr class="adding">
-                                  <td><input type="date" name="" class="form-control"></td>
-                                  <td><input type="text" name="" class="form-control"></td>
-                                  <td><input type="text" name="" class="form-control"></td>
-                                  <td><input type="text" name="" class="form-control"></td>
-                                  <th><a href="javascript:void(0)" class="btn btn-danger deleteRow text-white">-</a>
-                                  </th>
-                                </tr>
-
-                              </tbody>
-                            </table>
-
-
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Save</button>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-success">Save</button>
+                            </div>
                           </div>
                         </div>
                       </div>
+
                     </div>
 
-                  </div>
 
 
+                    <div class="col-md-12 mb-3 w-100">
+                      <label for="" class="form-label">What sales process are you used to?</label>
+                      {{form.sales_process}}
 
-                  <div class="col-md-12 mb-3 w-100">
-                    <label for="" class="form-label">What sales process are you used to?</label>
-                    <select class="form-select" aria-label="Default select example" id="">
-                      <option value="">-----</option>
-                      <option value="">1 call close</option>
-                      <option value="">2 call close</option>
-                      <option value="">Enterprise deals</option>
+                      <label for="" class="form-label">Have you done lead generation in the past?</label>
+                      {{form.lead_generation}}
+                      <div id="payone" class="payDiv">
+                        <div class="col-md-12 mb-3 mt-3 w-100">
+                          <label for="" class="form-label">Why Yes?</label>
+                          <input type="text" class="form-control" aria-label="100">
+                        </div>
 
-
-                    </select>
-
-                    <label for="" class="form-label">Have you done lead generation in the past?</label>
-                    <select class="form-select" aria-label="Default select example" id="payoutselection">
-                      <option value="">Select</option>
-                      <option value="one">Yes</option>
-                      <option value="two">No</option>
-
-
-                    </select>
-                    <div id="payone" class="payDiv">
-                      <div class="col-md-12 mb-3 mt-3 w-100">
-                        <label for="" class="form-label">Why Yes?</label>
-                        <input type="text" class="form-control" aria-label="100">
                       </div>
-
-                    </div>
-                    <div id="paytwo" class="payDiv">
-                      <div class="col-md-12 mb-3 mt-3 w-100">
-                        <label for="" class="form-label">Why No? </label>
-                        <input type="text" class="form-control" aria-label="100">
+                      <div id="paytwo" class="payDiv">
+                        <div class="col-md-12 mb-3 mt-3 w-100">
+                          <label for="" class="form-label">Why No? </label>
+                          <input type="text" class="form-control" aria-label="100">
+                        </div>
                       </div>
+                      <label for="" class=" mb-3">What sales training have you taken in the past?</label>
+                      {{form.past_sales_training}}
                     </div>
-                    <label for="" class=" mb-3">What sales training have you taken in the past?</label>
-                    <select class="form-select mb-3" aria-label="Default select example">
-                      <option selected> List of sales trainings
-                      </option>
-                      <option value="1">Cole Gordon</option>
-                      <option value="2">Jeremy Miner
-                      </option>
-                      <option value="3"> Enterprise deals</option>
-
-                      <option>Grant Cardone</option>
-                      <option value="1">Matt Rider
-                      </option>
-                      <option value="2">Jordan Belford</option>
-                      <option value="3"> Dan Lok
-                      </option>
-
-                      <option>Bill Walsh
-                      </option>
-                      <option value="1">Dan Henry
-                      </option>
-                      <option value="2">Alex Hormozi
-                      </option>
-                      <option value="3"> Mike Barron
-                      </option>
-
-                      <option>Luke Alexander
-                      </option>
-                      <option value="1">Matisse Fitzpatrick</option>
-                      <option value="2">Jahan Hadi / Upgrade Profits / Upgrade Deals
-                      </option>
-                      <option value="3"> Others
-                      </option>
-
-                    </select>
-
-
                   </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
               </div>
-            </div>
 
-
-
-
-
-
-            <div class="card-footer">
-              <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
-              <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
-              <button class="action submit btn btn-sm btn-outline-success float-end"
-                style="display: none">Submit</button>
-            </div>
+              <div class="card-footer">
+                <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
+                <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
+                <button class="action submit btn btn-sm btn-outline-success float-end"
+                  style="display: none" type="submit">Submit</button>
+              </div>
+            </form>
           </div>
 
         </div>
@@ -288,7 +222,9 @@
       //       e.preventDefault()
       //     }
       //   })
-      $('input').attr('required', true);
+      $('#id_sales_process').attr('required', true);
+      $('#id_lead_generation').attr('required', true);
+      $('#id_past_sales_training').attr('required', true);
       $('textarea').attr('required', true);
       $('select').attr('required', true);
     })
@@ -335,6 +271,26 @@
         $("div.payDiv").hide();
         $("#pay" + demovalue).show();
       });
+      // 
+      $(document).on('submit', '#detail-form', (e)=> {
+        e.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: '/auth/details/success/',
+          data: {
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            sales_process: $('#id_sales_process').val(),
+            leads: $('#id_lead_generation').val(),
+            past_sales: parseInt($('#id_past_sales_training').val()),
+          },
+          success:(response)=>{
+            console.log('successful')
+          },
+          error:(response)=>{
+            console.log('unsuccessful')
+          }
+        })
+      })
     });
 
 
