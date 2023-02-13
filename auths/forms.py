@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
 from django import forms
-from .models import User, UserProfile, Country, ClientProfile, Language
+from .models import User, UserProfile, Country, ClientProfile, Language, ExtraField, Sales_Offer
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from djrichtextfield.widgets import RichTextWidget
@@ -150,4 +150,18 @@ class LanguageForm(forms.ModelForm):
 class ClientProfileForm(forms.ModelForm):
     class Meta:
         model = ClientProfile
+        fields = "__all__"
+
+class ExtraFieldForm(forms.ModelForm):
+    class Meta:
+        model = ExtraField
+        fields = (
+            'sales_process',
+            'lead_generation',
+            'past_sales_training'
+        )
+
+class SalesOfferForm(forms.ModelForm):
+    class Meta:
+        model = Sales_Offer
         fields = "__all__"

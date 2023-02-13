@@ -17,5 +17,6 @@ urlpatterns = [
     path('createprofile/', views.createProfile, name="c_profile"),
     path('createprofile/client/', views.client_profile, name="client_profile"),
     path('updateprofile/<int:pk>/<slug:slug>/', views.updateProfile, name="updateprofile"),
-    path('other/', views.other_form)
+    path('details/', views.other_form),
+    path('details/success/', views.other_form_ajax),
 ]

@@ -3,8 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.core.mail import send_mail
-from .forms import RegisterForm, UserProfileForm, ClientProfileForm
-from .models import User, Days, UserProfile
+from .forms import RegisterForm, UserProfileForm, ClientProfileForm, ExtraFieldForm, SalesOfferForm
+from .models import User, Days, UserProfile, ExtraField, Sales_Offer
 from .decorators import unauthenticated_user, one_time_access
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.contrib.auth.decorators import login_required
@@ -165,13 +165,29 @@ def client_profile(request):
     return render(request, 'client_detail.html', context)
 
 def other_form(request):
-    context = {}
+    form=ExtraFieldForm
+    form2=SalesOfferForm
+    if request.method == 'POST':
+        form = ExtraFieldForm(request.POST or None)
+        form2 = SalesOfferForm(request.POST or None)
+    context = {
+        'form':form,
+        'form2':form2
+    }
     return render(request, 'index/first_detail_form_third_page.html', context)
 
 def other_form_ajax(request):
     if request.method == 'POST':
-        sales_process = request.POST.get('')
-        leads = request.POST.get('')
-        past_sales = request.POST.get('')
-
-        return HttpResponse('Submitted Successfully!')
+        sales_process = request.POST.get('sales_process')
+        leads = request.POST.get('leads')
+        past_sales = request.POST.get('past_sales')
+        print(type(past_sales))
+        user = request.user
+        new_data = ExtraField.objects.create(
+            user=user,
+            sales_process=sales_process,
+            lead_generation=leads,
+            past_sales_training_id=int(past_sales)
+        )
+        new_data.save()
+    return HttpResponse('Submitted Successfully!')
