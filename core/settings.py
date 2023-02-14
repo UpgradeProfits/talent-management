@@ -17,10 +17,6 @@ import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
@@ -33,7 +29,7 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-v6*!wsf05(o86#s)y+6!7#tvgfdm02&gkg)qw!e6rsm(tdlu8v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -55,7 +51,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'auths.apps.AuthsConfig',
     'index.apps.IndexConfig',
-    'chat.apps.ChatConfig'
+    'chat.apps.ChatConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,7 +90,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 if DEBUG:
-DATABASES = {
+ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
@@ -104,14 +100,14 @@ else:
     
      DATABASES = {
          'default': {
-             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
              'NAME': 'dbtms',
              'USER': 'dbtmsadmin',
              'PASSWORD': 'world',
              'HOST': 'localhost',
              'PORT': '',
-         }
-     }
+        }
+    }
 
 
 # Password validation
