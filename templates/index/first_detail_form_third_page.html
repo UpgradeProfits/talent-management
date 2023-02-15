@@ -361,28 +361,7 @@
       $(this).parent().parent().remove();
     });
 
-    $(document).ready(function() {
-  // Add click event to the "Save" button
-  $('#save').click(function(e) {
-    e.preventDefault();
-    // Get the form data
-    var formData = $('form').serialize();
-    // Submit the form
-    $.ajax({
-      type: 'POST',
-      url: '/save-data',
-      data: formData,
-      success: function(response) {
-        // Handle successful submission
-        console.log(response);
-      },
-      error: function(error) {
-        // Handle submission error
-        console.log(error);
-      }
-    });
-  });
-});
+   
 
 
 
