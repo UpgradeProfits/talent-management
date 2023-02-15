@@ -179,7 +179,7 @@ class UserProfile(models.Model):
     code = models.CharField(default='', blank=True, max_length=9)
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
     gender = models.CharField(default="Male", max_length=6, blank=True, choices=(('Male', 'Male'), ('Female', 'Female')))
-    category = models.CharField(default='', max_length=125, choices=(('Closer', 'Closer'), ('Appointment_setter', 'Appointment_setter'), ('Closer & Appointment_setter', 'Closer & Appointment_setter')), blank=True, null=True)
+    category = models.CharField(default='', max_length=125, choices=(('Closer', 'Closer'), ('Appointment setter', 'Appointment setter'), ('Closer & Appointment setter', 'Closer & Appointment setter')), blank=True, null=True)
     nationality= CountryField(blank_label='(select country)')
     city = models.CharField(default='', max_length=100, blank=True)
     zip_code = models.CharField(default='', max_length=20, blank=True)
@@ -190,9 +190,9 @@ class UserProfile(models.Model):
     education = models.CharField(default='', blank=True, max_length=255)
     skills = models.ForeignKey('Skills', blank=True, on_delete=models.CASCADE, null=True)
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
-    preferred_niche_to_sell = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'), ('Marketing & Advertising', 'Marketing & Advertising'), ('Personal Development', 'Personal Development'),('Spirituality Coaching', 'Spirituality Coaching'),('Insurance', 'Insurance'),('Innovative Software', 'Innovative Software'),
-    ('Relationship Coaching', 'Relationship Coaching'),('Real Estate(Real Estate Agents/Mortgage)', 'Real Estate(Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Finance/Investing', 'Finance/Investing'),('Finance/Investing', 'Finance/Investing'),
-    ('Fitness', 'Fitness'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Enterprise Sales', 'Enterprise Sales'),('Home Improvement & Security', 'Home Improvement & Security'),('Recruiting Services', 'Recruiting Services')))
+    preferred_niche_to_sell = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'),('Enterprise Sales', 'Enterprise Sales'), ('Finance/Investing', 'Finance/Investing'), ('Fitness', 'Fitness'),('Home Improvement & Security', 'Home Improvement & Security'),('Innovative Software', 'Innovative Software'),('Insurance', 'Insurance'),
+    ('Marketing & Advertising', 'Marketing & Advertising'),('Personal Development', 'Personal Development'),('Real Estate (Real Estate Agents/Mortgage)', 'Real Estate (Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Recruiting Services', 'Recruiting Services'),
+    ('Relationship Coaching', 'Relationship Coaching'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Solar', 'Solar'),('Spirituality Coaching', 'Spirituality Coaching'),('Other', 'Other')))
     days_available = models.ForeignKey('Days', blank=True, on_delete=models.CASCADE, null=True)
     hours_available = models.IntegerField(default=0, blank=True)
     call_per_day = models.IntegerField(default=0, blank=True)

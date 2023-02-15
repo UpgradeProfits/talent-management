@@ -143,10 +143,10 @@
                                   </tr>
 
                                   <tr class="adding">
-                                    <td><input type="date" name="" class="form-control"></td>
-                                    <td><input type="text" name="" class="form-control"></td>
-                                    <td><input type="text" name="" class="form-control"></td>
-                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="date" name="" class="form-control extras"></td>
+                                    <td><input type="text" name="" class="form-control extras"></td>
+                                    <td><input type="text" name="" class="form-control extras"></td>
+                                    <td><input type="text" name="" class="form-control extras"></td>
                                     <th><a href="javascript:void(0)" class="btn btn-danger deleteRow text-white">-</a>
                                     </th>
                                   </tr>
@@ -156,8 +156,8 @@
 
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-success">Save</button>
+                              
+                              <button type="button" id="save" class="btn btn-success">Save & Close</button>
                             </div>
                           </div>
                         </div>
@@ -360,6 +360,35 @@
     $('tbody').on('click', '.deleteRow', function () {
       $(this).parent().parent().remove();
     });
+
+    $(document).ready(function() {
+  // Add click event to the "Save" button
+  $('#save').click(function(e) {
+    e.preventDefault();
+    // Get the form data
+    var formData = $('form').serialize();
+    // Submit the form
+    $.ajax({
+      type: 'POST',
+      url: '/save-data',
+      data: formData,
+      success: function(response) {
+        // Handle successful submission
+        console.log(response);
+      },
+      error: function(error) {
+        // Handle submission error
+        console.log(error);
+      }
+    });
+  });
+});
+
+
+
+
+
+
   </script>
 </body>
 
