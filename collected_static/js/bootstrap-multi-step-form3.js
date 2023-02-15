@@ -36,7 +36,7 @@ $(document).on("click", ".li-search", function () {
   $(".next").prop("disabled", false);
 });
 
-$(".radio-group .radio").on("click", function () {
+$(".radio-group .radio").ready(function () {
   $(".selected .fa").removeClass("fa-check");
   $(".radio").removeClass("selected");
   $(this).addClass("selected");
