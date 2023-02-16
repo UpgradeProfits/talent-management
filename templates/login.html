@@ -111,16 +111,16 @@
                     password: $('#id_password').val(),
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
                 },
-                success: (data) => {
-                    if (data === 'email or password is incorrect') {
-                        $('.form-title').append(data);
-                        alert(data)
+                success: (response) => {
+                    if (response === 'email or password is incorrect') {
+                        $('.form-title').append(response);
+                        alert(response)
                     } else {
                         setTimeout(nextPage, 1000);
                     }
                 },
-                error: (data) => {
-                    alert(`${data} Something went wrong try refreshing or going back.`)
+                error: (response) => {
+                    alert(`${response} Something went wrong try refreshing or going back.`)
                 }
             })
         })

@@ -4,15 +4,18 @@
 
 
 	$(".js-select2").select2({
-			closeOnSelect : false,
-			placeholder : "Click to select an option",
-			allowHtml: true,
-			allowClear: true,
-			tags: true // создает новые опции на лету
+		width: "500px",
+		margin:"5px",
+		closeOnSelect : false,
+		placeholder : "Click to select an option",
+		allowHtml: true,
+		allowClear: true,
+		tags: true // создает новые опции на лету
 		});
 
 	$('.icons_select2').select2({
-		width: "100%",
+		width: "500px",
+		margin:"5px",
 		templateSelection: iformat,
 		templateResult: iformat,
 		allowHtml: true,
