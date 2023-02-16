@@ -8,6 +8,7 @@ from .models import User, Days, UserProfile, ExtraField, Sales_Offer
 from .decorators import unauthenticated_user, one_time_access
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.contrib.auth.decorators import login_required
+from django.forms import formset_factory
 import json
 
 # sign-up view here ;)
@@ -60,8 +61,6 @@ def sign_in(request):
         login(request, user)
         if "next" in request.POST:
             return redirect(request.POST.get("next"))
-        elif "previous" in request.POST:
-            return redirect(request.POST.get("previous"))
         else:
             return redirect('seekers')
         return HttpResponse('authenticated :)')
@@ -153,26 +152,24 @@ def updateProfile(request, pk, slug):
 def client_profile(request):
     form = ClientProfileForm
     if request.method == 'POST':
-        form = ClientProfileForm(request.POST or None)
+        form = ClientProfileForm(request.POST or None, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
+            instance.full_name = f'{request.user.first_name} {request.user.last_name}'
             instance.save()
             return redirect('seekers')
     context = {
         'form':form
     }
-    return render(request, 'client_detail.html', context)
+    return render(request, 'index/client-form.html', context)
 
 def other_form(request):
     form=ExtraFieldForm
-    form2=SalesOfferForm
     if request.method == 'POST':
         form = ExtraFieldForm(request.POST or None)
-        form2 = SalesOfferForm(request.POST or None)
     context = {
         'form':form,
-        'form2':form2
     }
     return render(request, 'index/first_detail_form_third_page.html', context)
 
@@ -181,7 +178,10 @@ def other_form_ajax(request):
         sales_process = request.POST.get('sales_process')
         leads = request.POST.get('leads')
         past_sales = request.POST.get('past_sales')
-        print(type(past_sales))
+        row_data = request.POST.get('row_data')
+        for i in row_data:
+            print(row_data)
+        # print(type(past_sales))
         user = request.user
         new_data = ExtraField.objects.create(
             user=user,
@@ -189,5 +189,5 @@ def other_form_ajax(request):
             lead_generation=leads,
             past_sales_training_id=int(past_sales)
         )
-        new_data.save()
-    return HttpResponse('Submitted Successfully!')
+        saved = new_data.save()
+    return HttpResponse('Submitted Successfully :)')

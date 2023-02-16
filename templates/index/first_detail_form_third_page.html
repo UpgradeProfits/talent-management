@@ -135,6 +135,14 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+
+                                  <tr class='adding'>
+                                    <input type="hidden" name="" id="hidden-field">
+                                    <td><input type='date' name='date' class='form-control extras '></td>
+                                    <td><input type='text' name='niche' class='form-control extras '></td> 
+                                    <td><input type='text' name='tot_rev' class='form-control extras '></td> 
+                                    <td><input type='text' name='avg_ticket' class='form-control extras '></td> 
+
                                   <tr>
                                     <td><input type="date" name="" class="form-control"></td>
                                     <td><input type="text" name="" class="form-control"></td>
@@ -149,13 +157,16 @@
                                     <td><input type="text" name="" class="form-control extras"></td>
                                     <th><a href="javascript:void(0)" class="btn btn-danger deleteRow text-white">-</a>
                                     </th>
-                                  </tr>
-
+                  </tr>
                                 </tbody>
                               </table>
 
                             </div>
                             <div class="modal-footer">
+
+                              <button type="button" class="btn btn-lg btn-success" id="save" data-bs-dismiss="modal">Save & Close</button>
+                            </div> 
+
                               
                               <button type="button" id="save" class="btn btn-success">Save & Close</button>
                             </div>
@@ -282,12 +293,13 @@
             sales_process: $('#id_sales_process').val(),
             leads: $('#id_lead_generation').val(),
             past_sales: parseInt($('#id_past_sales_training').val()),
+            row_data: $('#hidden-field').val()
           },
           success:(response)=>{
-            console.log('successful')
+            console.log(response)
           },
           error:(response)=>{
-            console.log('unsuccessful')
+            console.log('unsuccessfull :(')
           }
         })
       })
@@ -296,63 +308,15 @@
 
   </script>
   <script>
-    // // arrays for populating selected values
-    // let select_skills = []
-    // let select_days = []
-    // let select_langs = []
-    // // hidden input fields for moving data to backend
-    // var new_skills = $(`#skills_list`)
-    // var new_langs = $('#langs')
-    // var new_days = $('#available_days')
-    // // end
-    // $(function () {
-    //   var selected_skill = $('#id_skills').select2();
-    //   var selected_lang = $('#id_language').select2();
-    //   var selected_days = $('#id_days_available').select2();
-    //   // 
-    //   new_vals(`#id_skills`, select_skills, new_skills);
-    //   new_vals('#id_language', select_langs, new_langs);
-    //   new_vals('#id_days_available', select_days, new_days);
-    // })
-    //this function would clear redundancy in the list and add the array to the given element input[value]
-
-    // function new_vals(param1, param2, param3) {
-    //   $(param1).on('select2:select', () => {
-    //     var innerVar = $(param1).select2("data");
-    //     for (var i = 0; i <= innerVar.length - 1; i++) {
-    //       param2.push(innerVar[i].id);
-    //     };
-    //     let uniqueChars = [...new Set(param2)];
-    //     param3.val(uniqueChars)
-    //     console.log(uniqueChars);
-    //   })
-    // }
-    // Check file types
-    // check resume //
-    $("#id_resume").change(function () {
-      var fileExtension = ['pdf', 'doc', 'css'];
-      if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-        alert("Only formats are allowed : " + fileExtension.join(', '));
-        $("#id_resume").val(null);
-      }
-    });
-    // check video file type
-    $("#id_profile_video").change(function () {
-      var fileExtension = ['mp4', 'MOV'];
-      if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-        alert("Only formats are allowed : " + fileExtension.join(', '));
-        $("#id_profile_video").val(null);
-      }
-    });
-  </script>
-  <script>
+    let count = 1
     $('thead').on('click', '.addRow', function () {
+      new_count = count++
       var tr = "<tr class='adding'>" +
-        "<td><input type='date' name='' class='form-control'></td>" +
-        "<td><input type='text' name='' class='form-control'></td>" +
-        "<td><input type='text' name='' class='form-control'></td>" +
-        "<td><input type='text' name='' class='form-control'></td>" +
-        " <th><a href='javascript:void(0)' class='btn btn-danger deleteRow text-white'>-</a></th>"
+        `<td><input type='date' name='date' class='form-control extras'></td>
+        <td><input type='text' name='niche' class='form-control extras'></td> 
+        <td><input type='text' name='tot_rev' class='form-control extras'></td> 
+        <td><input type='text' name='avg_ticket' class='form-control extras'></td> 
+         <th><a href='javascript:void(0)' class='btn btn-danger deleteRow text-white'>-</a></th>`+
       "</tr>"
       $('tbody').append(tr);
     });
@@ -361,7 +325,28 @@
       $(this).parent().parent().remove();
     });
 
+    
+    var objs = []
+    $('#save').click(()=>{
+      var objs = [];
+      $('.extras').each(function(){
+        var value = 
+        objs.push({name:this.name, value: this.value}); 
+      });
+      $('#hidden-field').val(objs.data())
+      // $('.extras').map( function(){ 
+      //   var name =$(this).attr('name')
+      //   var values = $(this).val()
+      //   objs[name] = values
+      // }).get()
+      // for(var obj in objs){
+      //   console.log(objs[obj])
+      // }
+    })
+
+
    
+
 
 
 
