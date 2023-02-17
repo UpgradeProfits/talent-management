@@ -140,7 +140,6 @@
 
                                   <tr>
                                     <td><input type="date" name="" class="form-control"></td>
-
                                     <td><input type="text" name="" class="form-control"></td>
                                     <td><input type="text" name="" class="form-control"></td>
                                     <td><input type="text" name="" class="form-control"></td>
@@ -338,21 +337,21 @@
         );
 
       });
-<<<<<<< HEAD
+
       $('#hidden-field').val(objs)
-=======
+
       // let uniqueChars = [...new Set(objs)]
       $('#hidden-field').val(JSON.stringify(objs))
       console.log($('#hidden-field').val())
->>>>>>> 2b349c9c254646f15bb903a537b4562ba2059bcb
-      // $('.extras').map( function(){ 
-      //   var name =$(this).attr('name')
-      //   var values = $(this).val()
-      //   objs[name] = values
-      // }).get()
-      // for(var obj in objs){
-      //   console.log(objs[obj])OBB
-      // }OA
+
+      $('.extras').map( function(){ 
+        var name =$(this).attr('name')
+        var values = $(this).val()
+        objs[name] = values
+      }).get()
+      for(var obj in objs){
+        console.log(objs[obj])
+      }
     })
 
 
