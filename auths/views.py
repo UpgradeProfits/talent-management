@@ -179,8 +179,8 @@ def other_form_ajax(request):
         leads = request.POST.get('leads')
         past_sales = request.POST.get('past_sales')
         row_data = request.POST.get('row_data')
-        for i in row_data:
-            print(row_data)
+        #for i in row_data:
+            #print(row_data)
         # print(type(past_sales))
         user = request.user
         new_data = ExtraField.objects.create(

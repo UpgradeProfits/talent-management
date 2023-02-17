@@ -136,12 +136,7 @@
                                 </thead>
                                 <tbody>
 
-                                  <tr class='adding'>
-                                    <input type="hidden" name="" id="hidden-field">
-                                    <td><input type='date' name='date' class='form-control extras '></td>
-                                    <td><input type='text' name='niche' class='form-control extras '></td> 
-                                    <td><input type='text' name='tot_rev' class='form-control extras '></td> 
-                                    <td><input type='text' name='avg_ticket' class='form-control extras '></td> 
+                                 
 
                                   <tr>
                                     <td><input type="date" name="" class="form-control"></td>
@@ -168,7 +163,7 @@
                             </div> 
 
                               
-                              <button type="button" id="save" class="btn btn-success">Save & Close</button>
+                              
                             </div>
                           </div>
                         </div>
@@ -293,7 +288,7 @@
             sales_process: $('#id_sales_process').val(),
             leads: $('#id_lead_generation').val(),
             past_sales: parseInt($('#id_past_sales_training').val()),
-            row_data: $('#hidden-field').val()
+            row_data: JSON.stringify($('#hidden-field').val())
           },
           success:(response)=>{
             console.log(response)
@@ -333,7 +328,7 @@
         var value = 
         objs.push({name:this.name, value: this.value}); 
       });
-      $('#hidden-field').val(objs.data())
+      $('#hidden-field').val(objs)
       // $('.extras').map( function(){ 
       //   var name =$(this).attr('name')
       //   var values = $(this).val()
