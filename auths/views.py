@@ -10,6 +10,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 import json
+import sys
 
 # sign-up view here ;)
 @unauthenticated_user
@@ -164,6 +165,8 @@ def client_profile(request):
     }
     return render(request, 'index/client-form.html', context)
 
+@csrf_protect
+@ensure_csrf_cookie
 def other_form(request):
     form=ExtraFieldForm
     if request.method == 'POST':
@@ -173,21 +176,34 @@ def other_form(request):
     }
     return render(request, 'index/first_detail_form_third_page.html', context)
 
+@csrf_protect
+@ensure_csrf_cookie
 def other_form_ajax(request):
     if request.method == 'POST':
         sales_process = request.POST.get('sales_process')
         leads = request.POST.get('leads')
         past_sales = request.POST.get('past_sales')
         row_data = request.POST.get('row_data')
-        for i in row_data:
-            print(row_data)
-        # print(type(past_sales))
+        data = json.loads(row_data)
         user = request.user
         new_data = ExtraField.objects.create(
+            id=int(request.user.id),
             user=user,
             sales_process=sales_process,
             lead_generation=leads,
             past_sales_training_id=int(past_sales)
         )
         saved = new_data.save()
+        print(saved)
+
+        for i in data:
+            print(i['date'])
+            sales_offr = Sales_Offer.objects.create(
+                with_field_id = int(request.user.id),
+                date=i['date'],
+                niche=i['niche'],
+                total_generated_rev=i['tot_rev'],
+                avg_ticket=i['avg_ticket']
+            )
+            sales_offr.save()
     return HttpResponse('Submitted Successfully :)')

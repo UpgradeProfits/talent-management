@@ -268,11 +268,11 @@
           type: 'POST',
           url: '/auth/details/success/',
           data: {
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             sales_process: $('#id_sales_process').val(),
             leads: $('#id_lead_generation').val(),
             past_sales: parseInt($('#id_past_sales_training').val()),
-            row_data: $('#hidden-field').val()
+            row_data: $('#hidden-field').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
           },
           success:(response)=>{
             console.log(response)
@@ -305,13 +305,20 @@
     });
     
     var objs = []
+    var dic = {}
     $('#save').click(()=>{
       var objs = [];
       $('.extras').each(function(){
-        var value = 
-        objs.push({name:this.name, value: this.value}); 
+        var value = this.name
+        dic[value] = this.value
+        objs.push(
+          dic
+        );
+
       });
-      $('#hidden-field').val(objs.data())
+      // let uniqueChars = [...new Set(objs)]
+      $('#hidden-field').val(JSON.stringify(objs))
+      console.log($('#hidden-field').val())
       // $('.extras').map( function(){ 
       //   var name =$(this).attr('name')
       //   var values = $(this).val()
