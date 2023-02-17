@@ -313,7 +313,7 @@ class ExtraField(models.Model):
         return str(self.slug)
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(f'{self.user}-{self.past_sales_training}')
+        self.slug = slugify(f'{self.user}-{self.past_sales_training_id}')
         super(ExtraField, self).save(*args, **kwargs)
 
 class Trainers(models.Model):
@@ -323,7 +323,7 @@ class Trainers(models.Model):
         return str(self.name)
 
 class Sales_Offer(models.Model):
-    with_field = models.ForeignKey('Trainers', on_delete=models.CASCADE)
+    with_field = models.ForeignKey('ExtraField', on_delete=models.CASCADE)
     date = models.DateField()
     niche = models.CharField(default='', max_length=100)
     total_generated_rev = models.CharField(default='', max_length=100)
