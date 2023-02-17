@@ -135,20 +135,41 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+
                                   <tr class='adding'>
                                     <input type="hidden" name="" id="hidden-field">
                                     <td><input type='date' name='date' class='form-control extras '></td>
                                     <td><input type='text' name='niche' class='form-control extras '></td> 
                                     <td><input type='text' name='tot_rev' class='form-control extras '></td> 
                                     <td><input type='text' name='avg_ticket' class='form-control extras '></td> 
+
+                                  <tr>
+                                    <td><input type="date" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type="text" name="" class="form-control"></td>
                                   </tr>
+
+                                  <tr class="adding">
+                                    <td><input type="date" name="" class="form-control extras"></td>
+                                    <td><input type="text" name="" class="form-control extras"></td>
+                                    <td><input type="text" name="" class="form-control extras"></td>
+                                    <td><input type="text" name="" class="form-control extras"></td>
+                                    <th><a href="javascript:void(0)" class="btn btn-danger deleteRow text-white">-</a>
+                                    </th>
+                  </tr>
                                 </tbody>
                               </table>
 
                             </div>
                             <div class="modal-footer">
+
                               <button type="button" class="btn btn-lg btn-success" id="save" data-bs-dismiss="modal">Save & Close</button>
                             </div> 
+
+                              
+                              <button type="button" id="save" class="btn btn-success">Save & Close</button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -303,6 +324,7 @@
     $('tbody').on('click', '.deleteRow', function () {
       $(this).parent().parent().remove();
     });
+
     
     var objs = []
     var dic = {}
@@ -328,6 +350,15 @@
       //   console.log(objs[obj])
       // }
     })
+
+
+   
+
+
+
+
+
+
 
   </script>
 </body>
