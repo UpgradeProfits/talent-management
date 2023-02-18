@@ -71,7 +71,7 @@
           <div class="card mt-3">
             <div class="card-header font-weight-bold">Fill Your Details</div>
             <div class="card-body p-4 step">
-
+                        <h4>Please Fill This Form </h4>
               <div class="radio-group row justify-content-between px-3 text-center"
                 style="justify-content:center !important">
                 <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
@@ -139,80 +139,71 @@
                                   <tr class='adding'>
                                     <input type="hidden" name="" id="hidden-field">
                                     <td><input type='date' name='date' class='form-control extras '></td>
-                                    <td><input type='text' name='niche' class='form-control extras '></td> 
-                                    <td><input type='text' name='tot_rev' class='form-control extras '></td> 
-                                    <td><input type='text' name='avg_ticket' class='form-control extras '></td> 
-
-                                  <tr>
-                                    <td><input type="date" name="" class="form-control"></td>
-                                    <td><input type="text" name="" class="form-control"></td>
-                                    <td><input type="text" name="" class="form-control"></td>
-                                    <td><input type="text" name="" class="form-control"></td>
+                                    <td><input type='text' name='niche' class='form-control extras '></td>
+                                    <td><input type='text' name='tot_rev' class='form-control extras '></td>
+                                    <td><input type='text' name='avg_ticket' class='form-control extras '></td>
                                   </tr>
-
-                                  <tr class="adding">
-                                    <td><input type="date" name="" class="form-control extras"></td>
-                                    <td><input type="text" name="" class="form-control extras"></td>
-                                    <td><input type="text" name="" class="form-control extras"></td>
-                                    <td><input type="text" name="" class="form-control extras"></td>
-                                    <th><a href="javascript:void(0)" class="btn btn-danger deleteRow text-white">-</a>
-                                    </th>
-                  </tr>
                                 </tbody>
                               </table>
 
                             </div>
                             <div class="modal-footer">
+<<<<<<< HEAD
 
                               <button type="button" class="btn btn-lg btn-success" id="save" data-bs-dismiss="modal">Save & Close</button>
                             </div> 
 
                               
+=======
+                              <button type="button" class="btn btn-lg btn-success" id="save"
+                                data-bs-dismiss="modal">Save & Close</button>
+>>>>>>> 639f235c043ce75b1a93a48d890fcbeeab4c2044
                             </div>
                           </div>
                         </div>
                       </div>
-
                     </div>
 
+                  </div>
 
 
-                    <div class="col-md-12 mb-3 w-100">
-                      <label for="" class="form-label">What sales process are you used to?</label>
-                      {{form.sales_process}}
 
-                      <label for="" class="form-label">Have you done lead generation in the past?</label>
-                      {{form.lead_generation}}
-                      <div id="payone" class="payDiv">
-                        <div class="col-md-12 mb-3 mt-3 w-100">
-                          <label for="" class="form-label">Why Yes?</label>
-                          <input type="text" class="form-control" aria-label="100">
-                        </div>
+                  <div class="col-md-12 mb-3 w-100">
+                    <label for="" class="form-label">What sales process are you used to?</label>
+                    {{form.sales_process}}
 
+                    <label for="" class="form-label">Have you done lead generation in the past?</label>
+                    {{form.lead_generation}}
+                    <div id="payone" class="payDiv">
+                      <div class="col-md-12 mb-3 mt-3 w-100">
+                        <label for="" class="form-label">Why Yes?</label>
+                        <input type="text" class="form-control" aria-label="100">
                       </div>
-                      <div id="paytwo" class="payDiv">
-                        <div class="col-md-12 mb-3 mt-3 w-100">
-                          <label for="" class="form-label">Why No? </label>
-                          <input type="text" class="form-control" aria-label="100">
-                        </div>
-                      </div>
-                      <label for="" class=" mb-3">What sales training have you taken in the past?</label>
-                      {{form.past_sales_training}}
+
                     </div>
+                    <div id="paytwo" class="payDiv">
+                      <div class="col-md-12 mb-3 mt-3 w-100">
+                        <label for="" class="form-label">Why No? </label>
+                        <input type="text" class="form-control" aria-label="100">
+                      </div>
+                    </div>
+                    <label for="" class=" mb-3">What sales training have you taken in the past?</label>
+                    {{form.past_sales_training}}
                   </div>
                 </div>
               </div>
-
-              <div class="card-footer">
-                <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
-                <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
-                <button class="action submit btn btn-sm btn-outline-success float-end"
-                  style="display: none" type="submit">Submit</button>
-              </div>
-            </form>
           </div>
 
+          <div class="card-footer">
+            <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
+            <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
+            <button class="action submit btn btn-sm btn-outline-success float-end" style="display: none"
+              type="submit">Submit</button>
+          </div>
+          </form>
         </div>
+
+      </div>
       </div>
       <!-- partial -->
 
@@ -282,7 +273,7 @@
         $("#pay" + demovalue).show();
       });
       // 
-      $(document).on('submit', '#detail-form', (e)=> {
+      $(document).on('submit', '#detail-form', (e) => {
         e.preventDefault();
         $.ajax({
           type: 'POST',
@@ -294,10 +285,10 @@
             row_data: $('#hidden-field').val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
           },
-          success:(response)=>{
+          success: (response) => {
             console.log(response)
           },
-          error:(response)=>{
+          error: (response) => {
             console.log('unsuccessfull :(')
           }
         })
@@ -316,7 +307,7 @@
         <td><input type='text' name='tot_rev' class='form-control extras'></td> 
         <td><input type='text' name='avg_ticket' class='form-control extras'></td> 
          <th><a href='javascript:void(0)' class='btn btn-danger deleteRow text-white'>-</a></th>`+
-      "</tr>"
+        "</tr>"
       $('tbody').append(tr);
     });
 
@@ -324,12 +315,12 @@
       $(this).parent().parent().remove();
     });
 
-    
+
     var objs = []
     var dic = {}
-    $('#save').click(()=>{
+    $('#save').click(() => {
       var objs = [];
-      $('.extras').each(function(){
+      $('.extras').each(function () {
         var value = this.name
         dic[value] = this.value
         objs.push(
@@ -351,7 +342,7 @@
     });
 
 
-   
+
 
 
 
