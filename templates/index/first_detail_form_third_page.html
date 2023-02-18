@@ -136,7 +136,12 @@
                                 </thead>
                                 <tbody>
 
-                                 
+                                  <tr class='adding'>
+                                    <input type="hidden" name="" id="hidden-field">
+                                    <td><input type='date' name='date' class='form-control extras '></td>
+                                    <td><input type='text' name='niche' class='form-control extras '></td> 
+                                    <td><input type='text' name='tot_rev' class='form-control extras '></td> 
+                                    <td><input type='text' name='avg_ticket' class='form-control extras '></td> 
 
                                   <tr>
                                     <td><input type="date" name="" class="form-control"></td>
@@ -162,7 +167,6 @@
                               <button type="button" class="btn btn-lg btn-success" id="save" data-bs-dismiss="modal">Save & Close</button>
                             </div> 
 
-                              
                               
                             </div>
                           </div>
@@ -287,12 +291,8 @@
             sales_process: $('#id_sales_process').val(),
             leads: $('#id_lead_generation').val(),
             past_sales: parseInt($('#id_past_sales_training').val()),
-<<<<<<< HEAD
-            row_data: JSON.stringify($('#hidden-field').val())
-=======
             row_data: $('#hidden-field').val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
->>>>>>> 2b349c9c254646f15bb903a537b4562ba2059bcb
           },
           success:(response)=>{
             console.log(response)
@@ -337,22 +337,18 @@
         );
 
       });
-
-      $('#hidden-field').val(objs)
-
       // let uniqueChars = [...new Set(objs)]
       $('#hidden-field').val(JSON.stringify(objs))
       console.log($('#hidden-field').val())
-
-      $('.extras').map( function(){ 
-        var name =$(this).attr('name')
-        var values = $(this).val()
-        objs[name] = values
-      }).get()
-      for(var obj in objs){
-        console.log(objs[obj])
-      }
-    })
+      // $('.extras').map( function(){ 
+      //   var name =$(this).attr('name')
+      //   var values = $(this).val()
+      //   objs[name] = values
+      // }).get()
+      // for(var obj in objs){
+      //   console.log(objs[obj])
+      // }
+    });
 
 
    
