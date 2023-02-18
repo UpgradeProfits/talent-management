@@ -75,7 +75,8 @@ def create_job(request):
     context = {
         'form': form,
     }
-    return render(request, 'index/post_job.html', context)
+    return render(request, 'post_job_step.html', context)
+    
 @allowed_user(allowed_roles=['seeker'], url='seekers')
 @login_required
 def viewJobs(request):

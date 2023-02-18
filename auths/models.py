@@ -220,6 +220,7 @@ class UserProfile(models.Model):
     pay = models.CharField(default='', blank=True, max_length=30, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission'), ('Hourly with commission', 'Hourly with commission')))
     expected_commission=models.IntegerField(default=0, blank=True)
     expected_hourly_pay=models.IntegerField(default=0, blank=True)
+    commission = models.IntegerField(default=0, blank=True)
     Why_are_you_interested_in_remote_sales = models.TextField(default='', blank=True, max_length=500)
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
