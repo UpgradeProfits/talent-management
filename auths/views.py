@@ -108,7 +108,7 @@ def createProfile(request):
             for day in days:
                 instance.days_available.add(day)
             
-            return redirect('jobs')
+            return redirect('details')
     context = {
         'form': form
     }
