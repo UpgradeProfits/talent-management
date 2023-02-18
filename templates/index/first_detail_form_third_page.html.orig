@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <!-- Bootstrap 5 CSS -->
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
+  <!-- Font Awesome 5 -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'>
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" /> -->
+
+  <!-- Demo CSS -->
+  <link rel="stylesheet" href="{%static 'css/demo.css' %}">
+
+</head>
+
+<body>
+  <style>
+    .myDiv {
+      display: none;
+      /* padding:10px; */
+    }
+
+    .payDiv {
+      display: none;
+      /* padding:10px; */
+    }
+
+    .opt-icon:hover {
+      color: rgb(2, 2, 66);
+
+    }
+
+    @keyframes vibrate {
+
+      0% {
+        transform: translateX(7px);
+
+      }
+
+      50% {
+        transform: translateX(15px);
+      }
+
+      100% {
+        transform: translateX(7px);
+      }
+
+    }
+
+    .opt-icon {
+      animation: 2s vibrate infinite;
+    }
+  </style>
+
+  <main>
+    <article>
+
+      <!-- partial:index.partial.html -->
+
+
+      <div class="container d-flex justify-content-center" style="min-width:720px!important">
+        <div class="col-11 col-offset-2">
+          <div class="progress mt-3" style="height: 30px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated"
+              style="font-weight:bold; font-size:15px;" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-header font-weight-bold">Fill Your Details</div>
+            <div class="card-body p-4 step">
+                        <h4>Please Fill This Form </h4>
+              <div class="radio-group row justify-content-between px-3 text-center"
+                style="justify-content:center !important">
+                <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
+                  <div class="opt-icon"><i class="fa fa-arrow-right" style="font-size: 80px; margin-left: 25px;"></i>
+                  </div>
+                  <p class="text-hover"><b>Click to Proceed</b></p>
+                </div>
+                <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio d-none">
+                  <div class="opt-icon"><i class="fas fa-users" style="font-size: 80px;"></i></div>
+                  <p><b>Sign In</b></p>
+                </div>
+              </div>
+              <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for
+                example <b>Gary Hendren</b></div>
+              <div class="searchfield input-group px-5">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white" aria-hidden="true"
+                    style="display: none;"></i></span>
+                <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search"
+                  style="display: none;">
+              </div>
+              <div id="filter-records" class="mx-5"></div>
+            </div>
+            <form action="" method="POST" id="detail-form">
+              {%csrf_token%}
+              <div id="userinfo" class="card-body p-4 step" style="display: none">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Information of Job </h5>
+                </div>
+
+                <div class="form-group row">
+
+
+                  <div class="form-group row pt-2">
+
+
+                    <div class="container">
+                      <label for="" class="form-label">What offer(s) have you worked on in the last 2 years? Please
+                        Include: Niche/ Offer, Ticket Price of Each Offer AND Total Revenue Generated On That Offer.
+                      </label>
+                      <div class="c0l-md-4">
+                        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal"
+                          data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Your Sales Info Here</button>
+                      </div>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog  modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <!-- <h5 class="modal-title" id="exampleModalLabel">New message</h5> -->
+
+                              <table class="table">
+                                <thead>
+
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Niche/Offer</th>
+                                    <th scope="col">Total Revenue Generated in Offer</th>
+                                    <th scope="col">Average Ticket Price Sold</th>
+                                    <th><a href="javascript:void(0)" class="btn btn-success addRow text-white">+</a>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                  <tr class='adding'>
+                                    <input type="hidden" name="" id="hidden-field">
+                                    <td><input type='date' name='date' class='form-control extras '></td>
+                                    <td><input type='text' name='niche' class='form-control extras '></td>
+                                    <td><input type='text' name='tot_rev' class='form-control extras '></td>
+                                    <td><input type='text' name='avg_ticket' class='form-control extras '></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                            <div class="modal-footer">
+<<<<<<< HEAD
+
+                              <button type="button" class="btn btn-lg btn-success" id="save" data-bs-dismiss="modal">Save & Close</button>
+                            </div> 
+
+                              
+=======
+                              <button type="button" class="btn btn-lg btn-success" id="save"
+                                data-bs-dismiss="modal">Save & Close</button>
+>>>>>>> 639f235c043ce75b1a93a48d890fcbeeab4c2044
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="col-md-12 mb-3 w-100">
+                    <label for="" class="form-label">What sales process are you used to?</label>
+                    {{form.sales_process}}
+
+                    <label for="" class="form-label">Have you done lead generation in the past?</label>
+                    {{form.lead_generation}}
+                    <div id="payone" class="payDiv">
+                      <div class="col-md-12 mb-3 mt-3 w-100">
+                        <label for="" class="form-label">Why Yes?</label>
+                        <input type="text" class="form-control" aria-label="100">
+                      </div>
+
+                    </div>
+                    <div id="paytwo" class="payDiv">
+                      <div class="col-md-12 mb-3 mt-3 w-100">
+                        <label for="" class="form-label">Why No? </label>
+                        <input type="text" class="form-control" aria-label="100">
+                      </div>
+                    </div>
+                    <label for="" class=" mb-3">What sales training have you taken in the past?</label>
+                    {{form.past_sales_training}}
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
+            <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
+            <button class="action submit btn btn-sm btn-outline-success float-end" style="display: none"
+              type="submit">Submit</button>
+          </div>
+          </form>
+        </div>
+
+      </div>
+      </div>
+      <!-- partial -->
+
+
+    </article>
+  </main>
+
+
+  <!-- jQuery JS -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <!-- Bootstrap 5 JS -->
+  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
+  <script>
+    $(function () {
+      //   $(document).on('submit', '#userprofile-form', (e)=>{
+      //     if($('#id_anything_else_important_to_you_that_we_should_know').val() != ''){
+      //       e.preventDefault()
+      //     }
+      //   })
+      $('#id_sales_process').attr('required', true);
+      $('#id_lead_generation').attr('required', true);
+      $('#id_past_sales_training').attr('required', true);
+      $('textarea').attr('required', true);
+      $('select').attr('required', true);
+    })
+    // adding bootstrap classes to django rendered form fields
+    var inputFields = document.getElementsByTagName('input')
+    var textboxFields = document.getElementsByTagName('textarea')
+    var selectFields = document.getElementsByTagName('select')
+
+    for (var fields in inputFields) {
+      if ('form-control' != inputFields[fields].className) {
+        inputFields[fields].className += 'form-control'
+      }
+    };
+
+    for (var fields in textboxFields) {
+      if ('form-control' != textboxFields[fields].className) {
+        textboxFields[fields].className += ' form-control'
+      }
+    };
+
+    for (var fields in selectFields) {
+      if ('form-control' != selectFields[fields].className) {
+        selectFields[fields].className += ' form-select'
+      }
+    };
+
+  </script>
+  <!-- Multi-step Form JS -->
+  <script src="{%static 'js/bootstrap-multi-step-form3.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script> -->
+  <!-- <script src="{%static 'js/main.js' %}"></script> -->
+  <script>
+    $(document).ready(function () {
+      $('#myselection').on('change', function () {
+        var demovalue = $(this).val();
+        $("div.myDiv").hide();
+        $("#show" + demovalue).show();
+      });
+      $('#id_pay').on('change', function () {
+        var demovalue = $(this).val();
+        $("div.payDiv").hide();
+        $("#pay" + demovalue).show();
+      });
+      // 
+      $(document).on('submit', '#detail-form', (e) => {
+        e.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: '/auth/details/success/',
+          data: {
+            sales_process: $('#id_sales_process').val(),
+            leads: $('#id_lead_generation').val(),
+            past_sales: parseInt($('#id_past_sales_training').val()),
+            row_data: $('#hidden-field').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          },
+          success: (response) => {
+            console.log(response)
+          },
+          error: (response) => {
+            console.log('unsuccessfull :(')
+          }
+        })
+      })
+    });
+
+
+  </script>
+  <script>
+    let count = 1
+    $('thead').on('click', '.addRow', function () {
+      new_count = count++
+      var tr = "<tr class='adding'>" +
+        `<td><input type='date' name='date' class='form-control extras'></td>
+        <td><input type='text' name='niche' class='form-control extras'></td> 
+        <td><input type='text' name='tot_rev' class='form-control extras'></td> 
+        <td><input type='text' name='avg_ticket' class='form-control extras'></td> 
+         <th><a href='javascript:void(0)' class='btn btn-danger deleteRow text-white'>-</a></th>`+
+        "</tr>"
+      $('tbody').append(tr);
+    });
+
+    $('tbody').on('click', '.deleteRow', function () {
+      $(this).parent().parent().remove();
+    });
+
+
+    var objs = []
+    var dic = {}
+    $('#save').click(() => {
+      var objs = [];
+      $('.extras').each(function () {
+        var value = this.name
+        dic[value] = this.value
+        objs.push(
+          dic
+        );
+
+      });
+      // let uniqueChars = [...new Set(objs)]
+      $('#hidden-field').val(JSON.stringify(objs))
+      console.log($('#hidden-field').val())
+      // $('.extras').map( function(){ 
+      //   var name =$(this).attr('name')
+      //   var values = $(this).val()
+      //   objs[name] = values
+      // }).get()
+      // for(var obj in objs){
+      //   console.log(objs[obj])
+      // }
+    });
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
