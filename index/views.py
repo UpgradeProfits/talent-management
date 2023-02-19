@@ -6,6 +6,7 @@ from .forms import AddVacancyForm
 from auths.forms import CountryForm, LanguageForm
 from django.http import JsonResponse, HttpResponse
 from .models import AddVacancy, Apply
+from .models import Apply
 from django.contrib.auth.decorators import login_required
 
 

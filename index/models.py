@@ -9,7 +9,7 @@ class AddVacancy(models.Model):
     company_name = models.CharField(default='', max_length=250, blank=True)
     category = models.CharField(default='', max_length=125, choices=(('Closer', 'Closer'), ('Appointment setter', 'Appointment setter'), ('Closer & Appointment setter', 'Closer & Appointment setter')), blank=True, null=True)
     job_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
-    pay_type = models.CharField(default='', blank=True, max_length=10, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission'), ('Hourly+', 'Hourly+')))
+    pay_type = models.CharField(default='', blank=True, max_length=25, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission'), ('Hourly With Commission', 'Hourly With Commission')))
     expected_commission=models.IntegerField(default=0, blank=True)
     expected_hourly_pay=models.IntegerField(default=0, blank=True)
     hourly_plus = models.IntegerField(default=0, blank=True)

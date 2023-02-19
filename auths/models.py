@@ -204,7 +204,7 @@ class UserProfile(models.Model):
     preferred_niche_to_sell = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'),('Enterprise Sales', 'Enterprise Sales'), ('Finance/Investing', 'Finance/Investing'), ('Fitness', 'Fitness'),('Home Improvement & Security', 'Home Improvement & Security'),('Innovative Software', 'Innovative Software'),('Insurance', 'Insurance'),
     ('Marketing & Advertising', 'Marketing & Advertising'),('Personal Development', 'Personal Development'),('Real Estate (Real Estate Agents/Mortgage)', 'Real Estate (Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Recruiting Services', 'Recruiting Services'),
     ('Relationship Coaching', 'Relationship Coaching'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Solar', 'Solar'),('Spirituality Coaching', 'Spirituality Coaching'),('Other', 'Other')))
-    days_available = models.ForeignKey('Days', blank=True, on_delete=models.CASCADE, null=True)
+    days_available =models.ManyToManyField('Days', blank=True)
 
     hours_available = models.IntegerField(default=0, blank=True)
     call_per_day = models.IntegerField(default=0, blank=True)
@@ -225,7 +225,7 @@ class UserProfile(models.Model):
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
     what_niche = models.CharField(default="", max_length=100, blank=True)
-    language = models.ManyToManyField('Language', blank=True, null=True)
+    language = models.ManyToManyField('Language', blank=True)
     are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS)
     past_trainings = models.CharField(default="", max_length=300, blank=True)
     past_leade_gen = models.CharField(max_length=255, choices=OPTIONS)
