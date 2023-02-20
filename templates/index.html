@@ -320,16 +320,16 @@
 
                   </div>
                 </div>
-                <div class="col-md-12 mb-3 mt-3 w-100">
+                <div class="col-md-12 mb-3 mt-3">
                   <label for="" class="form-label">Days Available</label>
                   {{form.days_available}}
                 </div>
-                <div class="col-md-12 mb-3 mt-3 w-100">
+                <div class="col-md-12 mb-3 mt-3">
                   <label for="" class="form-label">Skills</label>
                   {{form.skills}}
                 </div>
 
-                <div class="col-md-12 mb-3 mt-3 w-100">
+                <div class="col-md-12 mb-3 mt-3">
                   <label for="" class="form-label">Language</label>
                   {{form.language}}
                 </div>
@@ -474,8 +474,11 @@
     };
 
     const skillSelect = document.getElementById('id_skills').className += ' js-select2'
+    document.getElementById('id_skills').style = 'width: 100%'
     const languageSelect = document.getElementById('id_language').className += ' js-select2'
+    document.getElementById('id_language').style = 'width: 100%'
     const daysSelect = document.getElementById('id_days_available').className += ' js-select2'
+    document.getElementById('id_days_available').style = 'width: 100%'
   </script>
   <!-- Multi-step Form JS -->
   <script src="{%static 'js/bootstrap-multi-step-form3.js' %}"></script>
