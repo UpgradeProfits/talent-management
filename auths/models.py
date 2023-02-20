@@ -199,13 +199,10 @@ class UserProfile(models.Model):
     education = models.CharField(default='', blank=True, max_length=255)
     skills = models.ManyToManyField('Skills', blank=True, null=True)
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
-
-    
     preferred_niche_to_sell = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'),('Enterprise Sales', 'Enterprise Sales'), ('Finance/Investing', 'Finance/Investing'), ('Fitness', 'Fitness'),('Home Improvement & Security', 'Home Improvement & Security'),('Innovative Software', 'Innovative Software'),('Insurance', 'Insurance'),
     ('Marketing & Advertising', 'Marketing & Advertising'),('Personal Development', 'Personal Development'),('Real Estate (Real Estate Agents/Mortgage)', 'Real Estate (Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Recruiting Services', 'Recruiting Services'),
     ('Relationship Coaching', 'Relationship Coaching'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Solar', 'Solar'),('Spirituality Coaching', 'Spirituality Coaching'),('Other', 'Other')))
-    days_available = models.ForeignKey('Days', blank=True, on_delete=models.CASCADE, null=True)
-
+    days_available = models.ManyToManyField('Days', blank=True)
     hours_available = models.IntegerField(default=0, blank=True)
     call_per_day = models.IntegerField(default=0, blank=True)
     outbound_calls_per_day = models.IntegerField(default=0, blank=True)
