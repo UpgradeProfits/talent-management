@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {%load static%}
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,7 @@
   <link rel="stylesheet" href="{%static 'css/demo.css' %}">
 
 </head>
+
 <body>
   <style>
     .myDiv {
@@ -24,6 +26,11 @@
     }
 
     .payDiv {
+      display: none;
+      /* padding:10px; */
+    }
+
+    .commDiv {
       display: none;
       /* padding:10px; */
     }
@@ -53,51 +60,54 @@
     .opt-icon {
       animation: 2s vibrate infinite;
     }
-    #id_days_available:first-child{
+
+    .select2 .select2-container .select2-container--default .select2-container--below{
       width: 100% !important;
     }
   </style>
   <main>
-      <article>
+    <article>
 
-        <!-- partial:index.partial.html -->
-        <div class="container d-flex justify-content-center" style="min-width:720px!important">
-          <div class="col-11 col-offset-2">
-            <div class="progress mt-3" style="height: 30px;">
-              <div class="progress-bar progress-bar-striped progress-bar-animated"
-                style="font-weight:bold; font-size:15px;" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-              </div>
+      <!-- partial:index.partial.html -->
+      <div class="container d-flex justify-content-center" style="min-width:720px!important">
+        <div class="col-11 col-offset-2">
+          <div class="progress mt-3" style="height: 30px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated"
+              style="font-weight:bold; font-size:15px;" role="progressbar" aria-valuemin="0" aria-valuemax="100">
             </div>
-            <div class="card mt-3">
-              <div class="card-header font-weight-bold">Fill Your Details</div>
-              <div class="card-body p-4 step">
-                <div class="px-3 py-2 mx-auto">
-                  <iframe src="https://drive.google.com/file/d/1_XlBVExNsPuMGHQB_eGIxuFp2uCTvnRG/preview" class="w-100 px-3" height="345" allow="autoplay"></iframe>
-                </div>
-                <div class="radio-group row justify-content-between px-3 text-center"
-                  style="justify-content:center !important">
-                  <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
-                    <div class="opt-icon"><i class="fa fa-arrow-right" style="font-size: 80px; margin-left: 25px;"></i>
-                    </div>
-                    <p class="text-hover"><b>Click "Next" To Proceed</b></p>
-                    
-                  </div>
-                  <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio d-none">
-                    <div class="opt-icon"><i class="fas fa-users" style="font-size: 80px;"></i></div>
-                    <p><b>Sign In</b></p>
-                  </div>
-                </div>
-                <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for
-                  example <b>Gary Hendren</b></div>
-                <div class="searchfield input-group px-5">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white"
-                      aria-hidden="true" style="display: none;"></i></span>
-                  <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search"
-                    style="display: none;">
-                </div>
-                <div id="filter-records" class="mx-5"></div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-header font-weight-bold">Fill Your Details</div>
+            <div class="card-body p-4 step">
+              <div class="px-3 py-2 mx-auto">
+                <iframe src="https://drive.google.com/file/d/1_XlBVExNsPuMGHQB_eGIxuFp2uCTvnRG/preview"
+                  class="w-100 px-3" height="345" allow="autoplay"></iframe>
               </div>
+              <div class="radio-group row justify-content-between px-3 text-center"
+                style="justify-content:center !important">
+                <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
+                  <div class="opt-icon"><i class="fa fa-arrow-right" style="font-size: 80px; margin-left: 25px;"></i>
+                  </div>
+                  <p class="text-hover"><b>Click "Next" To Proceed</b></p>
 
+                </div>
+                <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio d-none">
+                  <div class="opt-icon"><i class="fas fa-users" style="font-size: 80px;"></i></div>
+                  <p><b>Sign In</b></p>
+                </div>
+              </div>
+              <div class="searchfield text-center pb-1" style="font-size:12px; display: none  !important;">Search for
+                example <b>Gary Hendren</b></div>
+              <div class="searchfield input-group px-5">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white" aria-hidden="true"
+                    style="display: none;"></i></span>
+                <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search"
+                  style="display: none;">
+              </div>
+              <div id="filter-records" class="mx-5"></div>
+            </div>
+
+<<<<<<< HEAD
               <div id="userinfo" class="card-body p-4 step" style="display: none;">
                 <div class="text-center">
                   <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video With Following Questions </h5>
@@ -151,11 +161,65 @@
                       </div>
                       <div class=" d-flex"><p class="m-0 text-white px-4">1ST RECORD</p><p class="m-0 text-white ">2ND STOP</p><p class="m-0 text-white px-3">3RD DOWNLOAD</p></div>
            
+
+            <div id="userinfo" class="card-body p-4 step" style="display: none;">
+              <div class="text-center">
+                <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video</h5>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12 position-sticky">
+                  <div class=" container d-flex mt-2 px-0 align-items-center justify-content-center flex-column " style="background-color: #002244; border-bottom-right-radius: 10px;
+                    border-bottom-left-radius: 10px;">
+
+
+                    <video id="video" class="w-100" style="background-color: black;" autoplay=""></video>
+
+                    <div class="d-flex mt-2 align-content-center justify-content-around ">
+                      <button id="start-button" class="btn  mx-2">
+                        <svg width="64px" height="64px" viewBox="-2.5 -2.5 30.00 30.00" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path
+                              d="M20.82 9.27L16.18 11.07C15.85 11.2 15.5 10.96 15.5 10.6V7.5C15.5 7.22 15.28 7 15 7H3C2.72 7 2.5 7.22 2.5 7.5V17.5C2.5 17.78 2.72 18 3 18H15C15.28 18 15.5 17.78 15.5 17.5V14.4C15.5 14.05 15.85 13.81 16.18 13.93L20.82 15.73C21.15 15.86 21.5 15.62 21.5 15.26V9.72C21.5 9.38 21.15 9.14 20.82 9.27Z"
+                              stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path
+                              d="M5.5 11C6.05228 11 6.5 10.5523 6.5 10C6.5 9.44772 6.05228 9 5.5 9C4.94772 9 4.5 9.44772 4.5 10C4.5 10.5523 4.94772 11 5.5 11Z"
+                              fill="#ffffff"></path>
+                          </g>
+                        </svg></button>
+                      <button id="stop-button" class="btn  mx-2" disabled=""><svg fill="#fff" width="30px" height="30px"
+                          viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path
+                              d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z">
+                            </path>
+                          </g>
+                        </svg></button>
+                      <a id="download-link" class="btn  mx-2"
+                        style="background-color: transparent !important; border: none;" download="recording.mp4"><svg
+                          width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path
+                              d="M12 12V19M12 19L9.75 16.6667M12 19L14.25 16.6667M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333"
+                              stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </g>
+                        </svg></a>
+                    </div>
+                    <div class=" d-flex">
+                      <p class="m-0 text-white px-4">RECORD</p>
+                      <p class="m-0 text-white ">STOP</p>
+                      <p class="m-0 text-white px-3">DOWNLOAD</p>
+
                     </div>
 
-
                   </div>
-                </div>
+
 
                 <div class="text-center row w-100 pt-4">
                   <h5 class="card-title font-weight-bold pb-2">Instruction To Record A Video (3 Min Max)</h5>
@@ -172,13 +236,34 @@
                     </ul>
                     <p></p>
                   </div>
-                </div>
 
+
+
+                </div>
+              </div>
+
+              <div class="text-center row w-100 pt-4">
+                <h5 class="card-title font-weight-bold pb-2">Instruction To Record A Video (3 Min Max)</h5>
+                <div class="text-start px-4">
+                  <p>
+                  </p>
+                  <ul>
+                    <li>Introduce Yourself</li>
+                    <li>Past Experience &amp; Training(If any)</li>
+                    <li>Why We Should Hire You?</li>
+                    <li>What Are Your Goals And Aspirations?</li>
+                    <li>See the demo To Record a Video <a href="#" target="_blank"><strong>Click Here</strong></a>
+                    </li>
+                  </ul>
+                  <p></p>
+                </div>
               </div>
 
             </div>
-            <form action="" method="POST" enctype="multipart/form-data" id="userprofile-form">
-              {%csrf_token%}
+
+          </div>
+          <form action="" method="POST" enctype="multipart/form-data" id="userprofile-form">
+            {%csrf_token%}
             <div class="card-body p-4 step" style="display: none">
               <div class="text-center">
                 <h5 class="card-title font-weight-bold pb-2">Personal Information </h5>
@@ -283,26 +368,44 @@
                   <h5 class="card-title font-weight-bold pb-2">Professional Information Part-II </h5>
                 </div>
                 <div class="col-md-12 mb-3 mt-3 w-100">
-                  <label for="" class="form-label">Are you comfortable with 100% commission-based pay?</label>
-                  {{form.are_you_comfortable_with_commission_based_pay}}
+                  <div class="container">
+                    <label for="" class="form-label">Are you open to 100% Commission?</label>
+                    <select class="form-select" aria-label="Default select example" id="commission_selection" name="commission_selection">
+                      <option value="">Select</option>
+                      <option value="">Yes</option>
+                      <option value="no">No</option>
+
+
+                    </select>
+                    <!-- <div id="commno" class="commDiv">
+                        <div class="col-md-12 mb-3 mt-3 w-100">			
+                            <label for="" class="form-label">Why Yes?</label>
+                            <input type="text" class="form-control" aria-label="100">		  
+                          </div> -->
+
+                    <!-- </div> -->
+                    <div id="commno" class="commDiv">
+                      <div class="col-md-12 mb-3 mt-3 w-100">
+                        <label for="" class="form-label">Commission % </label>
+                        <input type="number" class="form-control" aria-label="100" name="commission-num" value="0">
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3 mt-3">
+                  <label for="" class="form-label">Days Available</label>
+                  <input type="hidden" name="available_days" id="available_days">
+                  {{form.days_available}}
+                </div>
+                <div class="col-md-12 mb-3 mt-3">
+                  <label for="" class="form-label">Skills</label>
+                  <input type="hidden" name="skills_list" id="skills_list">
+                  {{form.skills}}
                 </div>
 
-                <div class="col-md-12 mb-3 mt-3 w-100">
-                  <label for="" class="form-label">Average ticket price sold?</label>
-                  {{form.average_tickets_sold}}
-                </div>
-
-                <div class="col-md-12 mb-3 mt-3 w-100">
-                  <label for="" class="form-label">Average unit sold?</label>
-                  {{form.average_units_sold}}
-                </div>
-
-                <div class="col-md-12 mb-3 mt-3 w-100">
-                  <label for="" class="form-label">How many offers have you worked on in the last 2 years? how much have
-                    you sold on Average on those past offers?</label>
-                  {{form.offers_worked_on_past_years}}
-                </div>
-
+<<<<<<< HEAD
                   <div class="col-md-12 mb-3 mt-3 w-100">
                     <label for="" class="form-label">Days Available</label>
                     {{form.days_available}}
@@ -316,6 +419,13 @@
                     <label for="" class="form-label">Languages That you can speak Fluently</label>
                     {{form.language}}
                   </div>
+
+                <div class="col-md-12 mb-3 mt-3">
+                  <label for="" class="form-label">Language</label>
+                  <input type="hidden" name="langs" id="langs">
+                  {{form.language}}
+                </div>
+
               </div>
             </div>
 
@@ -326,22 +436,8 @@
                 <div class="text-center">
                   <h5 class="card-title font-weight-bold pb-2">Professional Information Part-III </h5>
                 </div>
-                <div class="col-md-12 mb-3 mt-3 w-100">
-                  <label for="" class="form-label">Did you have to do any of the lead gen in the past?</label>
-                  {{form.past_leade_gen}}
-                </div>
 
-                <div class="mb-3 w-100">
-                  <label for="exampleFormControlTextarea1" class="form-label">Why Yes | Why No?</label>
-                  {{form.reason}}
-                </div>
 
-                <div class="mb-3 w-100">
-                  <label for="exampleFormControlTextarea1" class="form-label">What offers have you worked on? what was
-                    the
-                    niche & ticket price?</label>
-                  {{form.offers_worked_on_niche_and_ticket_price}}
-                </div>
                 <div class="mb-3 w-100">
                   <label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions?
                     where
@@ -401,14 +497,14 @@
                     </div>
 
                   </div>
-                  <div id="payCommission" class="payDiv">
+                  <!-- <div id="payCommission" class="payDiv">
                     <div class="col-md-12 mb-3 mt-3 w-100">
                       <label for="" class="form-label">Expected Commission (%) </label>
                       {{form.expected_commission}}
                     </div>
 
 
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -417,18 +513,19 @@
 
 
             <div class="card-footer">
-              <button class="action back btn btn-sm btn-outline-warning" style="display: none" type="button">Back</button>
+              <button class="action back btn btn-sm btn-outline-warning" style="display: none"
+                type="button">Back</button>
               <button class="action next btn btn-success float-end" disabled type="button">Next</button>
               <button class="action submit btn btn-sm btn-outline-success float-start" id="submit_btn" type="submit"
                 style="display: none">Submit</button>
             </div>
           </form>
-          </div>
+        </div>
 
-        </div>
-        </div>
-        <!-- partial -->
-      </article>
+      </div>
+      </div>
+      <!-- partial -->
+    </article>
   </main>
 
 
@@ -437,15 +534,10 @@
   <!-- Bootstrap 5 JS -->
   <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
   <script>
-    $(function(){
-    //   $(document).on('submit', '#userprofile-form', (e)=>{
-    //     if($('#id_anything_else_important_to_you_that_we_should_know').val() != ''){
-    //       e.preventDefault()
-    //     }
-    //   })
-    $('input').attr('required', true);
-    $('textarea').attr('required', true);
-    $('select').attr('required', true);
+    $(function () {
+      $('input').attr('required', false);
+      $('textarea').attr('required', false);
+      $('select').attr('required', false);
     })
     // adding bootstrap classes to django rendered form fields
     var inputFields = document.getElementsByTagName('input')
@@ -470,9 +562,12 @@
       }
     };
 
-    const skillSelect = document.getElementById('id_skills').className += ' js-select2 w-100'
-    const languageSelect = document.getElementById('id_language').className += ' js-select2 w-100'
-    const daysSelect = document.getElementById('id_days_available').className += ' js-select2 w-100'
+    const skillSelect = document.getElementById('id_skills').className += ' js-select2'
+    document.getElementById('id_skills').style = 'width: 100%'
+    const languageSelect = document.getElementById('id_language').className += ' js-select2'
+    document.getElementById('id_language').style = 'width: 100%'
+    const daysSelect = document.getElementById('id_days_available').className += ' js-select2'
+    document.getElementById('id_days_available').style = 'width: 100%'
   </script>
   <!-- Multi-step Form JS -->
   <script src="{%static 'js/bootstrap-multi-step-form3.js' %}"></script>
@@ -529,24 +624,24 @@
         console.log(uniqueChars);
       })
     }
-  // Check file types
-  // check resume //
-  $("#id_resume").change(function () {
-        var fileExtension = ['mp4'];
-        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            alert("Only formats are allowed : "+fileExtension.join(', '));
-            $("#id_resume").val(null);
-        }
+    // Check file types
+    // check resume //
+    $("#id_resume").change(function () {
+      var fileExtension = ['mp4'];
+      if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+        alert("Only formats are allowed : " + fileExtension.join(', '));
+        $("#id_resume").val(null);
+      }
     });
-  // check video file type
-  $("#id_profile_video").change(function () {
-        var fileExtension = ['mp4', 'MOV'];
-        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            alert("Only formats are allowed : "+fileExtension.join(', '));
-            $("#id_profile_video").val(null);
-        }
+    // check video file type
+    $("#id_profile_video").change(function () {
+      var fileExtension = ['mp4', 'MOV'];
+      if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+        alert("Only formats are allowed : " + fileExtension.join(', '));
+        $("#id_profile_video").val(null);
+      }
     });
-</script>
+  </script>
   <script>
 
     var videoElement = document.getElementById('video');
@@ -600,5 +695,22 @@
     };
 
   </script>
+  <script>
+    $(document).ready(function () {
+      $('#myselection').on('change', function () {
+        var demovalue = $(this).val();
+        $("div.myDiv").hide();
+        $("#show" + demovalue).show();
+      });
+      $('#commission_selection').on('change', function () {
+        var demovalue = $(this).val();
+        $("div.commDiv").hide();
+        $("#comm" + demovalue).show();
+      });
+    });
+
+
+  </script>
 </body>
+
 </html>

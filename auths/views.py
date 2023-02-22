@@ -93,6 +93,8 @@ def createProfile(request):
             instance.user = request.user
             instance.first_name = request.user.first_name
             instance.last_name = request.user.last_name
+            instance.are_you_comfortable_with_commission_based_pay = request.POST.get('commission_selection')
+            instance.commission = request.POST.get('commission-num')
             instance.save()
             skills = request.POST.getlist('skills_list')
             days = request.POST.getlist('available_days')
@@ -109,6 +111,8 @@ def createProfile(request):
                 instance.days_available.add(day)
             
             return redirect('details')
+        else:
+            print(form.errors)
     context = {
         'form': form
     }

@@ -199,8 +199,6 @@ class UserProfile(models.Model):
     education = models.CharField(default='', blank=True, max_length=255)
     skills = models.ManyToManyField('Skills', blank=True, null=True)
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
-
-    
     preferred_niche_to_sell = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'),('Enterprise Sales', 'Enterprise Sales'), ('Finance/Investing', 'Finance/Investing'), ('Fitness', 'Fitness'),('Home Improvement & Security', 'Home Improvement & Security'),('Innovative Software', 'Innovative Software'),('Insurance', 'Insurance'),
     ('Marketing & Advertising', 'Marketing & Advertising'),('Personal Development', 'Personal Development'),('Real Estate (Real Estate Agents/Mortgage)', 'Real Estate (Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Recruiting Services', 'Recruiting Services'),
     ('Relationship Coaching', 'Relationship Coaching'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Solar', 'Solar'),('Spirituality Coaching', 'Spirituality Coaching'),('Other', 'Other')))
@@ -225,10 +223,13 @@ class UserProfile(models.Model):
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
     what_niche = models.CharField(default="", max_length=100, blank=True)
+
     language = models.ManyToManyField('Language', blank=True)
     are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS)
+    language = models.ManyToManyField('Language', blank=True, null=True)
+    are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS, blank=True)
     past_trainings = models.CharField(default="", max_length=300, blank=True)
-    past_leade_gen = models.CharField(max_length=255, choices=OPTIONS)
+    past_leade_gen = models.CharField(max_length=255, choices=OPTIONS, blank=True)
     reason = models.TextField(default='', blank=True, max_length=500)
     offers_worked_on_niche_and_ticket_price = models.CharField(default="", max_length=300, blank=True)
     offers_worked_on_past_years = models.CharField(default="", max_length=300, blank=True)
