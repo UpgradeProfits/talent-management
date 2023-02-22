@@ -71,7 +71,7 @@
           <div class="card mt-3">
             <div class="card-header font-weight-bold">Fill Your Details</div>
             <div class="card-body p-4 step">
-                        <h4>Please Fill This Form </h4>
+              <h4>Please Fill This Form </h4>
               <div class="radio-group row justify-content-between px-3 text-center"
                 style="justify-content:center !important">
                 <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
@@ -302,7 +302,10 @@
         "</tr>"
       $('tbody').append(tr);
     });
+    if (count === 14) {
+      $('.addRow').prop('disabled', true)
 
+    }
     $('tbody').on('click', '.deleteRow', function () {
       $(this).parent().parent().remove();
     });
@@ -332,16 +335,6 @@
       //   console.log(objs[obj])
       // }
     })
-
-
-
-
-
-
-
-
-
-
   </script>
 </body>
 
