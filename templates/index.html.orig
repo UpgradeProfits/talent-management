@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-white">
+<body>
   <style>
     .myDiv {
       display: none;
@@ -107,6 +107,61 @@
               <div id="filter-records" class="mx-5"></div>
             </div>
 
+<<<<<<< HEAD
+              <div id="userinfo" class="card-body p-4 step" style="display: none;">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video With Following Questions </h5>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-12 position-sticky">
+                    <div class=" container d-flex mt-2 px-0 align-items-center justify-content-center flex-column "
+                      style="background-color: #002244; border-bottom-right-radius: 10px;
+                    border-bottom-left-radius: 10px;">
+
+
+                      <video id="video" class="w-100" style="background-color: black;" autoplay=""></video>
+
+                      <div class="d-flex mt-2 align-content-center justify-content-around ">
+                        <button id="start-button" class="btn  mx-2">
+                          <svg width="64px" height="64px" viewBox="-2.5 -2.5 30.00 30.00" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M20.82 9.27L16.18 11.07C15.85 11.2 15.5 10.96 15.5 10.6V7.5C15.5 7.22 15.28 7 15 7H3C2.72 7 2.5 7.22 2.5 7.5V17.5C2.5 17.78 2.72 18 3 18H15C15.28 18 15.5 17.78 15.5 17.5V14.4C15.5 14.05 15.85 13.81 16.18 13.93L20.82 15.73C21.15 15.86 21.5 15.62 21.5 15.26V9.72C21.5 9.38 21.15 9.14 20.82 9.27Z"
+                                stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+                              </path>
+                              <path
+                                d="M5.5 11C6.05228 11 6.5 10.5523 6.5 10C6.5 9.44772 6.05228 9 5.5 9C4.94772 9 4.5 9.44772 4.5 10C4.5 10.5523 4.94772 11 5.5 11Z"
+                                fill="#ffffff"></path>
+                            </g>
+                          </svg></button>
+                        <button id="stop-button" class="btn  mx-2" disabled=""><svg fill="#fff" width="30px"
+                            height="30px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M197.09082,208H58.90918A10.92117,10.92117,0,0,1,48,197.09082V58.90918A10.92148,10.92148,0,0,1,58.90918,48H197.09082A10.92148,10.92148,0,0,1,208,58.90918V197.09082A10.92117,10.92117,0,0,1,197.09082,208ZM58.90918,56A2.91232,2.91232,0,0,0,56,58.90918V197.09082A2.912,2.912,0,0,0,58.90918,200H197.09082A2.912,2.912,0,0,0,200,197.09082V58.90918A2.91232,2.91232,0,0,0,197.09082,56Z">
+                              </path>
+                            </g>
+                          </svg></button>
+                        <a id="download-link" class="btn  mx-2"
+                          style="background-color: transparent !important; border: none;" download="recording.mp4"><svg
+                            width="64px" height="64px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M12 12V19M12 19L9.75 16.6667M12 19L14.25 16.6667M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333"
+                                stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                          </svg></a>
+                      </div>
+                      <div class=" d-flex"><p class="m-0 text-white px-4">1ST RECORD</p><p class="m-0 text-white ">2ND STOP</p><p class="m-0 text-white px-3">3RD DOWNLOAD</p></div>
+           
+=======
             <div id="userinfo" class="card-body p-4 step" style="display: none;">
               <div class="text-center">
                 <h5 class="card-title font-weight-bold pb-2">Record Your Introductory Video</h5>
@@ -157,14 +212,33 @@
                         </svg></a>
                     </div>
                     <div class=" d-flex">
-                      <p class="m-0 text-white px-4">1ST RECORD</p>
-                      <p class="m-0 text-white ">2ND STOP</p>
-                      <p class="m-0 text-white px-3">3RD DOWNLOAD</p>
+                      <p class="m-0 text-white px-4">RECORD</p>
+                      <p class="m-0 text-white ">STOP</p>
+                      <p class="m-0 text-white px-3">DOWNLOAD</p>
+>>>>>>> 99573ac4544a3233e99e679cbc1109278ec4240e
                     </div>
 
                   </div>
 
+<<<<<<< HEAD
+                <div class="text-center row w-100 pt-4">
+                  <h5 class="card-title font-weight-bold pb-2">Instruction To Record A Video (3 Min Max)</h5>
+                  <div class="text-start px-4">
+                    <p>
+                    </p>
+                    <ul>
+                      <li>Introduce Yourself</li>
+                      <li>Past Experience &amp; Training(If any)</li>
+                      <li>Why are you the right person to be hired for the position?</li>
+                      <li>What Are Your Goals And Aspirations?</li>
+                      <li>You can see the demo video by <a href="#" target="_blank"><strong>Clicking Here</strong></a>
+                      </li>
+                    </ul>
+                    <p></p>
+                  </div>
+=======
 
+>>>>>>> 99573ac4544a3233e99e679cbc1109278ec4240e
                 </div>
               </div>
 
@@ -176,7 +250,7 @@
                   <ul>
                     <li>Introduce Yourself</li>
                     <li>Past Experience &amp; Training(If any)</li>
-                    <li>Why are you the right person to be hired for the position?</li>
+                    <li>Why We Should Hire You?</li>
                     <li>What Are Your Goals And Aspirations?</li>
                     <li>See the demo To Record a Video <a href="#" target="_blank"><strong>Click Here</strong></a>
                     </li>
@@ -192,8 +266,7 @@
             {%csrf_token%}
             <div class="card-body p-4 step" style="display: none">
               <div class="text-center">
-                <h5 class="card-title font-weight-bold pb-2">Tell us a bit about yourself!
-       (Step 1/3)</h5>
+                <h5 class="card-title font-weight-bold pb-2">Personal Information </h5>
               </div>
 
               <div class="mb-3">
@@ -210,7 +283,7 @@
                   <label for="validationCustom03" class="form-label">Your Current Address</label>
                   {{form.address}}
                   <div class="invalid-feedback">
-                    Please provide a valid city.
+                    Please provide a valid address.
                   </div>
                 </div>
 
@@ -230,7 +303,7 @@
                   </div>
 
                   <div class="col-4">
-                    <label for="validationCustom05" class="form-label">Country of Citizenship?</label>
+                    <label for="validationCustom05" class="form-label">Your Country of Citizenship</label>
                     {{form.nationality}}
                   </div>
                 </div>
@@ -240,7 +313,7 @@
                   <label for="validationCustom05" class="form-label">Your Current Postal Code</label>
                   {{form.zip_code}}
                   <div class="invalid-feedback ">
-                    Please provide a valid zip.
+                    Please provide a valid Postal Code.
                   </div>
                 </div>
                 <div class="col-6 px-2">
@@ -248,11 +321,6 @@
                     <label for="validationCustom05" class="form-label">Your Gender</label>
                     {{form.gender}}
                   </div>
-                </div>
-                <div class="col-md-12 mb-3 mt-3">
-                  <label for="" class="form-label">Languages That you can speak Fluently</label>
-                  <input type="hidden" name="langs" id="langs">
-                  {{form.language}}
                 </div>
 
 
@@ -262,9 +330,7 @@
             <div class="card-body p-5 step" style="display: none">
               <div class="form-group row mt-2 pt-2">
                 <div class="text-center">
-                  <h5 class="card-title font-weight-bold pb-2">What are you interested in selling?
-     (Almost there! Step 2/3)
-</h5>
+                  <h5 class="card-title font-weight-bold pb-2">Professional Information Part-I </h5>
                 </div>
                 <div class="mb-3">
                   <label for="formFileMultiple" class="form-label">Upload your best sales video or call recording (Optional)</label>
@@ -295,51 +361,153 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="card-body p-5 step" style="display: none">
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Professional Information Part-II </h5>
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
+                  <div class="container">
+                    <label for="" class="form-label">Are you open to 100% Commission?</label>
+                    <select class="form-select" aria-label="Default select example" id="commission_selection" name="commission_selection">
+                      <option value="">Select</option>
+                      <option value="">Yes</option>
+                      <option value="no">No</option>
 
-             <div class="col-md-12 mb-3 mt-3">
+
+                    </select>
+                    <!-- <div id="commno" class="commDiv">
+                        <div class="col-md-12 mb-3 mt-3 w-100">			
+                            <label for="" class="form-label">Why Yes?</label>
+                            <input type="text" class="form-control" aria-label="100">		  
+                          </div> -->
+
+                    <!-- </div> -->
+                    <div id="commno" class="commDiv">
+                      <div class="col-md-12 mb-3 mt-3 w-100">
+                        <label for="" class="form-label">Commission % </label>
+                        <input type="number" class="form-control" aria-label="100" name="commission-num" value="0">
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3 mt-3">
                   <label for="" class="form-label">Days Available</label>
                   <input type="hidden" name="available_days" id="available_days">
                   {{form.days_available}}
                 </div>
-             <div class="col-md-12 mb-3 mt-3">
-                  <label for="" class="form-label">Your Current Timezone</label>
-                  {{form.timezones}}
+                <div class="col-md-12 mb-3 mt-3">
+                  <label for="" class="form-label">Skills</label>
+                  <input type="hidden" name="skills_list" id="skills_list">
+                  {{form.skills}}
+                </div>
+
+<<<<<<< HEAD
+                  <div class="col-md-12 mb-3 mt-3 w-100">
+                    <label for="" class="form-label">Days Available</label>
+                    {{form.days_available}}
+                  </div>
+                  <div class="col-md-12 mb-3 mt-3 w-100">
+                    <label for="" class="form-label">Skills</label>
+                    {{form.skills}}
+                  </div>
+
+                  <div class="col-md-12 mb-3 mt-3 w-100">
+                    <label for="" class="form-label">Languages That you can speak Fluently</label>
+                    {{form.language}}
+                  </div>
+=======
+                <div class="col-md-12 mb-3 mt-3">
+                  <label for="" class="form-label">Language</label>
+                  <input type="hidden" name="langs" id="langs">
+                  {{form.language}}
+                </div>
+>>>>>>> 99573ac4544a3233e99e679cbc1109278ec4240e
+              </div>
+            </div>
+
+            <div class="card-body p-5 step" style="display: none">
+
+
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Professional Information Part-III </h5>
                 </div>
 
 
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">Why did you leave your past positions?
+                    where
+                    were you strong in those past positions? What are your weaknesses in sales?</label>
+                  {{form.reason_for_leaving_last_position}}
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">How does a sales role fit in with your
+                    short
+                    and long-term goals?</label>
+                  {{form.how_does_a_sales_fit_your_goals}}
+                </div>
 
-                 <div class="col-md-12 mb-3 mt-3 w-100">
+              </div>
+
+
+
+
+
+
+            </div>
+
+
+            <div class="card-body p-5 step" style="display: none">
+              <div class="form-group row mt-2 pt-2">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Academic Information</h5>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea1" class="form-label">Education</label>
+                  {{form.education}}
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea2" class="form-label">Experience</label>
+                  {{form.experience}}
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea3" class="form-label">Achievements</label>
+                  {{form.achievements}}
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea4" class="form-label">Cover Letter</label>
+                  {{form.cover_letter}}
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="exampleFormControlTextarea4" class="form-label">Is there anything else that we should know
+                    is important to you?</label>
+                  {{form.anything_else_important_to_you_that_we_should_know}}
+                </div>
+                <div class="col-md-12 mb-3 mt-3 w-100">
                   <label for="" class="form-label">How you want to be get paid?</label>
                   {{form.pay}}
-                  <!--<div id="payHourly" class="payDiv">-->
-                  <!--  <div class="col-md-12 mb-3 mt-3 w-100">-->
-                  <!--    <label for="" class="form-label">Expected Hourly Pay ($)</label>-->
-                  <!--    {{form.expected_hourly_pay}}-->
-                  <!--  </div>-->
+                  <div id="payHourly" class="payDiv">
+                    <div class="col-md-12 mb-3 mt-3 w-100">
+                      <label for="" class="form-label">Expected Hourly Pay ($)</label>
+                      {{form.expected_hourly_pay}}
+                    </div>
 
-                  <!--</div>-->
-                  <!-- <div id="payCommission" class="payDiv">-->
-                  <!--  <div class="col-md-12 mb-3 mt-3 w-100">-->
-                  <!--    <label for="" class="form-label">Expected Commission (%) </label>-->
-                  <!--    {{form.expected_commission}}-->
-                  <!--  </div>-->
-
-
-                  <!--</div>-->
-                  <!--  <div id="payHourly_with_commission" class="payDiv">-->
-                  <!--  <div class="col-md-12 mb-3 mt-3 w-100">-->
-                  <!--    <label for="" class="form-label">Hourly($) With Commission (%) </label>-->
-                  <!--    {{form.hourly_commission}}-->
-                  <!--  </div>-->
+                  </div>
+                  <!-- <div id="payCommission" class="payDiv">
+                    <div class="col-md-12 mb-3 mt-3 w-100">
+                      <label for="" class="form-label">Expected Commission (%) </label>
+                      {{form.expected_commission}}
+                    </div>
 
 
-                  <!--</div>-->
-
+                  </div> -->
                 </div>
-                </div>
-
-
-
+              </div>
+            </div>
 
 
 
@@ -349,7 +517,7 @@
                 type="button">Back</button>
               <button class="action next btn btn-success float-end" disabled type="button">Next</button>
               <button class="action submit btn btn-sm btn-outline-success float-start" id="submit_btn" type="submit"
-                style="display: none">Next</button>
+                style="display: none">Submit</button>
             </div>
           </form>
         </div>
@@ -438,7 +606,7 @@
       var selected_skill = $('#id_skills').select2();
       var selected_lang = $('#id_language').select2();
       var selected_days = $('#id_days_available').select2();
-      //
+      // 
       new_vals(`#id_skills`, select_skills, new_skills);
       new_vals('#id_language', select_langs, new_langs);
       new_vals('#id_days_available', select_days, new_days);

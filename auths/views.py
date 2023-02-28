@@ -34,11 +34,11 @@ def sign_up(request):
         create_user.set_password(password)
         create_user.save()
         mssg = f"Account created successfully for {email}"
-        message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, please do verify your account here at http://localhost:8000/ so we can tell you are wonderful person :) \n \n<b>Tech Team</b>"""
-        subject = f'verify account for {email}'
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [email,]
-        send_mail( subject, message, email_from, recipient_list, fail_silently=False)
+        # message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, please do verify your account here at http://localhost:8000/ so we can tell you are wonderful person :) \n \n<b>Tech Team</b>"""
+        # subject = f'verify account for {email}'
+        # email_from = settings.EMAIL_HOST_USER
+        # recipient_list = [email,]
+        # send_mail( subject, message, email_from, recipient_list, fail_silently=False)
 
     return HttpResponse(mssg)
 
@@ -46,7 +46,7 @@ def sign_up(request):
 @unauthenticated_user
 def sign_in_view(request):
     """
-    Sign In page staging view 
+    Sign In page staging view
     """
     context= {}
     return render(request, 'login.html', context)
@@ -67,7 +67,6 @@ def sign_in(request):
         return HttpResponse('authenticated :)')
     else:
         return HttpResponse('email or password is incorrect')
-
 
 def log_out(request, user):
     # context={'num':num}
@@ -93,6 +92,8 @@ def createProfile(request):
             instance.user = request.user
             instance.first_name = request.user.first_name
             instance.last_name = request.user.last_name
+            instance.are_you_comfortable_with_commission_based_pay = request.POST.get('commission_selection')
+            instance.commission = request.POST.get('commission-num')
             instance.save()
             skills = request.POST.getlist('skills_list')
             days = request.POST.getlist('available_days')
@@ -107,8 +108,10 @@ def createProfile(request):
                 instance.language.add(lang)
             for day in days:
                 instance.days_available.add(day)
-            
+
             return redirect('details')
+        else:
+            print(form.errors)
     context = {
         'form': form
     }
@@ -121,6 +124,7 @@ def update_category(request):
     user.update(category=category, authenticated=value)
     response = 'successfull!!'
     return HttpResponse(response)
+
 @login_required
 def updateProfile(request, pk, slug):
     data = UserProfile.objects.get(id=pk)
@@ -165,6 +169,7 @@ def client_profile(request):
     }
     return render(request, 'index/client-form.html', context)
 
+
 @csrf_protect
 @ensure_csrf_cookie
 def other_form(request):
@@ -176,6 +181,7 @@ def other_form(request):
     }
     return render(request, 'index/first_detail_form_third_page.html', context)
 
+
 @csrf_protect
 @ensure_csrf_cookie
 def other_form_ajax(request):
@@ -184,11 +190,7 @@ def other_form_ajax(request):
         leads = request.POST.get('leads')
         past_sales = request.POST.get('past_sales')
         row_data = request.POST.get('row_data')
-
-        #for i in row_data:
-            #print(row_data)
-        # print(type(past_sales))
-
+        last_avg_sales = request.POST.get('last_avg_offer')
         data = json.loads(row_data)
         user = request.user
         new_data = ExtraField.objects.create(
@@ -196,13 +198,13 @@ def other_form_ajax(request):
             user=user,
             sales_process=sales_process,
             lead_generation=leads,
-            past_sales_training_id=int(past_sales)
+            past_sales_training_id=int(past_sales),
+            last_avg_sales=last_avg_sales
         )
         saved = new_data.save()
-        print(saved)
 
         for i in data:
-            print(i['date'])
+            # print(i['date'])
             sales_offr = Sales_Offer.objects.create(
                 with_field_id = int(request.user.id),
                 date=i['date'],
@@ -211,4 +213,5 @@ def other_form_ajax(request):
                 avg_ticket=i['avg_ticket']
             )
             sales_offr.save()
+            redirect('jobs')
     return HttpResponse('Submitted Successfully :)')

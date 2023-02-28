@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="bg-white">
   <style>
     .myDiv {
       display: none;
@@ -71,7 +71,7 @@
           <div class="card mt-3">
             <div class="card-header font-weight-bold">Fill Your Details</div>
             <div class="card-body p-4 step">
-                        <h4>Please Fill This Form </h4>
+
               <div class="radio-group row justify-content-between px-3 text-center"
                 style="justify-content:center !important">
                 <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
@@ -98,7 +98,8 @@
               {%csrf_token%}
               <div id="userinfo" class="card-body p-4 step" style="display: none">
                 <div class="text-center">
-                  <h5 class="card-title font-weight-bold pb-2">Information of Job </h5>
+                  <h5 class="card-title font-weight-bold pb-2">How much experience do you have in sales? Don't worry we won't judge whether you are super experienced or just getting started!
+(Congratulations just hit submit and you are done! Step 3/3)</h5>
                 </div>
 
                 <div class="form-group row">
@@ -108,6 +109,7 @@
 
 
                     <div class="container">
+
                       <label for="" class="form-label">What offer(s) have you worked on in the last 2 years? Please
                         Include: Niche/ Offer, Ticket Price of Each Offer AND Total Revenue Generated On That Offer.
                       </label>
@@ -126,7 +128,7 @@
                                 <thead>
 
                                   <tr>
-                                    <th scope="col">Date</th>
+                                    <th scope="col">Start Date</th>
                                     <th scope="col">Niche/Offer</th>
                                     <th scope="col">Total Revenue Generated in Offer</th>
                                     <th scope="col">Average Ticket Price Sold</th>
@@ -148,13 +150,8 @@
 
                             </div>
                             <div class="modal-footer">
-
-
-                              <button type="button" class="btn btn-lg btn-success" id="save" data-bs-dismiss="modal">Save & Close</button>
-                            </div> 
-
-          
-                              
+                              <button type="button" class="btn btn-lg btn-success" id="save"
+                                data-bs-dismiss="modal">Save & Close</button>
                             </div>
                           </div>
                         </div>
@@ -163,7 +160,10 @@
 
                   </div>
 
-
+            <div class="col-12 mb-3 mt-3 w-100">
+            <label for="" class="form-label">How much revenue did you generate on average per month on your last offer?</label>
+            {{form.last_avg_sales}}
+            </div>
 
                   <div class="col-md-12 mb-3 w-100">
                     <label for="" class="form-label">What sales process are you used to?</label>
@@ -193,7 +193,7 @@
 
           <div class="card-footer">
             <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
-            <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
+            <button class="action next btn btn-success float-end" disabled="">Next</button>
             <button class="action submit btn btn-sm btn-outline-success float-end" style="display: none"
               type="submit">Submit</button>
           </div>
@@ -269,7 +269,46 @@
         $("div.payDiv").hide();
         $("#pay" + demovalue).show();
       });
-      // 
+      //
+    const PopUpMssg = `
+    <div class="modal d-block" style="background: #757575d6;" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-success fs-bold">Submitted Successfully!!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Your Info has been submitted and would be checked for verification in a minute</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    `
+
+    const ErrPopUpMssg = `
+    <div class="modal d-block" style="background: #757575d6;" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-danger fs-bold">Something's Wrong :(</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>It's either you've submitted before or you didn't fill in a field.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    `
+    function renderPage() {
+        $('body').remove(PopUpMssg)
+        window.location = '/jobs/';
+    }
+    $(document).ready(function () {
+
+    })
+    //
       $(document).on('submit', '#detail-form', (e) => {
         e.preventDefault();
         $.ajax({
@@ -280,13 +319,16 @@
             leads: $('#id_lead_generation').val(),
             past_sales: parseInt($('#id_past_sales_training').val()),
             row_data: $('#hidden-field').val(),
+            last_avg_offer: $('#id_last_avg_sales').val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
           },
           success: (response) => {
             console.log(response)
+            $('body').prepend(PopUpMssg)
+            setTimeout(renderPage, 3000)
           },
           error: (response) => {
-            console.log('unsuccessfull :(')
+            $('body').prepend(ErrPopUpMssg)
           }
         })
       })
@@ -300,14 +342,17 @@
       new_count = count++
       var tr = "<tr class='adding'>" +
         `<td><input type='date' name='date' class='form-control extras'></td>
-        <td><input type='text' name='niche' class='form-control extras'></td> 
-        <td><input type='text' name='tot_rev' class='form-control extras'></td> 
-        <td><input type='text' name='avg_ticket' class='form-control extras'></td> 
+        <td><input type='text' name='niche' class='form-control extras'></td>
+        <td><input type='text' name='tot_rev' class='form-control extras'></td>
+        <td><input type='text' name='avg_ticket' class='form-control extras'></td>
          <th><a href='javascript:void(0)' class='btn btn-danger deleteRow text-white'>-</a></th>`+
         "</tr>"
       $('tbody').append(tr);
     });
+    if (count === 14) {
+      $('.addRow').prop('disabled', true)
 
+    }
     $('tbody').on('click', '.deleteRow', function () {
       $(this).parent().parent().remove();
     });
@@ -328,7 +373,7 @@
       // let uniqueChars = [...new Set(objs)]
       $('#hidden-field').val(JSON.stringify(objs))
       console.log($('#hidden-field').val())
-      // $('.extras').map( function(){ 
+      // $('.extras').map( function(){
       //   var name =$(this).attr('name')
       //   var values = $(this).val()
       //   objs[name] = values
@@ -336,17 +381,7 @@
       // for(var obj in objs){
       //   console.log(objs[obj])
       // }
-    });
-
-
-
-
-
-
-
-
-
-
+    })
   </script>
 </body>
 

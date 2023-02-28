@@ -3,9 +3,9 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserAdminCreationForm, UserAdminChangeForm
-from .models import User, UserProfile, Skills, Language, Days, ClientProfile, ExtraField, Sales_Offer, Trainers
+from .models import User, UserProfile, Skills, Language, Days, ClientProfile, ExtraField, Sales_Offer, Trainers, Timezone
 
-admin.site.site_header = 'UpgradeProfits~~test Admin'
+admin.site.site_header = 'Highticketplacement-Admin'
 admin.site.index_title = 'Admin'
 
 
@@ -36,15 +36,18 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email', 'first_name', 'last_name', 'tel', 'category')
     filter_horizontal = ()
 
-
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'category', 'nationality', 'gender')
+    list_filter = ('category', 'nationality', 'gender')
 admin.site.register(User, UserAdmin)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Skills)
 admin.site.register(Language)
-admin.site.register(Days)
+# admin.site.registgender
 admin.site.register(ExtraField)
 admin.site.register(Sales_Offer)
 admin.site.register(Trainers)
+admin.site.register(Timezone)
 # Remove Group Model from admin. We're not using it.
 # admin.site.unregister(Group)
 
