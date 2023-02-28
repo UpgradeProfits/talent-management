@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="bg-white">
   <style>
     .myDiv {
       display: none;
@@ -146,6 +146,11 @@
                           </g>
                         </svg></a>
                     </div>
+                    <div class=" d-flex">
+                      <p class="m-0 text-white px-4">1ST RECORD</p>
+                      <p class="m-0 text-white ">2ND STOP</p>
+                      <p class="m-0 text-white px-3">3RD DOWNLOAD</p>
+                    </div>
                   </div>
 
 
@@ -193,6 +198,11 @@
               <label for="" class="form-label">Upload Recorded Video</label>
               {{form.profile_video}}
             </div>
+            <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload Your Company Logo Here</label>
+                {{form.display_photo}}
+              </div>
+
 
             <div class="mb-3 ">
               <div class="mb-3">
@@ -207,12 +217,12 @@
                   offer?</label>
                 {{form.what_do_you_sell}}
               </div>
-              <label for="">What is your offer(s) price range?</label>
+              <label for="">What is your Average offer(s) price range?</label>
               {{form.price_range}}
               <label for="">What is the expected monthly on-track earnings for your offer?</label>
               {{form.earnings_you_offer}}
               <label for="" class="">What timezone does your team work in? </label>
-              {{form.timezone}}
+              {{form.timezones}}
             </div>
 
 
@@ -373,7 +383,7 @@
         $("div.payDiv").hide();
         $("#pay" + demovalue).show();
       });
-      // 
+      //
       $(document).on('submit', '#detail-form', (e) => {
         e.preventDefault();
         $.ajax({
@@ -397,10 +407,17 @@
 
     // check video file type
     $("#id_profile_video").change(function () {
-      var fileExtension = ['mp4', 'MOV'];
+      var fileExtension = ['mp4', 'mp3', 'MOV'];
       if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
         alert("Only formats are allowed : " + fileExtension.join(', '));
         $("#id_profile_video").val(null);
+      }
+    });
+     $("#id_display_photo").change(function () {
+      var fileExtension = ['png', 'jpeg'];
+      if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+        alert("Only formats are allowed : " + fileExtension.join(', '));
+        $("#id_display_photo").val(null);
       }
     });
 

@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-v6*!wsf05(o86#s)y+6!7#tvgfdm02&gkg)qw!e6rsm(tdlu8v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['upgradeprofits.pythonanywhere.com', 'gohighticketplacement.com', 'www.gohighticketplacement.com']
 
 
 # Application definition
@@ -91,8 +91,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'upgradeprofits$tmsdb',
+        'HOST': 'upgradeprofits.mysql.pythonanywhere-services.com',
+        'PORT': '',
+        'USER': 'upgradeprofits',
+        'PASSWORD': 'Sing1song'
+    },
+    'OPTIONS': {
+        'sql_mode': 'STRICT_TRANS_TABLES',
     }
 }
 

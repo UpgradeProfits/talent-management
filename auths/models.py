@@ -92,7 +92,7 @@ class User(AbstractBaseUser):
 
     # def save():
     #     mssg = f'Account created for {firstname}'
-    #     message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement, 
+    #     message = f""" Hi {firstname} {lastname} \n welcome to Talent-Mangement,
     #     please do verify your account so we can tell you are wonderful person :) \n \n \n
     #     Tech Team
     #     """
@@ -152,33 +152,33 @@ class ClientProfile(models.Model):
     display_photo= models.ImageField(upload_to='clients/', blank=True)
     profile_video = models.FileField(upload_to=f'clients/profile_videos/', default='', blank=True)
     full_name = models.CharField(max_length=250, default='', blank=True)
-    workers = models.CharField(max_length=100, default='', blank=True, choices=(('Closers', 'Closers'), ('Appointment Setters', 'Appointment Setters')))
-    niche = models.CharField(default='', max_length=100, choices=(('Business Coaching', 'Business Coaching'), ('Marketing & Advertising', 'Marketing & Advertising'), ('Personal Development', 'Personal Development'),('Spirituality Coaching', 'Spirituality Coaching'),('Insurance', 'Insurance'),('Innovative Software', 'Innovative Software'),
+    workers = models.CharField(max_length=100, default='', blank=True, choices=(('Closers', 'Closers'), ('Appointment Setters', 'Appointment Setters'), ('Appointment Setters & Closers', 'Appointment Setters & Closers') ))
+    niche = models.CharField(default='----', max_length=100, choices=(('Business Coaching', 'Business Coaching'), ('Marketing & Advertising', 'Marketing & Advertising'), ('Personal Development', 'Personal Development'),('Spirituality Coaching', 'Spirituality Coaching'),('Insurance', 'Insurance'),('Innovative Software', 'Innovative Software'),
     ('Relationship Coaching', 'Relationship Coaching'),('Real Estate(Real Estate Agents/Mortgage)', 'Real Estate(Real Estate Agents/Mortgage)'),('Real Estate Investing', 'Real Estate Investing'),('Finance/Investing', 'Finance/Investing'),('Finance/Investing', 'Finance/Investing'),
     ('Fitness', 'Fitness'),('Religious Coaching', 'Religious Coaching'),('Software Sales', 'Software Sales'),('Enterprise Sales', 'Enterprise Sales'),('Home Improvement & Security', 'Home Improvement & Security'),('Recruiting Services', 'Recruiting Services')))
     what_do_you_sell = models.TextField(max_length=100, default='', blank=True)
     price_range = models.IntegerField(default=0, blank=True)
     earnings_you_offer = models.CharField(max_length=100, default='', blank=True)
-    timezone = models.CharField(max_length=20, default='', choices=(('Chicago (GMT-6)', 'Chicago (GMT-6)'), ('Los Angeles (GMT-8)', 'Los Angeles (GMT-8)'), ('Honolulu (GMT-10)', 'Honolulu (GMT-10)')))
-    days = models.CharField(default="", max_length=20, choices=(('Mon-Fri', 'Mon-Fri'), ('Mon-Sat', 'Mon-Sat')))
+    timezones = models.ForeignKey('Timezone', blank=True, on_delete=models.CASCADE)
+    days = models.CharField(default="", max_length=20, choices=(('Monday-Friday', 'Monday-Friday'), ('Monday-Saturday', 'Monday-Saturday'), ('Monday-Sunday', 'Monday-Sunday'), ('Weekends Only', 'Weekends Only')))
     appointments_booked = models.IntegerField(default=0, blank=True)
     preffered_lang = models.CharField(max_length=100, default='', blank=True)
-    
+
     def __str__(self):
         return str(self.user)
 
 class UserProfile(models.Model):
     OPTIONS = (
         ('Yes', 'Yes'),
-        ('No', 'No'), 
+        ('No', 'No'),
     )
-    
+
     Availabity = (
         ('I am Ready To Start Now!', 'I am Ready To Start Now!'),
         ('I will be working In 1 Month', 'I will be working In 1 Month'),
         ('I will be working In 2 Month', 'I will be working In 2 Month')
     )
-    
+
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(default='', blank=True, max_length=255)
@@ -189,13 +189,14 @@ class UserProfile(models.Model):
     qrcode = models.ImageField(upload_to='user_QRC_auth/', blank=True)
     gender = models.CharField(default="Male", max_length=6, blank=True, choices=(('Male', 'Male'), ('Female', 'Female')))
     category = models.CharField(default='', max_length=125, choices=(('Closer', 'Closer'), ('Appointment setter', 'Appointment setter'), ('Closer & Appointment setter', 'Closer & Appointment setter')), blank=True, null=True)
-    nationality= CountryField(blank_label='(select country)')
+    nationality= CountryField(blank_label='(choose country)')
     address = models.CharField(default='', max_length=250, blank=True)
     city = models.CharField(default='', max_length=100, blank=True)
     zip_code = models.CharField(default='', max_length=20, blank=True)
     state = models.CharField(default='', max_length=100, blank=True)
+    timezones = models.ForeignKey('Timezone', blank=True, on_delete=models.CASCADE)
     experience = models.CharField(default='', blank=True, max_length=9)
-    resume = models.FileField(upload_to=f'resumes/', default='')
+    resume = models.FileField(upload_to=f'resumes/', default='', blank=True)
     education = models.CharField(default='', blank=True, max_length=255)
     skills = models.ManyToManyField('Skills', blank=True, null=True)
     work_type = models.CharField(default='', max_length=25, choices=(('Full-time', 'Full-time'), ('Part-time', 'Part-time')), blank=True, null=True)
@@ -215,19 +216,20 @@ class UserProfile(models.Model):
     total_revenue_sales_career = models.IntegerField(default=0, blank=True)
     total_revenue_sales_three_yrs = models.IntegerField(default=0, blank=True)
     generated_revenue = models.IntegerField(default=0, blank=True)
-    pay = models.CharField(default='', blank=True, max_length=30, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission'), ('Hourly with commission', 'Hourly with commission')))
+    pay = models.CharField(default='', blank=True, max_length=30, choices=(('Hourly', 'Hourly'), ('Commission', 'Commission'), ('Hourly_with_commission', 'Hourly with commission')))
     expected_commission=models.IntegerField(default=0, blank=True)
     expected_hourly_pay=models.IntegerField(default=0, blank=True)
-    commission = models.IntegerField(default=0, blank=True)
+    commission = models.CharField(default='', max_length=200, blank=True, null=True)
+    hourly_commission = models.CharField(default='', max_length=200, blank=True, null=True)
     Why_are_you_interested_in_remote_sales = models.TextField(default='', blank=True, max_length=500)
     deal_breaker_for_you = models.TextField(default='', blank=True, max_length=500)
     What_offers_worked_on = models.TextField(default='', blank=True, max_length=500)
     what_niche = models.CharField(default="", max_length=100, blank=True)
 
     language = models.ManyToManyField('Language', blank=True)
-    are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS)
+    are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS, blank=True, null=True)
     language = models.ManyToManyField('Language', blank=True, null=True)
-    are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS, blank=True)
+    are_you_comfortable_with_commission_based_pay = models.CharField(max_length=255, choices=OPTIONS, blank=True, null=True)
     past_trainings = models.CharField(default="", max_length=300, blank=True)
     past_leade_gen = models.CharField(max_length=255, choices=OPTIONS, blank=True)
     reason = models.TextField(default='', blank=True, max_length=500)
@@ -237,7 +239,7 @@ class UserProfile(models.Model):
     how_does_a_sales_fit_your_goals= models.TextField(default='', blank=True, max_length=500)
     average_units_sold = models.IntegerField(default=0, blank=True)
     average_tickets_sold = models.IntegerField(default=0, blank=True)
-    timezone = models.CharField(default='', blank=True, max_length=100)
+
     profile_video = models.FileField(upload_to=f'profile_videos/', default='', blank=True)
     cover_letter = models.TextField(default='', blank=True, max_length=500)
     achievements = models.TextField(default='', blank=True, max_length=500)
@@ -245,8 +247,7 @@ class UserProfile(models.Model):
     verified = models.BooleanField(default=False, blank=True)
     start_date = models.CharField(default='', max_length=123, blank=True, choices=Availabity)
     created = models.DateTimeField(auto_now_add=True)
-    
-    
+
     def __str__(self):
         if self.verified == True:
             concatenate = '%s%s' % (self.user, ' (verified)')
@@ -267,28 +268,34 @@ class UserProfile(models.Model):
         canvas.close()
         super(UserProfile, self).save(*args, **kwargs)
 
+class Timezone(models.Model):
+    timezone = models.CharField(default='', blank=True, max_length=250)
+
+    def __str__(self):
+        return str(self.timezone)
+
 class Skills(models.Model):
     skill = models.CharField(default='', blank=True, max_length=123)
-    
+
     def __str__(self):
         return self.skill
 
 
 class Language(models.Model):
     name = models.CharField(default="", max_length=90, blank=True)
-    
+
     def __str__(self):
         return str(self.name)
 
 class Days(models.Model):
 
-    day= models.CharField(default="", max_length=1, blank=False)
+    day= models.CharField(default="", max_length=10, blank=False)
     def __str__(self):
         return str(self.day)
 
 class Country(models.Model):
-    country= CountryField(blank_label='(select country)')
-    
+    country= CountryField(blank_label='----')
+
     def __str__(self):
         return str(self.country)
 
@@ -307,24 +314,26 @@ class ExtraField(models.Model):
     slug = models.SlugField(blank=True)
     sales_process = models.CharField(default='select', max_length=30, choices=SALES_OPTION)
     lead_generation = models.CharField(default='select', max_length=3, choices=LEADS_OPTION)
-    past_sales_training = models.ForeignKey('Trainers', on_delete=models.CASCADE)
+    past_sales_training = models.ForeignKey('Trainers', default=2, on_delete=models.CASCADE)
+    last_avg_sales = models.CharField(default='', blank=True, max_length=100)
     created = models.DateTimeField(default=now)
 
-    
+
     def __str__(self):
         return str(self.slug)
-    
+
     def save(self, *args, **kwargs):
-        self.slug = slugify(f'{self.user}-{self.past_sales_training_id}')
+        self.slug = slugify(f'{self.user}-{self.user_id}')
         super(ExtraField, self).save(*args, **kwargs)
 
 class Trainers(models.Model):
     name =  models.CharField(default='', max_length=200)
-    
+
     def __str__(self):
         return str(self.name)
 
 class Sales_Offer(models.Model):
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     with_field = models.ForeignKey('ExtraField', on_delete=models.CASCADE)
     date = models.DateField()
     niche = models.CharField(default='', max_length=100)

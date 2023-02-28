@@ -64,6 +64,7 @@
               <option selected="" disabled="" value="">Choose...</option>
               <option value="Hourly">Hourly</option>
               <option value="Commission">Commission</option>
+              <option value="Hourly With Commission">Hourly With Commission</option>
             </select>
 
             <div class="invalid-feedback">
@@ -74,7 +75,7 @@
         <!---Ends And Starts-->
         <div class="box border-bottom">
           <div class="box-label text-uppercase d-flex align-items-center">
-            Category
+            Role
           </div>
           <div class="">
             <!-- <label for="validationCustom05" class="form-label">Country of Citizenship?</label> -->
@@ -82,6 +83,7 @@
               <option selected="" disabled="" value="">Choose...</option>
               <option value="closers">Closers</option>
               <option value="appointment setters">Appointment setters</option>
+              <option value="Closer & Appointment setter">Both</option>
             </select>
 
             <div class="invalid-feedback">
@@ -112,7 +114,7 @@
             Country
           </div>
           <div class="">
-            <label for="validationCustom05" class="form-label">Country of Citizenship?</label>
+            <label for="validationCustom05" class="form-label"></label>
             {{form.country}}
             <div class="invalid-feedback">
               Please select a valid Country.
@@ -161,9 +163,9 @@
       e.preventDefault();
       window.history.back();
     });
-    // End 
+    // End
 
-    
+
     // To get data from database
     setInterval(() => {
       $.ajax({
@@ -174,24 +176,19 @@
           for (var item in data.obj) {
             $('#user-info').append(
               `
-              
-              <div class="card mb-3 rounded shadow-sm">
+
+              <div class="card mb-3 rounded h-25 w-100 shadow-sm">
               <div class="row">
-                <div class="col-md-3">
-                  <img src="/media/${data.obj[item].display_photo}" alt="" class="img-fluid rounded long-img">
+                <div class="col-md-3 " style = "background-image: url(/media/${data.obj[item].display_photo}); background-position: center; background-size: cover;  background-repeat: no-repeat; ">
+
                 </div>
                 <div class="col-md-6">
                   <h2 class="card-title fw-bold display-5 text-capitalize mt-3">${data.obj[item].first_name}</h2>
                   <p>${data.obj[item].cover_letter}</p>
-                <a class="btn btn-success mb-3" href="/userprofile/${data.obj[item].slug}">See Profile</a>
+                <a class="btn btn-success mb-3" href="/userprofile/${data.obj[item].user_id}/${data.obj[item].slug}">See Profile</a>
                 </div>
                 <div class="col-md-3 justify-content-center pt-4 " style="display: grid;  ">
-                  <div class="row">
-                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-coins fa-1x"></i>$20 </i></p>
-                </div>
-                <div class="row">
-                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-history fa-1x"></i>${data.obj[item].experience}-Experience </i></p>
-                  </div>
+
                   <div class="row">
                     <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-user fa-1x"></i>${data.obj[item].category}</i></p>
                   </div>
@@ -241,14 +238,8 @@
                 </div>
                 <div class="col-md-3 justify-content-center pt-4 " style="display: grid;  ">
                   <div class="row">
-                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fab fa-twitter fa-2x"></i>$20 </i></p>
+                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fas fa-user fa-1x"></i>$20 </i></p>
                 </div>
-                <div class="row">
-                  <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fab fa-twitter fa-2x"></i>${response.results[result].experience}-Experience </i></p>
-                  </div>
-                  <div class="row">
-                    <p class="text-muted fs-6 text-wrap d-flex" style="font-size: initial;"><i class="fab fa-twitter fa-2x"></i>${response.results[result].category}</i></p>
-                  </div>
                 </div>
               </div>
             </div>

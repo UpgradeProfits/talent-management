@@ -17,8 +17,12 @@
 
 </head>
 
-<body>
+<body class="bg-white">
   <style>
+  .django-ckeditor-widget{
+  width: 100% !important;
+  height: 25% !important;
+}
     .myDiv {
       display: none;
       /* padding:10px; */
@@ -61,7 +65,6 @@
 
       <!-- partial:index.partial.html -->
 
-
       <div class="container d-flex justify-content-center" style="min-width:720px!important">
         <div class="col-11 col-offset-2">
           <div class="progress mt-3" style="height: 30px;">
@@ -95,25 +98,24 @@
               <div id="filter-records" class="mx-5"></div>
             </div>
 
-
-
-
-
-            <div id="userinfo" class="card-body p-4 step" style="display: none">
-              <div class="text-center">
-                <h5 class="card-title font-weight-bold pb-2">Information of Job </h5>
-              </div>
-              <form action="" method="POST">
-                {%csrf_token%}
-                {{form.media}}
+            <form action="" method="POST">
+              {%csrf_token%}
+              <div id="userinfo" class="card-body p-4 step" style="display: none">
+                <div class="text-center">
+                  <h5 class="card-title font-weight-bold pb-2">Information of Job </h5>
+                </div>
                 <div class="form-group row">
-  
-  
+
+
                   <div class="form-group row pt-2">
-  
-  
+
+
                     <div class="mb-3 ">
                       <div class="mb-3">
+                        <label for="">
+                          <h4>Job Title</h4>
+                        </label>
+                        {{form.job_title}}
                         <label for="">
                           <h4>Niche | Category</h4>
                         </label>
@@ -122,80 +124,64 @@
                           <h4>Job Type</h4>
                         </label>
                         {{form.job_type}}
-  
+
                       </div>
                       <label for="">
                         <h4>Company Name</h4>
                       </label>
                       {{form.company_name}}
-                      <label for="exampleFormControlTextarea1" class="form-label py-0">
-                        <h4>Description</h4>
-                      </label>
-                      {{form.job_description}}
-                    </div>
+
+
                     <div class="col-md-12 mb-3 mt-3 w-100">
                       <label for="" class="form-label">
                         <h4>Select Payout</h4>
                       </label>
                       {{form.pay_type}}
-                      <div id="payone" class="payDiv">
+                      <div id="payHourly" class="payDiv">
                         <div class="col-md-12 mb-3 mt-3 w-100">
                           <label for="" class="form-label">Expected Hourly Pay ($)</label>
                           {{form.expected_hourly_pay}}
                         </div>
-  
+
                       </div>
-                      <div id="paytwo" class="payDiv">
+                      <div id="payCommission" class="payDiv">
                         <div class="col-md-12 mb-3 mt-3 w-100">
                           <label for="" class="form-label">Expected Commission (%) </label>
                           {{form.expected_commission}}
                         </div>
                       </div>
-                      <div id="paythree" class="payDiv">
+                      <div id="payHourly_With_Commission" class="payDiv">
                         <div class="col-md-12 mb-3 mt-3 w-100">
                           <label for="" class="form-label"> Hourly + Commission ($/hr + %)</label>
                           {{form.hourly_plus}}
                         </div>
                       </div>
-  
+
+                    </div>
+                    <label for="exampleFormControlTextarea1" class="form-label py-0">
+                        <h4>Description</h4>
+                      </label>
+                      {{form.job_description}}
                     </div>
                   </div>
                 </div>
-              </form>
 
-            </div>
-            <div class="card-footer">
-              <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
-              <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
-              <button class="action submit btn btn-sm btn-outline-success float-end"
-                style="display: none">Submit</button>
-            </div>
+              </div>
+              <div class="card-footer">
+                <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
+                <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
+                <button class="action submit btn btn-sm btn-outline-success float-end" style="display: none"
+                  type="submit">Submit</button>
+              </div>
+            </form>
           </div>
 
         </div>
       </div>
       <!-- partial -->
 
-
     </article>
   </main>
-  <script>
-    $(document).ready(function () {
-      $('#myselection').on('change', function () {
-        var demovalue = $(this).val();
-        $("div.myDiv").hide();
-        $("#show" + demovalue).show();
-      });
-      $('#payoutselection').on('change', function () {
-        var demovalue = $(this).val();
-        $("div.payDiv").hide();
-        $("#pay" + demovalue).show();
-      });
-    });
-
-
-  </script>
-
   <!-- jQuery JS -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
   <!-- Bootstrap 5 JS -->
@@ -226,13 +212,13 @@
 
     for (var fields in textboxFields) {
       if ('form-control' != textboxFields[fields].className) {
-        textboxFields[fields].className += ' form-control'
+        textboxFields[fields].className += ' form-control h-50 py-0'
       }
     };
 
     for (var fields in selectFields) {
       if ('form-control' != selectFields[fields].className) {
-        selectFields[fields].className += ' form-select'
+        selectFields[fields].className += ' form-select w-100'
       }
     };
 
@@ -245,30 +231,33 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script> -->
   <!-- <script src="{%static 'js/main.js' %}"></script> -->
   <script>
+  document.getElementsByClassName("django-ckeditor-widget").className += " w-100 h-25";
     $(document).ready(function () {
       $('#myselection').on('change', function () {
         var demovalue = $(this).val();
         $("div.myDiv").hide();
         $("#show" + demovalue).show();
       });
-      $('#id_pay').on('change', function () {
+      $('#id_pay_type').on('change', function () {
         var demovalue = $(this).val();
         $("div.payDiv").hide();
         $("#pay" + demovalue).show();
       });
     })
-      //
+
   </script>
+
   <script>
-    function renderPage(){
-        window.location = '/seekers/';
+    $('id_job_description').prop('required', false)
+    function renderPage() {
+      window.location = '/seekers/';
     }
-$(document).ready(function(){
-    $('#post_job').click(()=>{
-        setTimeout(renderPage, 1000)
+    $(document).ready(function () {
+      // $('#post_job').click(() => {
+      //   setTimeout(renderPage, 1000)
+      // })
     })
-})
-</script>
+  </script>
 </body>
 
 </html>

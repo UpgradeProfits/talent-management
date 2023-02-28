@@ -5,7 +5,6 @@ from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from djrichtextfield.widgets import RichTextWidget
 
-
 class RegisterForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
@@ -37,7 +36,6 @@ class RegisterForm(forms.ModelForm):
             user.save()
         return user
 
-
 class UserAdminCreationForm(forms.ModelForm):
     """
     A form for creating new users. Includes all the required
@@ -58,8 +56,6 @@ class UserAdminCreationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords don't match")
         return password2
 
-
-
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super(UserAdminCreationForm, self).save(commit=False)
@@ -67,7 +63,6 @@ class UserAdminCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
 
 class UserAdminChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on
@@ -85,7 +80,7 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
-    
+
 class UserProfileForm(forms.ModelForm):
     # cover_letter = forms.CharField(widget=RichTextWidget())
     class Meta:
@@ -158,7 +153,8 @@ class ExtraFieldForm(forms.ModelForm):
         fields = (
             'sales_process',
             'lead_generation',
-            'past_sales_training'
+            'past_sales_training',
+            'last_avg_sales'
         )
 
 class SalesOfferForm(forms.ModelForm):

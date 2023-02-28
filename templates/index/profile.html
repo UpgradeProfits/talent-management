@@ -22,6 +22,8 @@
                 <span class="d-block d-lg-none">{{qs.first_name|capfirst}}</span>
                 {%if qs.display_photo%}
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{qs.display_photo.url}}" alt="..." /></span>
+                {%else%}
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{%static 'imgs/profile.png'%}" alt="..." /></span>
                 {%endif%}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -29,21 +31,17 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Intro</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Stats</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Field of Expertise</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li> -->
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
-
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#days">Availability</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
             <!-- About-->
-            <section class="resume-section" id="about">
+            <section class="resume-section flex-column" id="about">
                 <div class="resume-section-content">
                     <h1 class="mb-0">
-                        {{qs.first_name|capfirst}} 
+                        {{qs.first_name|capfirst}}
                     </h1>
                     {%if request.user is qs.user%}
                     <div class="subheading mb-5">
@@ -57,114 +55,82 @@
                         <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
                     </div> -->
-                </div>  
+                </div>
+
             </section>
-            <hr class="m-0" />   
+            <!-----video section starts here------>
+           <div class="col-12">
+                <h3 class="m-2">Intro Video</h3>
+<div class=" align-items-center">
+
+<div class="ratio ratio-16x9  h-50 w-50 m-2">
+
+
+  <iframe src="https://www.gohighticketplacement.com/{{qs.profile_video.url}}" title="YouTube video" allowfullscreen="">
+
+  </iframe>
+
+</div>
+ <h3 class="m-2">Sales Recording</h3>
+    <div class="ratio ratio-16x9 h-50 w-50 m-2">
+  <iframe src="https://www.gohighticketplacement.com/{{qs.profile_video.url}}" title="YouTube video" allowfullscreen="">
+
+  </iframe>
+
+</div>
+
+
+
+</div>
+
+            </div>
+            <!-- ends here video--->
+            <hr class="m-0" />
             <!-- Experience-->
-            <section class="resume-section" id="experience">   
-                <div class="resume-section-content">   
-                    <h2 class="mb-5">Experience</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <!-- <h3 class="mb-0">Senior Web Developer</h3>
-                            <div class="subheading mb-3">Intelitec Solutions</div> -->
-                        </div>   
-                        <div class="flex-shrink-0"><span class="text-primary">{{qs.experience}}</span></div>
-                    </div>  
-                    <!-- <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">   
-                            <h3 class="mb-0">Web Developer</h3>      
-                            <div class="subheading mb-3">Intelitec Solutions</div>
-                            <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">December 2011 - March 2013</span></div>
-                    </div> -->
-                    <!-- <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Junior Web Designer</h3>
-                            <div class="subheading mb-3">Shout! Media Productions</div>
-                            <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">July 2010 - December 2011</span></div>
-                    </div>    -->
-                    <!-- <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Web Design Intern</h3>
-                            <div class="subheading mb-3">Shout! Media Productions</div>
-                            <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">September 2008 - June 2010</span></div>
-                    </div> -->
-                </div>
-            </section>
             <hr class="m-0" />
-            <!-- Education-->
-            <section class="resume-section" id="education">
+            <section class="resume-section" id="days">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Education</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">{{qs.education}}</h3>
-                            <div class="subheading mb-3">Bachelor of Science</div>
-                            <div>Computer Science - Web Development Track</div>
-                            <p>GPA: 3.23</p>
-                        </div>       
-                        <div class="flex-shrink-0"><span class="text-primary">August 2006 - May 2010</span></div>
-                    </div>
-                    <!-- <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">James Buchanan High School</h3>
-                            <div class="subheading mb-3">Technology Magnet Program</div>
-                            <p>GPA: 3.56</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">August 2002 - May 2006</span></div>
-                    </div> -->
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Skills-->    
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">   
-                    <h2 class="mb-5">Skills</h2>
+                    <h2 class="mb-5">Days_Available</h2>
                     <!-- <div class="subheading mb-3">Programming Languages & Tools</div> -->
                     <ul class="list-inline dev-icons d-flex flex-column">
-                        {% for i in qs.skills.all%}
+                        {% for day in qs.days_available.all%}
                         <li class="list-inline-item h4 fw-normal">
-                            {{i}}
+                            {{day}}
                         </li>
                         {%endfor%}
                     </ul>
                     <!-- <div class="subheading mb-3">Achievements</div> -->
 
-                </div>   
-            </section>  
-            <!-- <hr class="m-0" /> -->
-            <!-- Interests-->
-            <section class="resume-section" id="achievements">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Achievements</h2>
-                    <p>
-                        {{qs.achievements|safe}}
-                    </p> 
                 </div>
             </section>
-            <hr class="m-0" />  
-            <!-- Awards--> 
-            <section class="resume-section" id="awards">   
-                <div class="resume-section-content">  
-                    <h2 class="mb-5">Awards & Certifications</h2>  
-                    <ul class="fa-ul mb-0">   
-                        <li>     
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Google Analytics Certified Developer
-                        </li>     
-                           
-                        
-                        
-                       
-                        
-                        
-                    </ul>
+            <hr class="m-0">
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Stats</h2>
+                    <div class="container-sm">
+                        <table class="table table-responsive-sm table-striped">
+                            <thead>
+                            <tr>
+                              <th scope="col">Date</th>
+                              <th scope="col">Niche</th>
+                              <th scope="col">Total Revenue Generated</th>
+                              <th scope="col">Average Ticket</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {%if qs_2%}
+                                {%for dt in qs_2%}
+                                <tr>
+                                  <td>{{dt.date}}</td>
+                                  <td>{{dt.niche}}</td>
+                                  <td>{{dt.total_generated_rev}}</td>
+                                  <td>{{dt.avg_ticket}}</td>
+                                </tr>
+                                {%endfor%}
+                            {%endif%}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
         </div>
